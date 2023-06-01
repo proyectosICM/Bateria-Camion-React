@@ -2,9 +2,10 @@ import { Route, Routes, BrowserRouter as  Router} from 'react-router-dom';
 import './App.css';
 import { NavbarP } from './Componentes/BarraNav/navbarP';
 import { Inicio } from './Componentes/Pruebas/inicio';
-import { Prueba2 } from './Componentes/Pruebas/prueba2';
-import { Prueba3 } from './Componentes/Pruebas/prueba3';
-import { Monitoreo } from './Componentes/Monitoreo/monitoreo';
+
+import { CamionesMenu } from './Componentes/Camiones/caminonesmenu';
+import { CamionesMenu2 } from './Componentes/Camiones/camionesmenu2';
+import { CamionesDetalles } from './Componentes/Camiones/camionesdetalles';
 
 
 function App() {
@@ -12,13 +13,12 @@ function App() {
     <Router>
       <div className="App">
         <NavbarP />
-
       </div>
       <Routes>
         <Route exact path='/' element={<Inicio />} />
-        <Route exact path='/monitoreo' element={<Monitoreo />}/>
-        <Route exact path='/prueba2' element={<Prueba2 />}/>
-        <Route exact path='/prueba3' element={<Prueba3 />}/>
+        <Route exact path='/prueba1' element={<CamionesMenu />}/>
+        <Route exact path='/prueba2' element={<CamionesMenu2 />}/>
+        <Route exact path='/detalles/:id' element={<CamionesDetalles />}/>
       </Routes>
     </Router>
 

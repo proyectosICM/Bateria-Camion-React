@@ -16,9 +16,8 @@ export function NavbarP(){
                         </Link>
                     </Navbar.Brand>
                     <Nav className="me-auto barra">
-                        <Link to='/monitoreo' className="linkes">TABLA DE MONITOREO</Link>
-                        <Link to='/prueba2' className="linkes">MAPA DE MONITOREO</Link>
-                        <Link to='/prueba3' className="linkes">REGISTROS</Link>
+                        <Link to='/prueba1' className="linkes">LISTADO DE CAMIONES</Link>
+                        <Link to='/prueba2' className="linkes">INCIDENCIAS</Link>
                     </Nav>        
                 </Container>
             </Navbar>
