@@ -6,6 +6,7 @@ import { Inicio } from './Componentes/Pruebas/inicio';
 import { CamionesMenu } from './Componentes/Camiones/caminonesmenu';
 import { CamionesMenu2 } from './Componentes/Camiones/camionesmenu2';
 import { CamionesDetalles } from './Componentes/Camiones/camionesdetalles';
+import { ContenedorTemperatura } from './Componentes/Camiones/Graficos/Temperatura/contenedorTemperatura';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route exact path='/prueba1' element={<CamionesMenu />}/>
         <Route exact path='/prueba2' element={<CamionesMenu2 />}/>
         <Route exact path='/detalles/:id' element={<CamionesDetalles />}/>
+        <Route  path='/temperatura' element={<ContenedorTemperatura />}/>
       </Routes>
     </Router>
 

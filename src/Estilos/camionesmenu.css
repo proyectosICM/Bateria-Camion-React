@@ -44,3 +44,46 @@ img{
     padding: 2%;
     border: 2px solid black;
 }
+
+.orden{
+    width: 90%;
+    border: 2px solid black;
+    padding: 2%;
+}
+
+.graficos{
+    width: 80%;
+    border: 2px solid black;
+    margin: auto;
+}
+
+.cajades{
+    width: 100%;
+    border: 2px solid black;
+
+
+}
+
+.subcajades{
+    width: 100%;
+    height: 80%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tb{
+    width: 50%;
+    height: 120%;
+    border: 2px solid black;
+}
+
+.bt-g{
+    width: 80%;
+    margin: 1%;
+}
+
+.bt-i{
+    width: 33%;
+}
