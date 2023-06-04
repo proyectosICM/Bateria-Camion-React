@@ -10,7 +10,7 @@ export function BotonesG({ handleMostrarGrafico }) {
         <div>
             <h1>Ver gráficos</h1>
             <Button variant='dark' className="bt-g">
-                <Button variant='warning' className="bt-i" onClick={() => handleMostrarGrafico("")}>
+                <Button variant='warning' className="bt-i" onClick={() => handleMostrarGrafico("voltaje")}>
                     <AiFillThunderbolt></AiFillThunderbolt>
                 </Button>
                 <Button variant='danger' className="bt-i" onClick={() => handleMostrarGrafico("temperatura")}>

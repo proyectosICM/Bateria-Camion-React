@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import camionImage from "../../Imagenes/camion.png";
+import camionImage from "../../../Imagenes/camion.png";
 
 export function CamionesItem({id,placa}){
     return(

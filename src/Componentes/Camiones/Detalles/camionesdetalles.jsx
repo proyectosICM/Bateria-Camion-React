@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { CamionesTabla } from "./camionesTabla";
+
+
+import { ContenedorTemperatura } from "../Graficos/Temperatura/contenedorTemperatura";
+import { ContenedorBateria } from "../Graficos/Bateria/contenedorBateria";
 import { BotonesG } from "./botonesG";
-import { ContenedorTemperatura } from "./Graficos/Temperatura/contenedorTemperatura";
-import { ContenedorBateria } from "./Graficos/Bateria/contenedorBateria";
+import { CamionesTabla } from "./camionesTabla";
+import { ContenedorVoltaje } from "../Graficos/Voltaje/contenedorVoltaje";
 
 
 
@@ -18,7 +20,6 @@ export function CamionesDetalles() {
     const { id } = useParams();
     const [datos, setDatos] = useState([]);
 
-    const navigate = useNavigate();
     const ListDatos = useCallback(async () => {
         const results = await axios.get(`http://localhost:8080/api/detalles/d/${id}`);
         setDatos(results.data);
@@ -45,6 +46,9 @@ export function CamionesDetalles() {
                 <BotonesG handleMostrarGrafico={handleMostrarGrafico} />
                 {mostrarGrafico && (
                     <div className="graficos">
+                        {graficoSeleccionado === "voltaje" && (
+                            <ContenedorVoltaje />
+                        )}
                         {graficoSeleccionado === "temperatura" && (
                             <ContenedorTemperatura />
                         )}

@@ -3,10 +3,11 @@ import './App.css';
 import { NavbarP } from './Componentes/BarraNav/navbarP';
 import { Inicio } from './Componentes/Pruebas/inicio';
 
-import { CamionesMenu } from './Componentes/Camiones/caminonesmenu';
-import { CamionesMenu2 } from './Componentes/Camiones/camionesmenu2';
-import { CamionesDetalles } from './Componentes/Camiones/camionesdetalles';
+
 import { ContenedorTemperatura } from './Componentes/Camiones/Graficos/Temperatura/contenedorTemperatura';
+import { CamionesMenu } from './Componentes/Camiones/Menu/caminonesmenu';
+import { CamionesMenu2 } from './Componentes/Camiones/Menu/camionesmenu2';
+import { CamionesDetalles } from './Componentes/Camiones/Detalles/camionesdetalles';
 
 
 function App() {

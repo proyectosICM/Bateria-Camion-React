@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import '../../Estilos/camionesmenu.css';
+import '../../../Estilos/camionesmenu.css';
 import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
