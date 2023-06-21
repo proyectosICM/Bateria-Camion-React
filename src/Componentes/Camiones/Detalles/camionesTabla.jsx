@@ -3,13 +3,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-export function CamionesTabla() {
+export function CamionesTabla({url}) {
     const { id } = useParams();
     const [datos, setDatos] = useState([]);
 
 
     const ListDatos = useCallback(async () => {
-        const results = await axios.get(`http://localhost:8080/api/detalles/d/${id}`);
+        const results = await axios.get(`${url}`);
         setDatos(results.data);
     }, [id],);
 
@@ -22,6 +22,7 @@ export function CamionesTabla() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Hora</th>
                         <th>Voltaje</th>
                         <th>Bateria</th>
@@ -31,10 +32,11 @@ export function CamionesTabla() {
                 <tbody>
                     {datos.map((dato) => (
                         <tr >
-                            <td>{dato[3]}</td>
-                            <td>{dato[4]}</td>
-                            <td>{dato[5]} %</td>
-                            <td>{dato[6]} °C</td>
+                            <td>{dato.id_dc}</td>
+                            <td>{dato.hora}</td>
+                            <td>{dato.voltaje} v</td>
+                            <td>{dato.carga} %</td>  
+                            <td>{dato.temperatura} °C</td>
                         </tr>
                     ))}
                 </tbody>

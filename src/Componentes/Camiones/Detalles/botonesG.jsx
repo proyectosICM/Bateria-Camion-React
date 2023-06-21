@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { AiFillThunderbolt } from "react-icons/ai"
 import { FaTemperatureHigh } from 'react-icons/fa';
-import { BsBatteryHalf } from 'react-icons/bs';
+import { BsBatteryHalf, BsEyeSlashFill } from 'react-icons/bs';
 
 
 export function BotonesG({ handleMostrarGrafico }) {
@@ -18,6 +18,9 @@ export function BotonesG({ handleMostrarGrafico }) {
                 </Button>
                 <Button variant='success' className="bt-i" onClick={() => handleMostrarGrafico("carga")}>
                     <BsBatteryHalf></BsBatteryHalf>
+                </Button>
+                <Button variant='warning' className="bt-bto" onClick={() => handleMostrarGrafico("ocultar")}>
+                   <BsEyeSlashFill></BsEyeSlashFill> Ocultar
                 </Button>
             </Button>
         </div>
