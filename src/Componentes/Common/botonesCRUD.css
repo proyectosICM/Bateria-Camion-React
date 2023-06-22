@@ -1,0 +1,26 @@
+.tabla-buttons {
+    margin-bottom: 20px;
+  }
+  
+  .tabla-buttons .btn {
+    margin-right: 10px;
+  }
+  
+  .tabla-buttons .btn.active {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .button-icon {
+    margin-right: 5px;
+  }
+  
+  .container-crud {
+    margin-top: 20px;
+  }
+
+  .gestion{
+    width: 35%;
+    height: 50%;
+    margin: 0.5%;
+  }

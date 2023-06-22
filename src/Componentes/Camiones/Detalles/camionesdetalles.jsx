@@ -55,7 +55,7 @@ export function CamionesDetalles() {
 
     return (
         <div className="contenedor-detalles">
-            <div className="orden">
+            <div>
                 <h1>DETALLES</h1>
                 <h1>Placa {placa}</h1>
                 <BotonesT handleMostrarTabla={handleMostrarTabla} />

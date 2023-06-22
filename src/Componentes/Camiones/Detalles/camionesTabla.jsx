@@ -26,7 +26,7 @@ export function CamionesTabla({url}) {
                         <th>Hora</th>
                         <th>Voltaje</th>
                         <th>Bateria</th>
-                        <th>Temperatura</th>
+                        <th>Corriente</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,7 @@ export function CamionesTabla({url}) {
                             <td>{dato.hora}</td>
                             <td>{dato.voltaje} v</td>
                             <td>{dato.carga} %</td>  
-                            <td>{dato.temperatura} °C</td>
+                            <td>{dato.temperatura} v</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,0 +1,22 @@
+.container-crud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.crud-card {
+    width: 18rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+.btn-l {
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .crud-card {
+        width: 100%;
+    }
+}
