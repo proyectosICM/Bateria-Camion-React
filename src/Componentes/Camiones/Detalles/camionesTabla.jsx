@@ -22,7 +22,6 @@ export function CamionesTabla({url}) {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Hora</th>
                         <th>Voltaje</th>
                         <th>Bateria</th>
@@ -31,8 +30,7 @@ export function CamionesTabla({url}) {
                 </thead>
                 <tbody>
                     {datos.map((dato) => (
-                        <tr >
-                            <td>{dato.id_dc}</td>
+                        <tr key={dato.id_dc} >
                             <td>{dato.hora}</td>
                             <td>{dato.voltaje} v</td>
                             <td>{dato.carga} %</td>  

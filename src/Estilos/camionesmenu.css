@@ -32,7 +32,7 @@ img{
     height: 25%;
     margin: 2% auto;
     padding: 2%;
-    border: 2px solid black;
+    /*border: 2px solid black; */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -48,7 +48,7 @@ img{
 
 .orden{
     width: 90%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     padding: 2%;
 }
 
@@ -90,11 +90,11 @@ img{
 }
 
 .bt-bt{
-    width: 22%;
+    width: 20%;
 }
 
 .bt-bto{
-    width: 12%;
+    width: 20%;
 }
 
 .btm-g{

@@ -5,17 +5,19 @@ const baseURL = "http://localhost:8080/api";
 
 // Rutas específicas
  
-//camiones
-export const camionURL = `${baseURL}/camion`;
 
+
+//Baterias
 export const bateria1URL = `${baseURL}/detalles/bxc`;
 export const bateria2URL = `${baseURL}/detalles/bxc`;
 export const bateria3URL = `${baseURL}/detalles/bxc`;
 export const bateria4URL = `${baseURL}/detalles/bxc`;
 
-export const busesTURL = `${baseURL}/buses/busxempT`;
-export const busesHURL = `${baseURL}/buses/busxempH/1`;
-export const busesDURL = `${baseURL}/buses/busxempH/0`;
+//camiones
+export const camionURL = `${baseURL}/camion`;
+export const camionesTURL = `${baseURL}/buses/busxempT`;
+export const camionesHURL = `${baseURL}/buses/busxempH/1`;
+export const camionesDURL = `${baseURL}/buses/busxempH/0`;
 export const busesListado = `${baseURL}/buses/vista`;
 
 

@@ -10,29 +10,28 @@ import { AiOutlineUserSwitch } from 'react-icons/ai';
 import { Link } from "react-router-dom";
 import './menuCRUD.css';
 
-export function MenuCRUD(){
+export function MenuCRUD() {
 
     const tablas = ["Empresas", "Camiones", "Trabajadores", "Baterias"];
     const iconos = [BsBuildingsFill, FaTruckMoving, BsPersonVcard, BsBatteryCharging];
-    const rutas = ['/empresasCRUD', '/menuBuses', '/trabajadoresCRUD', '/rutasCRUD'];
+    const rutas = ['/empresasCRUD', '/camionesCRUD', '/trabajadoresCRUD', '/rutasCRUD'];
 
     return (
         <div className="container-crud">
-            {tablas.map((tabla, index) => (
-                <Card className="crud-card" key={index}>
-                    <Card.Body>
-                        <div className="icon-container">
-                            {React.createElement(iconos[index], { className: "icon-class" })}
-                        </div>
-                        <Card.Title>{tabla}</Card.Title>
-                        <Card.Text>Crear, editar y eliminar {tabla}</Card.Text>
-                        <Link to={rutas[index]}>
-                            <Button variant="primary" className="btn-l">IR</Button>
-                        </Link>
-                    </Card.Body>
-                </Card>
-            ))}
+                {tablas.map((tabla, index) => (
+                    <Card className="crud-card" key={index}>
+                        <Card.Body>
+                            <div className="icon-container">
+                                {React.createElement(iconos[index], { className: "icon-class" })}
+                            </div>
+                            <Card.Title>{tabla}</Card.Title>
+                            <Card.Text>Crear, editar y eliminar {tabla}</Card.Text>
+                            <Link to={rutas[index]}>
+                                <Button variant="primary" className="btn-l">IR</Button>
+                            </Link>
+                        </Card.Body>
+                    </Card>
+                ))};
         </div>
     );
 }
- 

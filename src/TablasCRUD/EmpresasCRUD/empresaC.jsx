@@ -2,6 +2,7 @@ import React, {  useState } from "react";
 import { BotonesCRUD } from "../../Componentes/Common/botonesCRUD";
 import { EmpresasTabla } from "./empresaTabla";
 import { empresasDURL, empresasHURL, empresasURL } from "../../API/apiurls";
+import { Card } from "react-bootstrap";
 
 
 export function EmpresasC(){
@@ -50,6 +51,7 @@ export function EmpresasC(){
                     </>
 
                 )}
+
         </div>
     );
 }

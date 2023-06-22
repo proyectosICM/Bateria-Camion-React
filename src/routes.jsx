@@ -4,6 +4,8 @@ import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
 import { Inicio } from "./Componentes/Pruebas/inicio";
 import { MenuCRUD } from "./MenuCrud";
+import { CamionC } from "./TablasCRUD/CamionesCRUD/CamionC";
+import { MenuECamiones } from "./TablasCRUD/CamionesCRUD/menuECamiones";
 import { EmpresasC } from "./TablasCRUD/EmpresasCRUD/empresaC";
 import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
@@ -22,5 +24,7 @@ export const routes = [
     { path: '/menuCRUD', component: <MenuCRUD /> },
     { path: '/empresasCRUD', component: <EmpresasC /> },
     { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
-    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> }
+    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
+    { path: '/camionesCRUD', component: <MenuECamiones /> },
+    { path: '/camionesxemp/:id_cam', component: <CamionC /> }
 ]
