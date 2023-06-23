@@ -30,30 +30,59 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Temperatura ° C',
+      text: 'Voltaje v',
     },
   },
 };
 
-const labels = ["12:30:00", "13:30:00","14:30:00","15:30:00", "16:30:00","17:30:00","18:30:00", "19:30:00","20:30:00"];
-const tbateria1 = [12.5,12.2,12.3,12.5,12.2,12.3,12.5,12.2,10.3];
+export function GraficoVoltajeB1({ idc, datos }) {
+  //console.log(datos);
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Bateria 1",
-      data: tbateria1,
-      borderColor: "rgba(195, 0, 51)",
-      backgroundColor: "rgba(195, 0, 51)",
+  // Extraer los valores de voltaje de cada objeto en el arreglo datos
+  const tbateria1 = datos.map((dato) => dato.voltaje);
+  const labelsx = datos.map((dato) => {
+    const timestamp = dato.dia;
+    const date = new Date(timestamp);
+    return date.toLocaleDateString();
+  });
+
+  const labels = datos.map((dato) => dato.hora);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Bateria 1",
+        data: tbateria1,
+        borderColor: "rgba(195, 0, 51)",
+        backgroundColor: "rgba(195, 0, 51)"
+      }
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Voltaje v',
+      },
+    },
+    scales: {
+      y: {
+
+        min: 0,
+        max: 30
+      }
     }
-  ],
-};
+  };
 
-export function GraficoVoltajeB1(){
-    return(
-      <div className='tb'>
-        <Line options={options} data={data} />;
-      </div>
-    ); 
+  return (
+    <div className='tb'>
+      <Line options={options} data={data} />
+    </div>
+  );
 }

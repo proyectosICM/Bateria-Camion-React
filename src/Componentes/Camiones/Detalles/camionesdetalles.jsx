@@ -9,12 +9,12 @@ import { BotonesG } from "./botonesG";
 import { CamionesTabla } from "./camionesTabla";
 import { ContenedorVoltaje } from "../Graficos/Voltaje/contenedorVoltaje";
 import { BotonesT } from "./botonesT";
-import { bateria1URL, bateria2URL, bateria3URL, bateria4URL } from "../../../API/apiurls";
+import { bateria1URL, bateria2URL, bateria3URL, bateria4URL, bateriaxcamionURL } from "../../../API/apiurls";
 import { Card } from "react-bootstrap";
 import { ContenedorCorriente } from "../Graficos/Corriente/contenedorCorriente";
 
 
-
+ 
 
 export function CamionesDetalles() {
 
@@ -26,13 +26,19 @@ export function CamionesDetalles() {
 
     const { id } = useParams();
     const [datos, setDatos] = useState([]);
+    const [baterias, setBaterias] = useState([]);
 
     const ListDatos = useCallback(async () => {
         const results = await axios.get(`http://localhost:8080/api/detalles/d/${id}`);
         setDatos(results.data);
     }, [id],);
 
+    const ListarBaterias = useCallback(async () => {
+        const results = await axios.get(`${bateriaxcamionURL}/${id}`)
+        setBaterias(results.data);
 
+    })
+    
     const bat1 = `${bateria1URL}/${id}/1`;
     const bat2 = `${bateria2URL}/${id}/2`;
     const bat3 = `${bateria3URL}/${id}/3`;
@@ -40,9 +46,10 @@ export function CamionesDetalles() {
 
     useEffect(() => {
         ListDatos();
-    }, [ListDatos]);
+        ListarBaterias();
+    }, [ListDatos,ListarBaterias]);
 
-    console.log(datos);
+
     const placa = datos.length > 0 ? datos[0][0] : '';
 
     const handleMostrarGrafico = (grafico) => {
@@ -69,16 +76,16 @@ export function CamionesDetalles() {
                     {mostrarTabla && (
                         <div>
                             {tablaSeleccionada === "bateria1" && (
-                                <CamionesTabla url={bat1} />
+                                <CamionesTabla url={bat1} datbat = {baterias[0]}/>
                             )}
                             {tablaSeleccionada === "bateria2" && (
-                                <CamionesTabla url={bat2} />
+                                <CamionesTabla url={bat2} datbat = {baterias[1]}/>
                             )}
                             {tablaSeleccionada === "bateria3" && (
-                                <CamionesTabla url={bat3} />
+                                <CamionesTabla url={bat3} datbat = {baterias[2]}/>
                             )}
                             {tablaSeleccionada === "bateria4" && (
-                                <CamionesTabla url={bat4} />
+                                <CamionesTabla url={bat4} datbat = {baterias[3]}/>
                             )}
                         </div>
                     )}
@@ -89,13 +96,13 @@ export function CamionesDetalles() {
                         {mostrarGrafico && (
                             <div className="graficos">
                                 {graficoSeleccionado === "voltaje" && (
-                                    <ContenedorVoltaje />
+                                    <ContenedorVoltaje idc={id} />
                                 )}
                                 {graficoSeleccionado === "corriente" && (
-                                    <ContenedorCorriente />
+                                    <ContenedorCorriente idc={id} />
                                 )}
                                 {graficoSeleccionado === "carga" && (
-                                    <ContenedorBateria />
+                                    <ContenedorBateria idc={id} />
                                 )}
                                 {/* Agrega más condiciones para otros gráficos */}
                             </div>
