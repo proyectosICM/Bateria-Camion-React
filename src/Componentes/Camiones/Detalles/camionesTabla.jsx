@@ -2,12 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Card, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { InfoTReal } from "../Modulos/InfoTReal";
-import { camionURL } from "../../../API/apiurls";
+import { bateria1URL, camionURL } from "../../../API/apiurls";
 import axios from "axios";
 
-export function CamionesTabla({ url, datbat }) {
+export function CamionesTabla({ idb, datbat, idc }) {
   const { id } = useParams();
   const [datos, setDatos] = useState([]);
+
+  const url = `${bateria1URL}/${idc}/${idb}`;
 
   const ListDatos = useCallback(async () => {
     const results = await axios.get(`${url}`);
@@ -36,8 +38,12 @@ export function CamionesTabla({ url, datbat }) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>ID</th>
-
+            <th>ID {idc}</th>
+            <th>Dia</th>
+            <th>Hora</th>
+            <th>Voltaje</th>
+            <th>Carga</th>
+            <th>Corriente</th>
           </tr>
         </thead>
         <tbody>
