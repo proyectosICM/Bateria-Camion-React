@@ -27,6 +27,7 @@ export function CamionesDetalles() {
     const { id } = useParams();
     const [datos, setDatos] = useState([]);
     const [baterias, setBaterias] = useState([]);
+    const [idbat, setIdbat] = useState([]);
 
     const ListDatos = useCallback(async () => {
         const results = await axios.get(`http://localhost:8080/api/detalles/d/${id}`);
@@ -37,7 +38,13 @@ export function CamionesDetalles() {
         const results = await axios.get(`${bateriaxcamionURL}/${id}`)
         setBaterias(results.data);
 
-    })
+    });
+
+    const ListIdBat = useCallback(async () => {
+        const results = await axios.get(`${bateriaxcamionURL}/${id}`);
+        const idBatArray = results.data.map((item) => item.id_bat);
+        setIdbat(idBatArray);
+      }, [id]);
     
     const bat1 = `${bateria1URL}/${id}/1`;
     const bat2 = `${bateria2URL}/${id}/2`;
@@ -47,9 +54,10 @@ export function CamionesDetalles() {
     useEffect(() => {
         ListDatos();
         ListarBaterias();
-    }, [ListDatos,ListarBaterias]);
+        ListIdBat();
+    }, [ListDatos,ListarBaterias, ListIdBat]);
 
-
+    console.log(idbat);
     const placa = datos.length > 0 ? datos[0][0] : '';
 
     const handleMostrarGrafico = (grafico) => {

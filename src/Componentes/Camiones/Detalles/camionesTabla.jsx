@@ -36,6 +36,7 @@ export function CamionesTabla({ url, datbat }) {
       <Table striped bordered hover>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Dia</th>
             <th>Hora</th>
             <th>Voltaje</th>
@@ -50,6 +51,7 @@ export function CamionesTabla({ url, datbat }) {
             const fechaLegible = date.toLocaleDateString();
             return (
               <tr key={dato.id_dc}>
+                <td>{dato.id_dc}</td>
                 <td>{fechaLegible}</td>
                 <td>{dato.hora}</td>
                 <td>{dato.voltaje} v</td>
