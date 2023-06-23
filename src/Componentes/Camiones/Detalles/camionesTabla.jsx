@@ -37,11 +37,7 @@ export function CamionesTabla({ url, datbat }) {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Dia</th>
-            <th>Hora</th>
-            <th>Voltaje</th>
-            <th>Carga</th>
-            <th>Corriente</th>
+
           </tr>
         </thead>
         <tbody>
