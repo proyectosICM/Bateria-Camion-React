@@ -17,7 +17,7 @@ export function CamionesTabla({ idb, datbat, idc }) {
     const results = await axios.get(`${url}`);
     setDatos(results.data);
     //console.log(datos);
-  });
+  }); 
 
   const ListarBaterias = useCallback(async () => {
     const results = await axios.get(`${bateriaxcamionURL}/${id}`);

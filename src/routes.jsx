@@ -2,6 +2,7 @@ import { CamionesDetalles } from "./Componentes/Camiones/Detalles/camionesdetall
 import { ContenedorTemperatura } from "./Componentes/Camiones/Graficos/Temperatura/contenedorTemperatura";
 import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
+import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 import { Inicio } from "./Componentes/Pruebas/inicio";
 import { MenuCRUD } from "./MenuCrud";
 import { CamionC } from "./TablasCRUD/CamionesCRUD/CamionC";
@@ -26,5 +27,8 @@ export const routes = [
     { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
     { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
     { path: '/camionesCRUD', component: <MenuECamiones /> },
-    { path: '/camionesxemp/:id_cam', component: <CamionC /> }
+    { path: '/camionesxemp/:id_cam', component: <CamionC /> },
+
+    //PANEL DE INCIDENCIAS
+    { path: '/incidencias', component: <PanelIncidencias />}
 ]

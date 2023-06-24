@@ -86,7 +86,7 @@ export function GraficoCorrienteB1({idBat, datos, idc}) {
       },
       title: {
         display: true,
-        text: "Carga %",
+        text: "Corriente v",
       },
     },
     scales: {

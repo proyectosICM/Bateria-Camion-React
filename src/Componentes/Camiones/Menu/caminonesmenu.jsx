@@ -29,14 +29,6 @@ export function CamionesMenu(){
 
     return (
         <div>
-            <div className="contenedor-btn">
-                <Button variant="dark" className="btm-g">
-                    <Button variant="success" className="bt-i" onClick={() => handleMostrarVista("menu")}><AiOutlineTable></AiOutlineTable></Button>
-                    <Button variant="success" className="bt-i" onClick={() => handleMostrarVista("lista")}><BsListUl></BsListUl></Button>
-                    </Button>
-            </div>
-
-
             <div className="camionesMenu-contenedor">
                 {mostrarVista && (
                     <>

@@ -28,9 +28,9 @@ export function CamionesItem({ id, placa }) {
                 {baterias.map((bateria) => (
                     <Card style={{ fontWeight: "bold" }}>
                         <Card.Body>
-                            Bateria: <AiFillThunderbolt />Voltaje {bateria.voltaje} v { " "}
-                            <BsBatteryHalf />Carga {bateria.carga} % { " "}
-                            <FaCarBattery />Corriente {bateria.corriente} v { " "}
+                            Bateria: <AiFillThunderbolt />Voltaje {bateria.voltaje} v {" "}
+                            <BsBatteryHalf />Carga {bateria.carga} % {" "}
+                            <FaCarBattery />Corriente {bateria.corriente} v {" "}
                         </Card.Body>
                     </Card>
                 ))}
@@ -38,6 +38,8 @@ export function CamionesItem({ id, placa }) {
             </Card>
             <Link to={`/detalles/${id}`} className="linkes">
                 <Button variant="success">Ver detalles de registros</Button>
+            </Link>
+            <Link to={`/incidencias`} className="linkes">
                 <Button variant="success"><BsFillCheckCircleFill /> Incidencias 0</Button>
                 <Button variant="danger"><BsXCircleFill />Incidencias 1 <BsExclamationCircleFill /></Button>
             </Link>

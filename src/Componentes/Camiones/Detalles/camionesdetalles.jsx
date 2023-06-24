@@ -92,11 +92,11 @@ export function CamionesDetalles() {
                 {graficoSeleccionado === "voltaje" && (
                   <ContenedorVoltaje idc={id} />
                 )}
-                {graficoSeleccionado === "corriente" && (
-                  <ContenedorCorriente idc={id} />
-                )}
                 {graficoSeleccionado === "carga" && (
                   <ContenedorBateria idc={id} />
+                )}
+                {graficoSeleccionado === "corriente" && (
+                  <ContenedorCorriente idc={id} />
                 )}
                 <Button>Ver Graficos detallados</Button>
                 {/* Agrega más condiciones para otros gráficos */}
