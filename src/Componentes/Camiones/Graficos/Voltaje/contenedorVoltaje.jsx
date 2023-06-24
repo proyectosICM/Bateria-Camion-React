@@ -50,3 +50,4 @@ export function ContenedorVoltaje({ idc }) {
     </div>
   );
 }
+ 

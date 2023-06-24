@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
+import { bateriaTURL } from '../../../../API/apiurls';
 
 
 ChartJS.register(
@@ -17,7 +19,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  Title,
+  Title, 
   Tooltip,
   Legend
 );
@@ -36,29 +38,73 @@ export const options = {
 };
 
 
-const labels = ["12:30:00", "13:30:00","14:30:00","15:30:00", "16:30:00","17:30:00","18:30:00", "19:30:00","20:30:00"];
-const tbateria1 = [90,75,60,98,95,94,40,20,100];
 
-const data = {
+
+export function GraficoCargaB1({idBat, datos, idc}) {
+
+  const [vdatos, setVdatos] = useState([]);
+
+  const ListVDatos = useCallback(async () => {
+    const results = await axios.get(`${bateriaTURL}/${idc}/${idBat}`);
+    setVdatos(results.data);
+  }, [idBat, idc]);
+
+  useEffect (() => {
+    ListVDatos();
+  }, [ListVDatos]);
+
+  if (!vdatos || vdatos.length === 0) {
+    return null; // O muestra un mensaje de carga, por ejemplo
+  } 
+
+  const tbateria1 = vdatos.map((dato) => dato.carga);
+  const labelsx = vdatos.map((dato) => {
+    const timestamp = dato.dia;
+    const date = new Date(timestamp);
+    return date.toLocaleDateString();
+  });
+
+  const labels = vdatos.map((dato) => dato.hora);
+
+  const data = {
     labels,
     datasets: [
       {
-        label: "Bateria 1",
+        label: `Bateria con id ${idBat}`,
         data: tbateria1,
-        borderColor: "rgba(195, 0, 51)",
-        backgroundColor: "rgba(195, 0, 51)",
-      }
+        borderColor: "rgba(70, 255, 51)",
+        backgroundColor: "rgba(70, 255, 51)",
+      },
     ],
   };
+  console.log(vdatos);
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Carga %",
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+        max: 100,
+      },
+    },
+  };
 
-  
-  
-export function GraficoCargaB1(){
-    return(
-      <div className='tb'>
-        <Line options={options} data={data} />;
-      </div>
-    ); 
+
+
+
+  return (
+    <div className='tb'>
+      <Line options={options} data={data} />;
+    </div>
+  );
 
 
 }

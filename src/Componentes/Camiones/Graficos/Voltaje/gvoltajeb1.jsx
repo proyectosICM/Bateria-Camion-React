@@ -33,7 +33,7 @@ export function GraficoVoltajeB1({ idBat, datos, idc }) {
 
   if (!vdatos || vdatos.length === 0) {
     return null; // O muestra un mensaje de carga, por ejemplo
-  }
+  } 
 
   const tbateria1 = vdatos.map((dato) => dato.voltaje);
   const labelsx = vdatos.map((dato) => {

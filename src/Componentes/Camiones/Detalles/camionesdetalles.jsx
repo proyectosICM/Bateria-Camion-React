@@ -14,8 +14,8 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { BsEyeSlashFill } from 'react-icons/bs';
 
 export function CamionesDetalles() {
-  const [mostrarGrafico, setMostrarGrafico] = useState(false);
-  const [graficoSeleccionado, setGraficoSeleccionado] = useState("");
+  const [mostrarGrafico, setMostrarGrafico] = useState(true);
+  const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
   const [mostrarTabla, setMostrartabla] = useState(true);
   const [tablaSeleccionada, setTablaSeleccionada] = useState("bateria1");
   const { id } = useParams();
@@ -67,9 +67,6 @@ export function CamionesDetalles() {
             <h1>DETALLES</h1>
             <h3>Placa {placa}</h3>
           </Card.Header>
-          <Card>
-            <BotonesT handleMostrarTabla={handleMostrarTabla} idbat={idbat} />
-          </Card>
 
           {mostrarTabla && (
             <div>
@@ -101,6 +98,7 @@ export function CamionesDetalles() {
                 {graficoSeleccionado === "carga" && (
                   <ContenedorBateria idc={id} />
                 )}
+                <Button>Ver Graficos detallados</Button>
                 {/* Agrega más condiciones para otros gráficos */}
               </div>
             )}

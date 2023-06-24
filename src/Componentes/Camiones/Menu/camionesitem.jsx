@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { bateriaxcamionURL } from "../../../API/apiurls";
 import axios from "axios";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { BsBatteryHalf } from "react-icons/bs";
+import { BsBatteryHalf, BsExclamationCircleFill, BsFillCheckCircleFill, BsX, BsXCircleFill } from "react-icons/bs";
 import { FaCarBattery } from "react-icons/fa";
 
 export function CamionesItem({ id, placa }) {
@@ -38,6 +38,8 @@ export function CamionesItem({ id, placa }) {
             </Card>
             <Link to={`/detalles/${id}`} className="linkes">
                 <Button variant="success">Ver detalles de registros</Button>
+                <Button variant="success"><BsFillCheckCircleFill /> Incidencias 0</Button>
+                <Button variant="danger"><BsXCircleFill />Incidencias 1 <BsExclamationCircleFill /></Button>
             </Link>
         </div>
     );
