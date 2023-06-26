@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
-import { IncidenciasxEmpresaR, IncidenciasxEmpresaSR } from "../../API/apiurls";
+import { IncidenciasxCamionR, IncidenciasxCamionSR, IncidenciasxEmpresaR, IncidenciasxEmpresaSR } from "../../API/apiurls";
 import { IncidenciasTG } from "./incidenciasTG";
+import { useParams } from "react-router-dom";
+import { IncidenciasTC } from "./incidenciasTC";
 
-export function IncidenciasGenerales() {
+export function IncidenciasCamion() {
 
-    const sr= `${IncidenciasxEmpresaSR}1`;
-    const r= `${IncidenciasxEmpresaR}1`;
+    const {id_cam} = useParams();
+    const {t} = useParams();
+    const sr= `${IncidenciasxCamionSR}${id_cam}`;
+    const r= `${IncidenciasxCamionR}${id_cam}`;
 
     return (
         <div className="contenedor-detalles">
@@ -17,10 +21,10 @@ export function IncidenciasGenerales() {
                 </Card.Title>
                 <Card.Body>
                     <h2>Incidencias sin revisar</h2>
-                    <IncidenciasTG est={0} url={sr} />
+                    <IncidenciasTC  url={sr} tu={t}/>
 
                     <h2>Registro de incidencias</h2>
-                    <IncidenciasTG est={1} url={r} />
+                    <IncidenciasTC  url={r} tu={t}/>
                 </Card.Body>
             </Card>
         </div>

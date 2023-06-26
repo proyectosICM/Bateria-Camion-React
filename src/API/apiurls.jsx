@@ -38,4 +38,9 @@ export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0`;
 //Incidencias
 export const IncidenciasURL = `${baseURL}/incidencias`;
 export const IncidenciasxEmpresa = `${baseURL}/incidencias/empresa/`;
-export const IncidenciasxEmpresaE = `${baseURL}/incidencias/empSR/`;
+// Incidencias Generales por empresas
+export const IncidenciasxEmpresaR = `${baseURL}/incidencias/empSR/1/`;
+export const IncidenciasxEmpresaSR = `${baseURL}/incidencias/empSR/0/`;
+// Incidencias Generales por camion
+export const IncidenciasxCamionR = `${baseURL}/incidencias/camSR/1/`;
+export const IncidenciasxCamionSR = `${baseURL}/incidencias/camSR/0/`;

@@ -13,7 +13,7 @@ export function IncidenciasTG({ est, url }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
 
   const ListarIncidenciasSR = useCallback(async () => {
-    const results = await axios.get(`${url}${est}`);
+    const results = await axios.get(`${url}`);
     setIncidenciasSR(results.data);
   }, [est]);
 

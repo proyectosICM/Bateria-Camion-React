@@ -3,6 +3,7 @@ import { ContenedorTemperatura } from "./Componentes/Camiones/Graficos/Temperatu
 import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
 import { IncidenciasGenerales } from "./Componentes/Incidencias/IncidenciasGenerales";
+import { IncidenciasCamion } from "./Componentes/Incidencias/incidenciasxCamion";
 import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 import { Inicio } from "./Componentes/Pruebas/inicio";
 import { MenuCRUD } from "./MenuCrud";
@@ -31,6 +32,7 @@ export const routes = [
     { path: '/camionesxemp/:id_cam', component: <CamionC /> },
 
     //PANEL DE INCIDENCIAS
-    { path: '/incidencias', component: <PanelIncidencias />},
+    { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion />},
+    { path: '/incidenciasxctrabajador/:t/:id_cam', component: <IncidenciasCamion />},
     { path: '/incidenciasGE', component: <IncidenciasGenerales />}
 ]

@@ -1,18 +1,18 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ContenedorTemperatura } from "../Graficos/Temperatura/contenedorTemperatura";
 import { ContenedorBateria } from "../Graficos/Bateria/contenedorBateria";
 import { BotonesG } from "./botonesG";
 import { CamionesTabla } from "./camionesTabla";
 import { ContenedorVoltaje } from "../Graficos/Voltaje/contenedorVoltaje";
 import { BotonesT } from "./botonesT";
-import { bateriaxcamionURL } from "../../../API/apiurls";
+import { IncidenciasxCamionSR, bateriaxcamionURL } from "../../../API/apiurls";
 import { Card } from "react-bootstrap";
 import { ContenedorCorriente } from "../Graficos/Corriente/contenedorCorriente";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { BsEyeSlashFill } from 'react-icons/bs';
-
+ 
 export function CamionesDetalles() {
   const [mostrarGrafico, setMostrarGrafico] = useState(true);
   const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
@@ -22,6 +22,15 @@ export function CamionesDetalles() {
   const [datos, setDatos] = useState([]);
   const [baterias, setBaterias] = useState([]);
   const [idbat, setIdbat] = useState([]);
+
+  const [incidenciasSR, setIncidenciasSR] = useState([]);
+ 
+  const url = `${IncidenciasxCamionSR}${id}`;
+
+  const ListarIncidenciasSR = useCallback(async () => {
+      const results = await axios.get(`${url}`);
+      setIncidenciasSR(results.data);
+  });
 
   const ListDatos = useCallback(async () => {
     const results = await axios.get(`http://localhost:8080/api/detalles/d/${id}`);
@@ -44,7 +53,8 @@ export function CamionesDetalles() {
     ListDatos();
     ListarBaterias();
     ListIdBat();
-  }, [ListDatos, ListarBaterias, ListIdBat]);
+    ListarIncidenciasSR();
+  }, [ListDatos, ListarBaterias, ListIdBat, ListarIncidenciasSR]);
 
   console.log(idbat);
   const placa = datos.length > 0 ? datos[0][0] : "";
@@ -82,7 +92,9 @@ export function CamionesDetalles() {
                 </div>
               ))}
             </div>
-          )}
+          )}  
+          <h1>Incidencias sin revisar: {incidenciasSR.length}</h1>
+          <Button><Link className="linkes" to={`/incidenciasxctrabajador/${"t"}/${id}`}>Ver Registro Incidencias</Link></Button>
 
           <Card>
             <BotonesG handleMostrarGrafico={handleMostrarGrafico} />
