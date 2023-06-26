@@ -18,7 +18,7 @@ export function NavbarP() {
                     </Navbar.Brand>
                     <Nav className="me-auto barra">
                         <Link to='/prueba1' className="linkes">LISTADO DE CAMIONES</Link>
-                        <Link to='/incidencias' className="linkes">INCIDENCIAS</Link>
+                        <Link to='/incidenciasGE' className="linkes">INCIDENCIAS</Link>
                         <Link to='/menuCRUD' className="linkes">
                             <AiFillSetting className="link-icon" />
                         </Link>

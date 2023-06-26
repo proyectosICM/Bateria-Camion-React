@@ -25,7 +25,7 @@ export function CamionesItem({ id, placa }) {
             <h1>Placa: {placa}</h1>
             {/* <img src={camionImage} alt="camion" /> */}
             <Card>
-                {baterias.map((bateria) => (
+                {baterias.map((bateria, index) => (
                     <Card style={{ fontWeight: "bold" }}>
                         <Card.Body>
                             Bateria: <AiFillThunderbolt />Voltaje {bateria.voltaje} v {" "}
@@ -41,7 +41,10 @@ export function CamionesItem({ id, placa }) {
             </Link>
             <Link to={`/incidencias`} className="linkes">
                 <Button variant="success"><BsFillCheckCircleFill /> Incidencias 0</Button>
-                <Button variant="danger"><BsXCircleFill />Incidencias 1 <BsExclamationCircleFill /></Button>
+                {/*
+                    <Button variant="danger"><BsXCircleFill />Incidencias 1 <BsExclamationCircleFill /></Button>
+                */}
+
             </Link>
         </div>
     );

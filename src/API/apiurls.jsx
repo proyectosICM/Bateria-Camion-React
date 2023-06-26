@@ -34,3 +34,8 @@ export const trabajadorURL = `${baseURL}/trabajadores`;
 export const trabajadorTURL = `${baseURL}/trabajadores/trabajadoresxEmpT`;
 export const trabajadorHURL = `${baseURL}/trabajadores/trabajadoresxEmpH/1`;
 export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0`;
+
+//Incidencias
+export const IncidenciasURL = `${baseURL}/incidencias`;
+export const IncidenciasxEmpresa = `${baseURL}/incidencias/empresa/`;
+export const IncidenciasxEmpresaE = `${baseURL}/incidencias/empSR/`;
