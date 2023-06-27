@@ -32,38 +32,40 @@ export function CamionesItem({ id, placa }) {
     useEffect(() => {
         // Actualiza el estado del icono basado en la longitud de incidencias
         if (incidencias.length > 0) {
-          setIcono(<BsXCircleFill />);
+            setIcono(<BsXCircleFill />);
         } else {
-          setIcono(<BsFillCheckCircleFill />);
+            setIcono(<BsFillCheckCircleFill />);
         }
-      }, [incidencias]);
+    }, [incidencias]);
 
 
     return (
         <div className="camionesItem-contenedor">
-            <h1>Placa: {placa}</h1>
-            {/* <img src={camionImage} alt="camion" /> */}
             <Card>
-                {baterias.map((bateria, index) => (
-                    <Card style={{ fontWeight: "bold" }}>
-                        <Card.Body>
-                            Bateria: <AiFillThunderbolt />Voltaje {bateria.voltaje} v {" "}
-                            <BsBatteryHalf />Carga {bateria.carga} % {" "}
-                            <FaCarBattery />Corriente {bateria.corriente} v {" "}
-                        </Card.Body>
-                    </Card>
-                ))}
+                <h1>Placa: {placa}</h1>
+                {/* <img src={camionImage} alt="camion" /> */}
+                <Card>
+                    {baterias.map((bateria, index) => (
+                        <Card style={{ fontWeight: "bold" }}>
+                            <Card.Body>
+                                Bateria: <AiFillThunderbolt />Voltaje {bateria.voltaje} v {" "}
+                                <BsBatteryHalf />Carga {bateria.carga} % {" "}
+                                <FaCarBattery />Corriente {bateria.corriente} v {" "}
+                            </Card.Body>
+                        </Card>
+                    ))}
 
+                </Card>
+                <Link to={`/detalles/${id}`} className="linkes">
+                    <Button variant="success">Ver detalles de registros</Button>
+                </Link>
+                <Link to={`/incidenciasxc/${"sup"}/${id}`} className="linkes">
+                    <Button variant={incidencias.length > 0 ? "danger" : "success"}>
+                        {icono}
+                        Incidencias {incidencias.length > 0 ? incidencias.length : 0}
+                    </Button>
+                </Link>
             </Card>
-            <Link to={`/detalles/${id}`} className="linkes">
-                <Button variant="success">Ver detalles de registros</Button>
-            </Link>
-            <Link to={`/incidenciasxc/${"sup"}/${id}`} className="linkes">
-                <Button variant={incidencias.length > 0 ? "danger":"success"}>
-                    {icono}
-                     Incidencias {incidencias.length > 0 ? incidencias.length:0}
-                </Button>
-            </Link>
         </div>
     );
 

@@ -14,10 +14,10 @@ export function MenuCRUD() {
 
     const tablas = ["Empresas", "Camiones", "Trabajadores", "Baterias"];
     const iconos = [BsBuildingsFill, FaTruckMoving, BsPersonVcard, BsBatteryCharging];
-    const rutas = ['/empresasCRUD', '/camionesCRUD', '/trabajadoresCRUD', '/rutasCRUD'];
+    const rutas = ['/empresasCRUD', '/camionesCRUD', '/trabajadoresCRUD', '/bateriasCRUD'];
 
     return (
-        <div className="container-crud">
+        <div className="camionesMenu-contenedor">
                 {tablas.map((tabla, index) => (
                     <Card className="crud-card" key={index}>
                         <Card.Body>
@@ -35,3 +35,4 @@ export function MenuCRUD() {
         </div>
     );
 }
+ 

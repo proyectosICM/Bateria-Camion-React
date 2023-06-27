@@ -7,6 +7,7 @@ import { IncidenciasCamion } from "./Componentes/Incidencias/incidenciasxCamion"
 import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 import { Inicio } from "./Componentes/Pruebas/inicio";
 import { MenuCRUD } from "./MenuCrud";
+import { MenuEBaterias } from "./TablasCRUD/BateriasCRUD/menuEBaterias";
 import { CamionC } from "./TablasCRUD/CamionesCRUD/CamionC";
 import { MenuECamiones } from "./TablasCRUD/CamionesCRUD/menuECamiones";
 import { EmpresasC } from "./TablasCRUD/EmpresasCRUD/empresaC";
@@ -29,7 +30,8 @@ export const routes = [
     { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
     { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
     { path: '/camionesCRUD', component: <MenuECamiones /> },
-    { path: '/camionesxemp/:id_cam', component: <CamionC /> },
+    { path: '/camionesxemp/:id_emp', component: <CamionC /> },
+    { path: '/bateriasCRUD', component: <MenuEBaterias /> },
 
     //PANEL DE INCIDENCIAS
     { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion />},

@@ -6,7 +6,7 @@ import { Card } from "react-bootstrap";
 
 
 export function EmpresasC(){
-
+ 
     const [mostrartabla, setMostrarTabla] = useState(true)
     const [tablaSeleccionada, setTablaSeleccionada] = useState("Habilitados");
     const [abrir, setAbrir] = useState(false);

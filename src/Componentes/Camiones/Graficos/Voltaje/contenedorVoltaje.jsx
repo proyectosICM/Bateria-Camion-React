@@ -36,7 +36,7 @@ export function ContenedorVoltaje({ idc }) {
 */
   return (
     <div className="cajades">
-      <GraficoVoltajeT />
+
       <div className="subcajades">
         {idbat.map((id) => (
           <GraficoVoltajeB1

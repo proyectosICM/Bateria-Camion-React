@@ -1,0 +1,35 @@
+.modal-title {
+    font-weight: bold;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .modal-button {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .formNomEmp{
+    margin: 10px;
+  }
+  .modal-button-primary {
+    margin-right: 10px;
+  }
+  
+  .modal-button-close {
+   margin-left: 10px;
+  }
+  
+  .modal-button svg {
+    margin-right: 5px;
+  }
+  
+  .modal-button:hover {
+    opacity: 0.8;
+  }
+  

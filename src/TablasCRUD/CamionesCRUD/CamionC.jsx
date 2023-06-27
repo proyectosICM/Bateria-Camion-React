@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { BotonesCRUD } from "../../Componentes/Common/botonesCRUD";
 import { camionesDURL, camionesHURL, camionesTURL } from "../../API/apiurls";
+import { CamionTabla } from "./camionTabla";
 
 
 export function CamionC() {
@@ -11,12 +12,9 @@ export function CamionC() {
     const [abrir, setAbrir] = useState(false);
     const [tablaSeleccionada, setTablaSeleccionada] = useState("Todos");
 
-
-    const urlT = `${camionesTURL}/${id_emp}`;
-    const urlH = `${camionesHURL}/${id_emp}`;
-    const urlD = `${camionesDURL}/${id_emp}`;
-
-
+    const urlT = `${camionesTURL}${id_emp}`;
+    const urlH = `${camionesHURL}${id_emp}`;
+    const urlD = `${camionesDURL}${id_emp}`;
 
     const handleMostrarTabla = (tabla) => {
         setTablaSeleccionada(tabla);
@@ -38,17 +36,17 @@ export function CamionC() {
 
     return (
         <div className="container-crud">
-            <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder="/menuCamiones" />
+            <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder="/camionesCRUD" />
 
-            {/*tablaSeleccionada === "Habilitados" && (
-                <BusesTabla il={id_emp} url={urlH} abrir={abrir} cerrar={handleCerrarModal} />
+            {tablaSeleccionada === "Habilitados" && (
+                <CamionTabla il={id_emp} url={urlH} abrir={abrir} cerrar={handleCerrarModal} />
             )}
             {tablaSeleccionada === "Deshabilitados" && (
-                <BusesTabla il={id_emp} url={urlD} abrir={abrir} cerrar={handleCerrarModal} />
+                <CamionTabla il={id_emp} url={urlD} abrir={abrir} cerrar={handleCerrarModal} />
             )}
             {tablaSeleccionada === "Todos" && (
-                <BusesTabla il={id_emp} url={urlT} abrir={abrir} cerrar={handleCerrarModal} />
-            )*/}
+                <CamionTabla il={id_emp} url={urlT} abrir={abrir} cerrar={handleCerrarModal} />
+            )}
 
         </div>
     );

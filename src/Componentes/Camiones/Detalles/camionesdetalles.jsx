@@ -91,7 +91,7 @@ export function CamionesDetalles() {
                   )}
                 </div>
               ))}
-            </div>
+            </div> 
           )}  
           <h1>Incidencias sin revisar: {incidenciasSR.length}</h1>
           <Button><Link className="linkes" to={`/incidenciasxctrabajador/${"t"}/${id}`}>Ver Registro Incidencias</Link></Button>

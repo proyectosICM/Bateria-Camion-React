@@ -10,8 +10,7 @@ export function IncidenciasGenerales() {
     const r= `${IncidenciasxEmpresaR}1`;
 
     return (
-        <div className="contenedor-detalles">
-            <Card style={{ width: "180rem" }}>
+            <Card className="contenedor-detalles">
                 <Card.Title>
                     PANEL DE INCIDENCIAS
                 </Card.Title>
@@ -23,6 +22,5 @@ export function IncidenciasGenerales() {
                     <IncidenciasTG est={1} url={r} />
                 </Card.Body>
             </Card>
-        </div>
     );
 }
