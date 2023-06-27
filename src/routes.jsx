@@ -32,6 +32,7 @@ export const routes = [
     { path: '/camionesCRUD', component: <MenuECamiones /> },
     { path: '/camionesxemp/:id_emp', component: <CamionC /> },
     { path: '/bateriasCRUD', component: <MenuEBaterias /> },
+    { path: '/camionesxemp/:id_emp', component: <CamionC /> },
 
     //PANEL DE INCIDENCIAS
     { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion />},

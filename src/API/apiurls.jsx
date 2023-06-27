@@ -29,11 +29,14 @@ export const empresasURL = `${baseURL}/empresas`;
 export const empresasHURL = `${baseURL}/empresas/empresasH/1`;
 export const empresasDURL = `${baseURL}/empresas/empresasH/0`;
 
-//Distritos
+//Trabajadores
 export const trabajadorURL = `${baseURL}/trabajadores`;
 export const trabajadorTURL = `${baseURL}/trabajadores/trabajadoresxEmpT`;
 export const trabajadorHURL = `${baseURL}/trabajadores/trabajadoresxEmpH/1`;
 export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0`;
+
+//Baterias
+export const bateriaURL = `${baseURL}/baterias`;
 
 //Incidencias
 export const IncidenciasURL = `${baseURL}/incidencias`;
