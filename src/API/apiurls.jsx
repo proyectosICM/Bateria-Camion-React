@@ -37,6 +37,9 @@ export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0`;
 
 //Baterias
 export const bateriaURL = `${baseURL}/baterias`;
+export const bateriaTURLH = `${baseURL}/baterias/bateriaxemp/`;
+export const bateriaHURL = `${baseURL}/baterias/bateriaxempest/1/`;
+export const bateriaDURL = `${baseURL}/baterias/bateriaxempest/0/`;
 
 //Incidencias
 export const IncidenciasURL = `${baseURL}/incidencias`;

@@ -40,7 +40,7 @@ export function ContenedorCorriente({idc}) {
   */
     return (
         <div className="cajades">
-            <GraficoCorrienteT />
+            {/* <GraficoCorrienteT /> */}
             <div className="subcajades">
                 {idbat.map((id) => (
                     <GraficoCorrienteB1

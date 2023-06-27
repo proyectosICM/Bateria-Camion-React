@@ -4,6 +4,7 @@ import { BotonesDeGestion } from "../../Componentes/Common/botonesDeGestion";
 import axios from "axios";
 import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../API/apiCRUD";
 import { bateriaURL } from "../../API/apiurls";
+import { BateriasModal } from "./bateriasModal";
 
 export function BateriasTabla({ url, abrir, cerrar, il }) {
 
@@ -22,41 +23,40 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
 
     const agregarBateria = (camion) => {
         const requestData = {
-           /* placa_cam: camion.placa_cam,
-            estado: camion.estado,
-            trabajadoresModel: {
-                id_tra: camion.trabajadoresModel
+            nom_bat: camion.nom_bat,
+            estado: true,
+            camionesModel: {
+                id_cam: camion.camionesModel
             },
             empresasModel: {
                 id_emp: il
-            },*/
+            },
         };
-        console.log(requestData);
-        agregarElemento(  bateriaURL, requestData, closeModal, ListarDatos);
+        agregarElemento(bateriaURL, requestData, closeModal, ListarDatos);
     };
 
-    const editarCamion = (bateria) => {
+    const editarBateria = (bateria) => {
         const requestData = {
-           /*placa_cam: camion.placa_cam,
-            estado: camion.estado,
-            trabajadoresModel: {
-                id_tra: camion.trabajadoresModel
+            nom_bat: bateria.nom_bat,
+            estado: true,
+            camionesModel: {
+                id_cam: bateria.camionesModel
             },
             empresasModel: {
                 id_emp: il
-            },*/
+            },
         };
-        const apiurledit = `${bateriaURL}/${bateria.id_cam}`;
+        const apiurledit = `${bateriaURL}/${bateria.id_bat}`;
         editarElemento(apiurledit, requestData, closeModal, ListarDatos);
     };
 
 
-    const habilitarCamion= (id) => {
+    const habilitarBateria = (id) => {
         habilitarElemento(bateriaURL, id, `estado`, ListarDatos);
     };
 
 
-    const deshabilitarCamion = (id) => {
+    const deshabilitarBateria = (id) => {
         deshabilitarElemento(bateriaURL, id, `estado`, ListarDatos);
     };
 
@@ -71,36 +71,44 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
         setShowModal(false);
         setDatosEdit(null);
     };
-
+ 
     return (
         <>
             <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>PLACA</th>
-                        <th>CONDUCTOR</th>
+                        <th>NOMBRE</th>
+                        <th>CAMION ASIGNADO</th>
                         <th>ESTADO</th>
                         <th>GESTION</th>
                     </tr>
                 </thead>
                 <tbody>
                     {datos.map((dato) => (
-                        <tr key={dato.id_cam}>
-                            <td>{dato.id_cam}</td>
-                            <td>{dato.placa_cam}</td>
-                            <td>{dato.trabajadoresModel.nom_tra} {dato.trabajadoresModel.ape_tra}</td>
+                        <tr key={dato.id_bat}>
+                            <td>{dato.id_bat}</td>
+                            <td>{dato.nom_bat}</td>
+                            <td>{dato.camionesModel.placa_cam}</td>
                             <td>{dato.estado ? "Habilitado" : "Deshabilitado"}</td>
                             <td>
                                 <BotonesDeGestion
-                                    ide={`id_cam`} estado={`estado`} dato={dato} edit={edit}
-                                    deshabilitar={deshabilitarCamion} habilitar={habilitarCamion}
+                                    ide={`id_bat`} estado={`estado`} dato={dato} edit={edit}
+                                    deshabilitar={deshabilitarBateria} habilitar={habilitarBateria}
                                 />
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
+            <BateriasModal
+                show={showModal || abrir}
+                close={closeModal}
+                agregar={agregarBateria}
+                datosaeditar={datosEdit}
+                editar={editarBateria}
+                il={il}
+            />
         </>
     );
 }

@@ -1,0 +1,14 @@
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+  }
+  
+  .form-group-half {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  

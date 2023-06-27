@@ -46,7 +46,7 @@ export function CamionesItem({ id, placa }) {
                 {/* <img src={camionImage} alt="camion" /> */}
                 <Card>
                     {baterias.map((bateria, index) => (
-                        <Card style={{ fontWeight: "bold" }}>
+                        <Card style={{ fontWeight: "bold" }} key={index}>
                             <Card.Body>
                                 Bateria: <AiFillThunderbolt />Voltaje {bateria.voltaje} v {" "}
                                 <BsBatteryHalf />Carga {bateria.carga} % {" "}

@@ -38,7 +38,7 @@ export function ContenedorBateria({ idc }) {
   */
     return (
         <div className="cajades">
-            <GraficobBateriaT />
+            {/*<GraficobBateriaT /> */}
             <div className="subcajades">
                 {idbat.map((id) => (
                     <GraficoCargaB1

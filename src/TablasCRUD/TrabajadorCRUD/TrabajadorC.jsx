@@ -25,7 +25,7 @@ export function TrabajadorC() {
   const handleAbrirModal = () => {
     if (!abrir) {
       setAbrir(true);
-    } else {
+    } else { 
       setAbrir(false);
     }
   }
