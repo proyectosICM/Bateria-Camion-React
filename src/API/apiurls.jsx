@@ -14,7 +14,9 @@ export const bateria2URL = `${baseURL}/detalles/bxc`;
 export const bateria3URL = `${baseURL}/detalles/bxc`;
 export const bateria4URL = `${baseURL}/detalles/bxc`;
 export const bateriaTURL = `${baseURL}/detalles/bxcT`;
-export const regisbat = `${baseURL}/detalles/d`;
+export const regisbat = `${baseURL}/detalles/d/`;
+
+
 
 //camiones
 export const camionURL = `${baseURL}/camiones`;
@@ -31,9 +33,9 @@ export const empresasDURL = `${baseURL}/empresas/empresasH/0`;
 
 //Trabajadores
 export const trabajadorURL = `${baseURL}/trabajadores`;
-export const trabajadorTURL = `${baseURL}/trabajadores/trabajadoresxEmpT`;
-export const trabajadorHURL = `${baseURL}/trabajadores/trabajadoresxEmpH/1`;
-export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0`;
+export const trabajadorTURL = `${baseURL}/trabajadores/trabajadoresxEmpT/`;
+export const trabajadorHURL = `${baseURL}/trabajadores/trabajadoresxEmpH/1/`;
+export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0/`;
 
 //Baterias
 export const bateriaURL = `${baseURL}/baterias`;

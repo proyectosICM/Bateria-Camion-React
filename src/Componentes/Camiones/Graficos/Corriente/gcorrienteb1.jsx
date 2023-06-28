@@ -77,7 +77,6 @@ export function GraficoCorrienteB1({idBat, datos, idc}) {
       },
     ],
   };
-  console.log(vdatos);
   const options = {
     responsive: true,
     plugins: {

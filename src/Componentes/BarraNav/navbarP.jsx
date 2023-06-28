@@ -36,6 +36,7 @@ export function NavbarP() {
                         <Link to='/menuCRUD' className="linkes">
                             <AiFillSetting className="link-icon" />
                         </Link>
+                        <Link to='/login' className="linkes">INICIO DE SESION</Link>
                     </Nav>
                 </Container>
             </Navbar>

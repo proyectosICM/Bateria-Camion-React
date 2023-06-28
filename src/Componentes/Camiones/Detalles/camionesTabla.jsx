@@ -36,7 +36,7 @@ export function CamionesTabla({ idb, datbat, idc }) {
             <Card style={{ width: '180rem' }}>
               <Card.Title>Registro en tiempo real bateria</Card.Title>
               {baterias.map((bateria, index) => (
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex" }} key={bateria.id_bat}>
                 <InfoTReal titulo={`Bateria ${index + 1}`} valor={`Nombre ${bateria.nom_bat}`} />
                 <InfoTReal titulo={"Voltaje"} valor={`${bateria.voltaje} v `} />
                 <InfoTReal titulo={"Carga"} valor={`${bateria.carga} %`} />

@@ -6,6 +6,7 @@ import { IncidenciasGenerales } from "./Componentes/Incidencias/IncidenciasGener
 import { IncidenciasCamion } from "./Componentes/Incidencias/incidenciasxCamion";
 import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 import { Inicio } from "./Componentes/Pruebas/inicio";
+import { Login } from "./Login/login";
 import { MenuCRUD } from "./MenuCrud";
 import { BateriasC } from "./TablasCRUD/BateriasCRUD/BateriasC";
 import { MenuEBaterias } from "./TablasCRUD/BateriasCRUD/menuEBaterias";
@@ -38,5 +39,8 @@ export const routes = [
     //PANEL DE INCIDENCIAS
     { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion />},
     { path: '/incidenciasxctrabajador/:t/:id_cam', component: <IncidenciasCamion />},
-    { path: '/incidenciasGE', component: <IncidenciasGenerales />}
+    { path: '/incidenciasGE', component: <IncidenciasGenerales />},
+
+    //LOGIN
+    { path: '/login', component: <Login />}
 ]

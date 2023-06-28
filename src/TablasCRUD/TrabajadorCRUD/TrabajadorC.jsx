@@ -11,9 +11,9 @@ export function TrabajadorC() {
   const [abrir, setAbrir] = useState(false);
   const [tablaSeleccionada, setTablaSeleccionada] = useState("Todos");
 
-  const urlT = `${trabajadorTURL}/${id_emp}`;
-  const urlH = `${trabajadorHURL}/${id_emp}`;
-  const urlD = `${trabajadorDURL}/${id_emp}`;
+  const urlT = `${trabajadorTURL}${id_emp}`;
+  const urlH = `${trabajadorHURL}${id_emp}`;
+  const urlD = `${trabajadorDURL}${id_emp}`;
 
 
   const handleMostrarTabla = (tabla) => {

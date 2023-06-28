@@ -55,7 +55,7 @@ export function GraficoVoltajeB1({ idBat, datos, idc }) {
       },
     ],
   };
-  console.log(vdatos);
+
   const options = {
     responsive: true,
     plugins: {

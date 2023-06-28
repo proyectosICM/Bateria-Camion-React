@@ -77,7 +77,7 @@ export function GraficoCargaB1({idBat, datos, idc}) {
       },
     ],
   };
-  console.log(vdatos);
+
   const options = {
     responsive: true,
     plugins: {

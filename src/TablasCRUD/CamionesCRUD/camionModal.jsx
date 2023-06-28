@@ -4,6 +4,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { BsFillBusFrontFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { InputSimple, SelectCruzado } from "../../Componentes/BarraNav/forms";
+import { trabajadorHURL } from "../../API/apiurls";
 
 
 
@@ -15,13 +16,13 @@ export function CamionModal({ show, close, datosaeditar, editar, agregar, il }) 
 
 
     const ListarTrabajadores = useCallback(async () => {
-        const response = await axios.get(`http://localhost:8080/api/trabajadores/trabajadoresxEmpH/1/${il}`);
+        const response = await axios.get(`${trabajadorHURL}${il}`);
         setTrabajadores(response.data);
     }, [il]);
 
 
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({ 
         placa_cam: "",
         estado: true,
         trabajadoresModel: 1

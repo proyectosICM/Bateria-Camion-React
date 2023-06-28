@@ -7,7 +7,7 @@ import { BotonesG } from "./botonesG";
 import { CamionesTabla } from "./camionesTabla";
 import { ContenedorVoltaje } from "../Graficos/Voltaje/contenedorVoltaje";
 import { BotonesT } from "./botonesT";
-import { IncidenciasxCamionSR, bateriaxcamionURL } from "../../../API/apiurls";
+import { IncidenciasxCamionSR, bateriaxcamionURL, regisbat } from "../../../API/apiurls";
 import { Card } from "react-bootstrap";
 import { ContenedorCorriente } from "../Graficos/Corriente/contenedorCorriente";
 import { Button, ButtonGroup } from "react-bootstrap";
@@ -33,7 +33,7 @@ export function CamionesDetalles() {
   });
 
   const ListDatos = useCallback(async () => {
-    const results = await axios.get(`http://localhost:8080/api/detalles/d/${id}`);
+    const results = await axios.get(`${regisbat}${id}`);
     setDatos(results.data);
   }, [id]);
 
@@ -56,7 +56,6 @@ export function CamionesDetalles() {
     ListarIncidenciasSR();
   }, [ListDatos, ListarBaterias, ListIdBat, ListarIncidenciasSR]);
 
-  console.log(idbat);
   const placa = datos.length > 0 ? datos[0][0] : "";
 
   const handleMostrarGrafico = (grafico) => {

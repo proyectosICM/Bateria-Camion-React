@@ -52,7 +52,7 @@ export function IncidenciasTC({ url, tu }) {
                 </thead>
                 <tbody>
                     {incidenciasSR.map((incidencia) => (
-                        <tr key={incidencia.id}>
+                        <tr key={incidencia.id_inc}>
                             <td>22-06-2023</td>
                             <td>{incidencia.hora}</td>
                             <td>{incidencia.nom_inc}</td>
