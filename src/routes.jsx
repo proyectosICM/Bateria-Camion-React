@@ -20,7 +20,9 @@ import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadore
 
 
 export const routes = [
-    {path: '/', component: <Inicio /> },
+    //Login
+
+
     {path: '/prueba1', component:<CamionesMenu />},
     {path: '/prueba2', component:<CamionesMenu2 />},
     {path: '/detalles/:id', component: <CamionesDetalles />},
