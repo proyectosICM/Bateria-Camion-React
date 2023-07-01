@@ -16,12 +16,16 @@ import { EmpresasC } from "./TablasCRUD/EmpresasCRUD/empresaC";
 import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
 import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadores";
+import { CamionDetalle } from "./VistaConductor/camiondetalle";
 
 
 
 export const routes = [
     //Login
 
+
+    //Vista  conductor
+    {path: '/detalles', component: <CamionDetalle />},
 
     {path: '/prueba1', component:<CamionesMenu />},
     {path: '/prueba2', component:<CamionesMenu2 />},

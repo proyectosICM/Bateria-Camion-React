@@ -18,7 +18,10 @@ export function CamionesDetalles() {
   const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
   const [mostrarTabla, setMostrartabla] = useState(true);
   const [tablaSeleccionada, setTablaSeleccionada] = useState("bateria1");
-  const { id } = useParams();
+  //const { id } = useParams();
+  const id = localStorage.getItem('empresa');
+  const token = localStorage.getItem('token');
+
   const [datos, setDatos] = useState([]);
   const [baterias, setBaterias] = useState([]);
   const [idbat, setIdbat] = useState([]);
@@ -28,22 +31,38 @@ export function CamionesDetalles() {
   const url = `${IncidenciasxCamionSR}${id}`;
 
   const ListarIncidenciasSR = useCallback(async () => {
-      const results = await axios.get(`${url}`);
+      const results = await axios.get(`${url}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setIncidenciasSR(results.data);
   });
 
   const ListDatos = useCallback(async () => {
-    const results = await axios.get(`${regisbat}${id}`);
+    const results = await axios.get(`${regisbat}${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     setDatos(results.data);
   }, [id]);
 
   const ListarBaterias = useCallback(async () => {
-    const results = await axios.get(`${bateriaxcamionURL}/${id}`);
+    const results = await axios.get(`${bateriaxcamionURL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     setBaterias(results.data);
   });
 
   const ListIdBat = useCallback(async () => {
-    const results = await axios.get(`${bateriaxcamionURL}/${id}`);
+    const results = await axios.get(`${bateriaxcamionURL}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     const idBatArray = results.data.map((item) => item.id_bat);
     setIdbat(idBatArray);
   }, [id]);

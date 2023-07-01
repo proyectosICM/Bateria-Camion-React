@@ -4,6 +4,9 @@ const baseURL = "http://localhost:8080/api";
 //const baseURL = "http://192.168.0.214:8081/api";
 
 // Rutas específicas
+
+//Listar Camion por conductor asociado
+export const camionxtrabajador = `${baseURL}/camiones/camionxtrabajador/`
   
 //Baterias 
 export const bateriaxcamionURL = `${baseURL}/baterias/camiones`;

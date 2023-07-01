@@ -9,26 +9,36 @@ export function CamionesTabla({ idb, datbat, idc }) {
   const { id } = useParams();
   const [datos, setDatos] = useState([]);
 
+  const token = localStorage.getItem('token');
+
   const [baterias, setBaterias] = useState([]);
 
   const url = `${bateria1URL}/${idc}/${idb}`;
 
-  const ListDatos = useCallback(async () => {
-    const results = await axios.get(`${url}`);
+  /*const ListDatos = useCallback(async () => {
+    const results = await axios.get(`${url}`, {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  });
     setDatos(results.data);
     //console.log(datos);
-  }); 
+  }); */
 
   const ListarBaterias = useCallback(async () => {
-    const results = await axios.get(`${bateriaxcamionURL}/${id}`);
+    const results = await axios.get(`${bateriaxcamionURL}/${idc}`, {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  });
     setBaterias(results.data);
   });
 
   useEffect(() => {
-    ListDatos();
+    //ListDatos();
     ListarBaterias();
-  }, [ListDatos, ListarBaterias]);
-
+  }, [ ListarBaterias]);
+  console.log(baterias);
   return (
     <div> 
       <Card>
