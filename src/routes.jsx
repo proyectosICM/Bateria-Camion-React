@@ -17,6 +17,7 @@ import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
 import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadores";
 import { CamionDetalle } from "./VistaConductor/camiondetalle";
+import { Validacion } from "./VistaConductor/validacion";
 
 
 
@@ -25,7 +26,7 @@ export const routes = [
 
 
     //Vista  conductor
-    {path: '/detalles', component: <CamionDetalle />},
+    {path: '/detalles', component: <Validacion />},
 
     {path: '/prueba1', component:<CamionesMenu />},
     {path: '/prueba2', component:<CamionesMenu2 />},

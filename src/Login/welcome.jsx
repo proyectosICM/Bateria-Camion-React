@@ -6,16 +6,7 @@ export const Welcome = () => {
   const username = localStorage.getItem('Username');
   const navigate = useNavigate();
   const [sal, setSal] = useState(null);
-  /*
-      const handleLogout = () => {
-          localStorage.removeItem('token');
-          localStorage.removeItem('Username');
-          localStorage.removeItem('rol');
-          localStorage.removeItem('empresa');
-          localStorage.removeItem('trabajador');
-          navigate('/login');
-      };
-  */
+
   const handleLogout = () => {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -27,7 +18,7 @@ export const Welcome = () => {
     localStorage.removeItem('Username');
     navigate('/login');
   };
-  
+
   const ListarSaludo = async () => {
     try {
       const token = localStorage.getItem('token');

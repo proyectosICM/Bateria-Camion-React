@@ -6,81 +6,66 @@ import { NavBarConductor } from "./navbarConductor";
 import { CamionesTabla } from "../Componentes/Camiones/Detalles/camionesTabla";
 import { Link } from "react-router-dom";
 import { NoAsignado } from "./noAsignado";
+import { BotonesG } from "../Componentes/Camiones/Detalles/botonesG";
+import { ContenedorVoltaje } from "../Componentes/Camiones/Graficos/Voltaje/contenedorVoltaje";
+import { ContenedorBateria } from "../Componentes/Camiones/Graficos/Bateria/contenedorBateria";
+import { ContenedorCorriente } from "../Componentes/Camiones/Graficos/Corriente/contenedorCorriente";
 
-export function CamionDetalle() {
+export function CamionDetalle({ camion, bateriaId, baterias }) {
     const id_tra = localStorage.getItem('trabajador');
     const token = localStorage.getItem('token');
 
-    const [camion, setCamion] = useState([]);
-    const [bateriaId, setBateriaId] = useState([]);
-    const [baterias, setBaterias] = useState([]);
-
-    const ListarCamion = async () => {
-        const response = await axios.get(`${camionxtrabajador}${id_tra}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        setCamion(response.data);
-    };
-
-    const ListIdBat = useCallback(async () => {
-        if (camion.length > 0) {
-            const results = await axios.get(`${bateriaxcamionURL}/${camion[0].id_cam}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            const idBatArray = results.data.map((item) => item.id_bat);
-            setBateriaId(idBatArray);
-            setBaterias(results.data);
-        }
-    }, [camion, token]);
-
-    useEffect(() => {
-        ListarCamion();
-
-        if (camion.length > 0) {
-            ListIdBat();
-        }
-    }, [camion]);
+    const [mostrarGrafico, setMostrarGrafico] = useState(true);
+    const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
 
     const placa = camion.length > 0 ? camion[0].placa_cam : "";
     const idc = camion.length > 0 ? camion[0].id_cam : "";
 
+    const handleMostrarGrafico = (grafico) => {
+        setGraficoSeleccionado(grafico);
+        setMostrarGrafico(true);
+    };
+
     return (
         <>
-            <NavBarConductor />
-            <div className="contenedor-detalles">
-                <Card style={{ width: "180rem" }}>
-                    <div className="orden">
-                        <Card.Header>
-                            <h1>DETALLES</h1>
-                            {camion.length > 0 ? (
-                                <>
-                                    <h3>Placa {placa}</h3>
-                                    <div>
-                                        {bateriaId.map((bateriaId, index) => (
-                                            <div key={bateriaId}>
-                                                <CamionesTabla
-                                                    idb={bateriaId}
-                                                    datbat={baterias[index]}
-                                                    idc={idc}
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <Button>
-                                        <Link className="linkes">Ver Registro Incidencias</Link>
-                                    </Button>
-                                </>
-                            ) : (
-                                <NoAsignado />
-                            )}
-                        </Card.Header>
+            <Card.Header>
+                <h1>DETALLES</h1>
+
+                <>
+                    <h3>Placa {placa}</h3>
+                    <div>
+                        {bateriaId.map((bateriaId, index) => (
+                            <div key={bateriaId}>
+                                <CamionesTabla
+                                    idb={bateriaId}
+                                    datbat={baterias[index]}
+                                    idc={idc}
+                                />
+                            </div>
+                        ))}
                     </div>
-                </Card>
-            </div>
+                    <Button>
+                        <Link className="linkes">Ver Registro Incidencias</Link>
+                    </Button>
+
+                    <BotonesG handleMostrarGrafico={handleMostrarGrafico} />
+                    {mostrarGrafico && (
+                        <div className="graficos">
+                            {graficoSeleccionado === "voltaje" && (
+                                <ContenedorVoltaje idc={idc} />
+                            )}
+                            {graficoSeleccionado === "carga" && (
+                                <ContenedorBateria idc={idc} />
+                            )}
+                            {graficoSeleccionado === "corriente" && (
+                                <ContenedorCorriente idc={idc} />
+                            )}
+                            <Button>Ver Graficos detallados</Button>
+                            {/* Agrega más condiciones para otros gráficos */}
+                        </div>
+                    )}
+                </>
+            </Card.Header>
         </>
     );
 }

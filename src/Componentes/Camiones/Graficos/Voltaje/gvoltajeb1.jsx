@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import React, { useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import axios from "axios";
-import { bateria1URL, bateriaTURL, bateriaxcamionURL } from "../../../../API/apiurls";
+import { useNavigate } from 'react-router-dom';
+import { useListVDatos } from '../../../../Hooks/useListVDatos';
+
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -10,22 +11,20 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top",
+      position: 'top',
     },
     title: {
       display: true,
-      text: "Voltaje v",
+      text: 'Voltaje v',
     },
   },
 };
 
-export function GraficoVoltajeB1({ idBat, datos, idc }) {
-  const [vdatos, setVdatos] = useState([]);
+export function GraficoVoltajeB1({ idBat, idc }) {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
-  const ListVDatos = useCallback(async () => {
-    const results = await axios.get(`${bateriaTURL}/${idc}/${idBat}`);
-    setVdatos(results.data);
-  }, [idBat, idc]);
+  const { vdatos, ListVDatos } = useListVDatos(idBat, idc, token);
 
   useEffect(() => {
     ListVDatos();
@@ -33,7 +32,7 @@ export function GraficoVoltajeB1({ idBat, datos, idc }) {
 
   if (!vdatos || vdatos.length === 0) {
     return null; // O muestra un mensaje de carga, por ejemplo
-  } 
+  }
 
   const tbateria1 = vdatos.map((dato) => dato.voltaje);
   const labelsx = vdatos.map((dato) => {
@@ -50,29 +49,10 @@ export function GraficoVoltajeB1({ idBat, datos, idc }) {
       {
         label: `Bateria con id ${idBat}`,
         data: tbateria1,
-        borderColor: "rgba(195, 0, 51)",
-        backgroundColor: "rgba(195, 0, 51)",
+        borderColor: 'rgba(195, 0, 51)',
+        backgroundColor: 'rgba(195, 0, 51)',
       },
     ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Voltaje v",
-      },
-    },
-    scales: {
-      y: {
-        min: 0,
-        max: 30,
-      },
-    },
   };
 
   return (

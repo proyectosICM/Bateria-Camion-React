@@ -16,7 +16,7 @@ export const bateria1URL = `${baseURL}/detalles/bxc`;
 export const bateria2URL = `${baseURL}/detalles/bxc`;
 export const bateria3URL = `${baseURL}/detalles/bxc`;
 export const bateria4URL = `${baseURL}/detalles/bxc`;
-export const bateriaTURL = `${baseURL}/detalles/bxcT`;
+export const bateriaTURL = `${baseURL}/detalles/bateriaxdetalle/`;
 export const regisbat = `${baseURL}/detalles/d/`;
 
 

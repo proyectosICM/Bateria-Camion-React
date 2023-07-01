@@ -1,28 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios';
-import { bateriaTURL } from '../../../../API/apiurls';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { useNavigate } from 'react-router-dom';
+import { useListVDatos } from '../../../../Hooks/useListVDatos';
 
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title, 
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export const options = {
   responsive: true,
@@ -37,25 +20,19 @@ export const options = {
   },
 };
 
+export function GraficoCargaB1({ idBat, idc }) {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
+  const { vdatos, ListVDatos } = useListVDatos(idBat, idc, token);
 
-
-export function GraficoCargaB1({idBat, datos, idc}) {
-
-  const [vdatos, setVdatos] = useState([]);
-
-  const ListVDatos = useCallback(async () => {
-    const results = await axios.get(`${bateriaTURL}/${idc}/${idBat}`);
-    setVdatos(results.data);
-  }, [idBat, idc]);
-
-  useEffect (() => {
+  useEffect(() => {
     ListVDatos();
   }, [ListVDatos]);
 
   if (!vdatos || vdatos.length === 0) {
     return null; // O muestra un mensaje de carga, por ejemplo
-  } 
+  }
 
   const tbateria1 = vdatos.map((dato) => dato.carga);
   const labelsx = vdatos.map((dato) => {
@@ -72,39 +49,15 @@ export function GraficoCargaB1({idBat, datos, idc}) {
       {
         label: `Bateria con id ${idBat}`,
         data: tbateria1,
-        borderColor: "rgba(70, 255, 51)",
-        backgroundColor: "rgba(70, 255, 51)",
+        borderColor: 'rgba(70, 255, 51)',
+        backgroundColor: 'rgba(70, 255, 51)',
       },
     ],
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Carga %",
-      },
-    },
-    scales: {
-      y: {
-        min: 0,
-        max: 100,
-      },
-    },
-  };
-
-
-
-
   return (
-    <div className='tb'>
-      <Line options={options} data={data} />;
+    <div className="tb">
+      <Line options={options} data={data} />
     </div>
   );
-
-
 }
