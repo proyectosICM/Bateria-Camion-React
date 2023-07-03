@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../Hooks/userProvider';
 
 export const Welcome = () => {
   const username = localStorage.getItem('Username');
@@ -43,12 +44,16 @@ export const Welcome = () => {
     }
   }
 
+  const { userRole,setUserRole } = useContext(UserContext);
+
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
     }
     ListarSaludo();
+    setUserRole(localStorage.getItem('rol'))
     Redirigir();
   }, [navigate,sal]);
 

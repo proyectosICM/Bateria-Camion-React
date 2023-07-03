@@ -33,6 +33,9 @@ export const routes = [
 
     //Vista  supervisor
     { path: '/menuCamion', component: <MenuCamion /> },
+    { path: 'incidenciasxc/:id_cam', component: <IncidenciasCamion />},
+    { path: '/incidenciasG', component: <IncidenciasCamion  />},
+
     //{ path: '/menuCamion', component: <PruebaDeVista /> }, 
 
     { path: '/prueba1', component: <CamionesMenu /> },

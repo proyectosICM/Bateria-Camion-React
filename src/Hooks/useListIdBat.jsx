@@ -11,7 +11,7 @@ export function useListIdBat(idc, token) {
   const ListIdBat = useCallback(async () => {
     try {
       const results = await axios.get(`${bateriaxcamionURL}/${idc}`, {
-        headers: {
+        headers: { 
           Authorization: `Bearer ${token}`,
         },
       });

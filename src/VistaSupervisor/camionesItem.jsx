@@ -1,26 +1,35 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { IncidenciasxCamionSR, IncidenciasxEmpresaSR, bateriaxcamionURL } from "../../../API/apiurls";
 import axios from "axios";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { BsBatteryHalf, BsExclamationCircleFill, BsFillCheckCircleFill, BsX, BsXCircleFill } from "react-icons/bs";
 import { FaCarBattery } from "react-icons/fa";
+import { IncidenciasxCamionSR, bateriaxcamionURL } from "../API/apiurls";
 
-export function CamionesXItem({ id, placa }) {
+export function CamionesItem({ id, placa }) {
     const [baterias, setBaterias] = useState([]);
     const [incidencias, setIncidencias] = useState([]);
     const [icono, setIcono] = useState([]);
 
-    const ListarBaterias = useCallback(async () => {
-        const results = await axios.get(`${bateriaxcamionURL}/${id}`)
-        setBaterias(results.data);
+    const token = localStorage.getItem('token');
 
+    const ListarBaterias = useCallback(async () => {
+        const results = await axios.get(`${bateriaxcamionURL}/${id}`,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+        setBaterias(results.data);
     });
 
 
     const ListarIncidencias = useCallback(async () => {
-        const results = await axios.get(`${IncidenciasxCamionSR}${id}`);
+        const results = await axios.get(`${IncidenciasxCamionSR}${id}`,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         setIncidencias(results.data);
     });
 
@@ -59,7 +68,7 @@ export function CamionesXItem({ id, placa }) {
                 <Link to={`/detalles/${id}`} className="linkes">
                     <Button variant="success">Ver detalles de registros</Button>
                 </Link>
-                <Link to={`/incidenciasxc/${"sup"}/${id}`} className="linkes">
+                <Link to={`/incidenciasxc/${id}`} className="linkes">
                     <Button variant={incidencias.length > 0 ? "danger" : "success"}>
                         {icono}
                         Incidencias {incidencias.length > 0 ? incidencias.length : 0}

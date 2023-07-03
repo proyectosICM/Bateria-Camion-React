@@ -7,7 +7,7 @@ import { useListIdBat } from './../../../Hooks/useListIdBat';
 export function ContenedorCarga({ idc }) {
 
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token'); 
 
   const { idbat, ListIdBat } = useListIdBat(idc, token);
  

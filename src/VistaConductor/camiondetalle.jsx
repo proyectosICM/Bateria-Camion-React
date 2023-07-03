@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { IncidenciasxCamionSR } from "../API/apiurls";
 import { Button, Card } from "react-bootstrap";
 import { NavBarConductor } from "./navbarConductor";
@@ -10,6 +10,7 @@ import { BotonesG } from "../Componentes/Camiones/Detalles/botonesG";
 import { ContenedorVoltaje } from './../VistasComunes/Graficos/Voltaje/contenedorVoltaje';
 import { ContenedorCarga } from "../VistasComunes/Graficos/Carga/contenedorCarga";
 import { ContenedorCorriente } from './../VistasComunes/Graficos/Corriente/contenedorCorriente';
+import { UserContext } from "../Hooks/userProvider";
 
 
 
@@ -23,7 +24,7 @@ export function CamionDetalle({ camion, bateriaId, baterias }) {
 
     const placa = camion.length > 0 ? camion[0].placa_cam : "";
     const idc = camion.length > 0 ? camion[0].id_cam : "";
-
+    const { userRole } = useContext(UserContext);
     localStorage.setItem('camion', idc);
 
     const handleMostrarGrafico = (grafico) => {
@@ -46,9 +47,12 @@ export function CamionDetalle({ camion, bateriaId, baterias }) {
         ListarIncidenciasSR();
     },[ListarIncidenciasSR]);
 
+    const rol = localStorage.getItem('rol')
+
     return (
         <>
             <Card.Header>
+                <Card.Title>{rol} - {userRole}</Card.Title>
                 <h1>DETALLES</h1>
 
                 <>

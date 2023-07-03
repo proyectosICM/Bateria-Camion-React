@@ -11,9 +11,14 @@ import {
 
 export function IncidenciasTG({ est, url }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
+  const token = localStorage.getItem('token');
 
   const ListarIncidenciasSR = useCallback(async () => {
-    const results = await axios.get(`${url}`);
+    const results = await axios.get(`${url}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     setIncidenciasSR(results.data);
   }, [est]);
 
@@ -22,11 +27,19 @@ export function IncidenciasTG({ est, url }) {
   }, [ListarIncidenciasSR, incidenciasSR]);
 
   const habilitar = (id) => {
-    habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
+    habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   };
 
   const deshabilitar = (id) => {
-    deshabilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
+    deshabilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   };
 
   return (

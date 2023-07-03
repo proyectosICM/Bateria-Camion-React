@@ -1,54 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { IncidenciasxCamionR, IncidenciasxCamionSR } from "../API/apiurls";
-import { IncidenciasTC } from "../Componentes/Incidencias/incidenciasTC";
 import { NavBarConductor } from "./navbarConductor";
+import { IncidenciasTC } from "../VistasComunes/Incidencias/incidenciasTC";
+import { NavBarSupervisor } from "../VistaSupervisor/navbarSupervisor";
+import { UserContext } from "../Hooks/userProvider";
+import { IncidenciasTG } from "../Componentes/Incidencias/incidenciasTG";
 
 export function IncidenciasCamion() {
+  const { userRole, setUserRole } = useContext(UserContext);
 
-    const camionId = localStorage.getItem('camion');
-    const token = localStorage.getItem('token');
-    const navigate = useNavigate();
+  const camionId = localStorage.getItem("camion");
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const [nav, setNav] = useState(null); // Actualizado: inicializar con null
+  const [rolu, setRolu] = useState(null);
+  const { id_cam } = useParams();
+  let idc;
+  let t;
+  if (id_cam !== undefined) {
+    idc = id_cam;
+  } else {
+    idc = camionId;
+  }
 
+  const sr = `${IncidenciasxCamionSR}${idc}`;
+  const r = `${IncidenciasxCamionR}${idc}`;
 
-    const { id_cam } = useParams();
-    let idc;
-    if (id_cam !== undefined) {
-        idc = id_cam;
-    } else {
-        idc = camionId;
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
     }
+  }, [token, navigate]);
 
-    const t = "SUPERVISOR"
-    const sr = `${IncidenciasxCamionSR}${idc}`;
-    const r = `${IncidenciasxCamionR}${idc}`;
+  useEffect(() => {
+    if (userRole === "CONDUCTOR") {
+      // Reemplazado == con === para comparación estricta
+      setNav(<NavBarConductor />);
+    } else if (userRole === "SUPERVISOR") {
+      setNav(<NavBarSupervisor />);
+    }
+    setUserRole(localStorage.getItem("rol"));
+  }, []);
 
-    useEffect(() => {
-        if (!token) {
-            navigate('/login');
-        }
-    }, [token, navigate]);
+  return (
+    <>
+      {nav}
+      <div className="contenedor-detalles">
+        <Card style={{ width: "180rem" }}>
+          <Card.Title>
+            PANEL DE INCIDENCIAS {rolu} {userRole}
+          </Card.Title>
+          <Card.Body>
+            {userRole == "CONDUCTOR" ? (
+              <>
+                <h2>Incidencias sin revisar </h2>
+                <IncidenciasTC url={sr} />
 
-    return (
-        <>
-            <NavBarConductor />
-            <div className="contenedor-detalles">
-                <Card style={{ width: "180rem" }}>
-                    <Card.Title>
-                        PANEL DE INCIDENCIAS
-                    </Card.Title>
-                    <Card.Body>
-                        <h2>Incidencias sin revisar</h2>
-                        <IncidenciasTC url={sr} tu={t} />
+                <h2>Registro de incidencias</h2>
+                <IncidenciasTC url={r} />
+              </>
+            ) : (
+              <>
+                <h2>Incidencias sin revisar </h2>
+                <IncidenciasTG url={sr} />
 
-                        <h2>Registro de incidencias</h2>
-                        <IncidenciasTC url={r} tu={t} />
-                    </Card.Body>
-                </Card>
-
-            </div>
-        </>
-
-    );
+                <h2>Registro de incidencias</h2>
+                <IncidenciasTG url={r} />
+              </>
+            )}
+          </Card.Body>
+        </Card>
+      </div>
+    </>
+  );
 }

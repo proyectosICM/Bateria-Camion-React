@@ -1,22 +1,16 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+
 import { IncidenciasURL } from "../../API/apiurls";
-import {
-  agregarElemento,
-  editarElemento,
-  habilitarElemento,
-  deshabilitarElemento,
-} from "../../API/apiCRUD";
+import { deshabilitarElemento, habilitarElemento } from "../../API/apiCRUD";
 
 const rol = localStorage.getItem("rol");
 
-export function IncidenciasTCO({ url, tu }) {
+export function IncidenciasTC({ url, tu }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
 
   const token = localStorage.getItem("token");
-  
-  const { userRole } = useContext(UserContext);
 
   const ListarIncidenciasSR = useCallback(async () => {
     try {
@@ -38,11 +32,7 @@ export function IncidenciasTCO({ url, tu }) {
 
   const habilitar = (id) => {
     try {
-      habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
     } catch (error) {
       console.error("Error al habilitar la incidencia:", error);
       // Manejar el error aquí, por ejemplo, mostrar un mensaje de error al usuario
@@ -56,32 +46,15 @@ export function IncidenciasTCO({ url, tu }) {
         id,
         "estado",
         ListarIncidenciasSR
-        , {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      );
     } catch (error) {
       console.error("Error al deshabilitar la incidencia:", error);
       // Manejar el error aquí, por ejemplo, mostrar un mensaje de error al usuario
     }
   };
 
-  const [mostarGestion, setMostrarGestion] = useState(false);
-
-  useEffect(() => {
-    if(tu == 1){
-      setMostrarGestion(false)
-    } else if( tu == 2){
-    setMostrarGestion(false);
-    }
-  },[mostarGestion]);
-
-  console.log(userRole);
-
   return (
     <>
-    <h1>{tu}</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -94,14 +67,15 @@ export function IncidenciasTCO({ url, tu }) {
             <th>Voltaje</th>
             <th>Carga</th>
             <th>Corriente</th>
-            <th>Estado `${tu}`</th>
+            <th>Estado</th>
+            {rol !== "CONDUCTOR" && <th>Gestion</th>}
           </tr>
         </thead>
         <tbody>
           {incidenciasSR.map((incidencia) => (
             <tr key={incidencia.id_inc}>
               <td>22-06-2023</td>
-              <td>{incidencia.hora} {userRole}</td>
+              <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>
               <td>{incidencia.camionesModel.placa_cam}</td>
@@ -110,6 +84,29 @@ export function IncidenciasTCO({ url, tu }) {
               <td>{incidencia.carga} %</td>
               <td>{incidencia.corriente} v</td>
               <td>{incidencia.estado ? "Revisada" : "No Revisada"}</td>
+              {rol !== "CONDUCTOR" && (
+                <td>
+                  <Button
+                    variant={incidencia.estado ? "primary" : "warning"}
+                    onClick={() => {
+                      try {
+                        if (incidencia.estado) {
+                          deshabilitar(incidencia.id_inc);
+                        } else {
+                          habilitar(incidencia.id_inc);
+                        }
+                      } catch (error) {
+                        console.error("Error al cambiar el estado de la incidencia:", error);
+                        // Manejar el error aquí, por ejemplo, mostrar un mensaje de error al usuario
+                      }
+                    }}
+                  >
+                    {incidencia.estado
+                      ? "Marcar como no revisada"
+                      : "Marcar como revisada"}
+                  </Button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
