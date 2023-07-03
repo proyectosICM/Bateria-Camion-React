@@ -16,7 +16,7 @@ export function CamionesTabla({ idb, datbat, idc }) {
 
   let idcam;
 
-  if (rol != 1) {
+  if (rol != "CONDUCTOR") {
     idcam = id;
   } else {
     idcam = idc;
@@ -38,7 +38,7 @@ export function CamionesTabla({ idb, datbat, idc }) {
         // Otro error, manejarlo adecuadamente
         console.error("Error al obtener los datos de las baterías:", error);
       }
-    }
+    } 
   }, [idcam, token, navigate]);
 
   useEffect(() => {

@@ -15,6 +15,7 @@ export function useListIdBat(idc, token) {
           Authorization: `Bearer ${token}`,
         },
       });
+      //console.log("listado");
       const idBatArray = results.data.map((item) => item.id_bat);
       setIdbat(idBatArray);
     } catch (error) {

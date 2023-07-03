@@ -1,17 +1,12 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { ContenedorTemperatura } from "../Graficos/Temperatura/contenedorTemperatura";
-import { ContenedorBateria } from "../Graficos/Bateria/contenedorBateria";
+import { Link } from "react-router-dom";
 import { BotonesG } from "./botonesG";
 import { CamionesTabla } from "./camionesTabla";
-import { ContenedorVoltaje } from "../Graficos/Voltaje/contenedorVoltaje";
-import { BotonesT } from "./botonesT";
 import { IncidenciasxCamionSR, bateriaxcamionURL, regisbat } from "../../../API/apiurls";
 import { Card } from "react-bootstrap";
-import { ContenedorCorriente } from "../Graficos/Corriente/contenedorCorriente";
-import { Button, ButtonGroup } from "react-bootstrap";
-import { BsEyeSlashFill } from 'react-icons/bs';
+import { Button } from "react-bootstrap";
+
  
 export function CamionesDetalles() {
   const [mostrarGrafico, setMostrarGrafico] = useState(true);
@@ -101,23 +96,22 @@ export function CamionesDetalles() {
               {idbat.map((idBat, index) => (
                 <div key={idBat}>
                   {tablaSeleccionada === `bateria${index + 1}` && (
-                    <CamionesTabla
-                      idb={idBat}
-                      datbat={baterias[index]}
-                      idc={id}
-                    />
+                    <></>
                   )}
                 </div>
               ))}
             </div> 
           )}  
+                 <CamionesTabla
+                      idc={id}
+                    />
           <h1>Incidencias sin revisar: {incidenciasSR.length}</h1>
           <Button><Link className="linkes" to={`/incidenciasxctrabajador/${"t"}/${id}`}>Ver Registro Incidencias</Link></Button>
 
           <Card>
             <BotonesG handleMostrarGrafico={handleMostrarGrafico} />
 
-            {mostrarGrafico && (
+            {/*mostrarGrafico && (
               <div className="graficos">
                 {graficoSeleccionado === "voltaje" && (
                   <ContenedorVoltaje idc={id} />
@@ -125,13 +119,13 @@ export function CamionesDetalles() {
                 {graficoSeleccionado === "carga" && (
                   <ContenedorBateria idc={id} />
                 )}
-                {/*graficoSeleccionado === "corriente" && (
+                {graficoSeleccionado === "corriente" && (
                   <ContenedorCorriente idc={id} />
-                )*/}
+                )}
                 <Button>Ver Graficos detallados</Button>
-                {/* Agrega más condiciones para otros gráficos */}
+     
               </div>
-            )}
+            )*/}
           </Card>
         </div>
       </Card>

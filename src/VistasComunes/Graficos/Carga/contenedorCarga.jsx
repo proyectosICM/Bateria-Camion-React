@@ -1,13 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { bateriaTURL } from "../../../../API/apiurls";
 import { useNavigate } from "react-router-dom";
 import { GraficoCargaB1 } from "./gcargab1";
-import { useListIdBat } from "../../../../Hooks/useListIdBat";
-import axios from "axios";
+import { useListIdBat } from './../../../Hooks/useListIdBat';
 
 
-export function ContenedorBateria({ idc }) {
-  const [datos, setDatos] = useState([]);
+export function ContenedorCarga({ idc }) {
 
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
@@ -24,7 +21,6 @@ export function ContenedorBateria({ idc }) {
         {idbat.map((id) => (
           <GraficoCargaB1
             key={id}
-            datos={datos.filter((dato) => dato.id_bat === id)}
             idBat={id}
             idc={idc}
           />

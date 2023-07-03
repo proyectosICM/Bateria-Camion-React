@@ -1,9 +1,8 @@
 import { CamionesDetalles } from "./Componentes/Camiones/Detalles/camionesdetalles";
-import { ContenedorTemperatura } from "./Componentes/Camiones/Graficos/Temperatura/contenedorTemperatura";
 import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
 import { IncidenciasGenerales } from "./Componentes/Incidencias/IncidenciasGenerales";
-import { IncidenciasCamion } from "./Componentes/Incidencias/incidenciasxCamion";
+
 import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 import { Inicio } from "./Componentes/Pruebas/inicio";
 import { Login } from "./Login/login";
@@ -17,21 +16,29 @@ import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
 import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadores";
 import { CamionDetalle } from "./VistaConductor/camiondetalle";
+import { IncidenciasCamion } from "./VistaConductor/incidenciasCamion";
 import { Validacion } from "./VistaConductor/validacion";
-
-
+import { MenuCamion } from "./VistaSupervisor/menuCamion";
+import { PruebaDeVista } from "./VistaSupervisor/pruebaDeVista";
+import { BarraNavValidacion } from "./VistasComunes/barraNavValidacion";
 
 export const routes = [
-    //Login
+    //Redireccion
+    { path: '/redirec', component: <BarraNavValidacion /> },
 
 
     //Vista  conductor
-    {path: '/detalles', component: <Validacion />},
+    { path: '/detalles', component: <Validacion /> },
+    { path: '/incidencias', component: <IncidenciasCamion /> },
 
-    {path: '/prueba1', component:<CamionesMenu />},
-    {path: '/prueba2', component:<CamionesMenu2 />},
-    {path: '/detalles/:id', component: <CamionesDetalles />},
-    {path: '/temperatura', component: <ContenedorTemperatura /> },
+    //Vista  supervisor
+    { path: '/menuCamion', component: <MenuCamion /> },
+    //{ path: '/menuCamion', component: <PruebaDeVista /> }, 
+
+    { path: '/prueba1', component: <CamionesMenu /> },
+    { path: '/prueba2', component: <CamionesMenu2 /> },
+    { path: '/detalles/:id', component: <CamionesDetalles /> },
+
 
     // TABLAS CRUD
     { path: '/menuCRUD', component: <MenuCRUD /> },
@@ -44,10 +51,10 @@ export const routes = [
     { path: '/bateriasxemp/:id_emp', component: <BateriasC /> },
 
     //PANEL DE INCIDENCIAS
-    { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion />},
-    { path: '/incidenciasxctrabajador/:t/:id_cam', component: <IncidenciasCamion />},
-    { path: '/incidenciasGE', component: <IncidenciasGenerales />},
+    { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion /> },
+    { path: '/incidenciasxctrabajador/:t/:id_cam', component: <IncidenciasCamion /> },
+    { path: '/incidenciasGE', component: <IncidenciasGenerales /> },
 
     //LOGIN
-    { path: '/login', component: <Login />}
+    { path: '/login', component: <Login /> }
 ]

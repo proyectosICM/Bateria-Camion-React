@@ -1,5 +1,6 @@
 // URL base común
-const baseURL = "http://localhost:8080/api";
+export const base = "http://localhost:8080";
+export const baseURL = "http://localhost:8080/api";
 //const baseURL = "http://181.224.251.187:8081/api";
 //const baseURL = "http://192.168.0.214:8081/api";
 

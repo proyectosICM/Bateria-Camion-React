@@ -6,7 +6,7 @@ import { IncidenciasTG } from "./incidenciasTG";
 import { useParams } from "react-router-dom";
 import { IncidenciasTC } from "./incidenciasTC";
 
-export function IncidenciasCamion() {
+export function IncidenciasxCamion() {
 
     const {id_cam} = useParams();
     const {t} = useParams();

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { useNavigate } from 'react-router-dom';
-import { useListVDatos } from '../../../../Hooks/useListVDatos';
+import { useListVDatos } from './../../../Hooks/useListVDatos';
+
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -27,13 +28,13 @@ export function GraficoCorrienteB1({ idBat, idc }) {
 
   useEffect(() => {
     ListVDatos();
-  }, [ListVDatos]);
+  }, [ListVDatos,vdatos]);
 
   if (!vdatos || vdatos.length === 0) {
     return null; // O muestra un mensaje de carga, por ejemplo
   }
 
-  console.log(vdatos);  
+ 
   const tbateria1 = vdatos.map((dato) => dato.corriente);
   const labelsx = vdatos.map((dato) => {
     const timestamp = dato.dia;

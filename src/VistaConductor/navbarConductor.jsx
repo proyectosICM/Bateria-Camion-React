@@ -31,7 +31,12 @@ export function NavBarConductor() {
                         </Link>
                     </Navbar.Brand>
                     <Nav className="me-auto barra">
-                        <Button onClick={handleLogout}> CERRAR SESION </Button>
+                        <Link to={'/incidencias'} className="linkes">
+                            <span>Incidencias</span>
+                        </Link>
+                        <li onClick={handleLogout} className="linkes">
+                            Cerrar
+                        </li>
                     </Nav>
                 </Container>
             </Navbar>

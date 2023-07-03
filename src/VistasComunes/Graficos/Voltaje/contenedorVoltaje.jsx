@@ -1,16 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { bateriaTURL } from "../../../../API/apiurls";
-import { GraficoVoltajeT } from "./graficoVoltajeT";
+import React, { useEffect } from "react";
 import { GraficoVoltajeB1 } from "./gvoltajeb1";
-import { useNavigate } from "react-router-dom";
-import { useListIdBat } from "../../../../Hooks/useListIdBat";
-import axios from "axios";
+import { useListIdBat } from "../../../Hooks/useListIdBat";
+
 
 
 export function ContenedorVoltaje({ idc }) {
-  const [datos, setDatos] = useState([]);
 
-  const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
   const { idbat, ListIdBat } = useListIdBat(idc, token);
@@ -19,13 +14,14 @@ export function ContenedorVoltaje({ idc }) {
     ListIdBat();
   }, [ListIdBat]);
 
+
+
   return (
     <div className="cajades">
       <div className="subcajades">
         {idbat.map((id) => (
           <GraficoVoltajeB1
             key={id}
-            datos={datos.filter((dato) => dato.id_bat === id)}
             idBat={id}
             idc={idc}
           />

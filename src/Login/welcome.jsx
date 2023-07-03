@@ -28,7 +28,7 @@ export const Welcome = () => {
         }
       });
       setSal(response.data);
-      localStorage.setItem('rol', response.data.roles[0].id);
+      localStorage.setItem('rol', response.data.roles[0].name);
       localStorage.setItem('empresa', response.data.empresasModel.id_emp);
       localStorage.setItem('trabajador', response.data.id_tra);
     } catch (error) {
@@ -37,13 +37,20 @@ export const Welcome = () => {
     }
   };
 
+  const Redirigir = () => {
+    if(sal!= null){
+      navigate('/redirec');
+    }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
     }
     ListarSaludo();
-  }, [navigate]);
+    Redirigir();
+  }, [navigate,sal]);
 
   return (
     <div>
@@ -56,7 +63,7 @@ export const Welcome = () => {
           <p>ID de rol: {sal.roles[0].id}</p>
           <p>Nombre de rol: {sal.roles[0].name}</p>
         </div>
-      )}
+      )} 
       <button><Link to={'/detalles'}>Continuar al menú</Link></button>
       <button onClick={handleLogout}>Salir</button>
     </div>

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import "./login.css";
 import axios from "axios";
+import { base } from "../API/apiurls";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: base,
   withCredentials: true,  // Agrega esta línea para permitir el envío de cookies en las solicitudes CORS
 });
 
@@ -17,6 +18,8 @@ export function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
+  
 
     e.preventDefault();
     try {
@@ -35,6 +38,15 @@ export function Login() {
       console.log(error);
     }
   };
+
+  const token = localStorage.getItem('token');
+
+  useEffect(()=> {
+    if(token){
+      navigate('/redirec');
+    }
+  },[navigate]);
+
 
   return (
     <div className="login-container">
