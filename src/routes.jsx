@@ -1,7 +1,6 @@
 import { CamionesDetalles } from "./Componentes/Camiones/Detalles/camionesdetalles";
 import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
-import { IncidenciasGenerales } from "./Componentes/Incidencias/IncidenciasGenerales";
 
 import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 import { Inicio } from "./Componentes/Pruebas/inicio";
@@ -20,6 +19,7 @@ import { IncidenciasCamion } from "./VistaConductor/incidenciasCamion";
 import { Validacion } from "./VistaConductor/validacion";
 import { MenuCamion } from "./VistaSupervisor/menuCamion";
 import { PruebaDeVista } from "./VistaSupervisor/pruebaDeVista";
+import { IncidenciasGenerales } from "./VistasComunes/Incidencias/incidenciasGenerales";
 import { BarraNavValidacion } from "./VistasComunes/barraNavValidacion";
 
 export const routes = [
@@ -34,7 +34,7 @@ export const routes = [
     //Vista  supervisor
     { path: '/menuCamion', component: <MenuCamion /> },
     { path: 'incidenciasxc/:id_cam', component: <IncidenciasCamion />},
-    { path: '/incidenciasG', component: <IncidenciasCamion  />},
+    { path: '/incidenciasG', component: <IncidenciasGenerales  />},
 
     //{ path: '/menuCamion', component: <PruebaDeVista /> }, 
 

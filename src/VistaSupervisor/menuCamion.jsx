@@ -34,17 +34,14 @@ export function MenuCamion() {
   return (
     <>
       <NavBarSupervisor />
+      <h1>Supervisor</h1>
       <div className="contenedor-detalles">
-        <Card style={{ width: "180rem" }}>
-          <Card.Title>{rol} - {userRole}</Card.Title>
-          <h1>Supervisor</h1>
-
           
           {datos.map((dato) => (
                     <CamionesItem key={dato.id_cam} id={dato.id_cam} placa={dato.placa_cam} />
                 ))
                 }
-        </Card>
+
       </div>
     </>
   );

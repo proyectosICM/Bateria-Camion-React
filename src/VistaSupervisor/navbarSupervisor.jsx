@@ -17,7 +17,7 @@ export function NavBarSupervisor() {
     useEffect(()=> {
         console.log(rol);
     }, [rol]);
-
+    const g  = "g";
 
     return (
         <>
@@ -30,9 +30,10 @@ export function NavBarSupervisor() {
                         </Link>
                     </Navbar.Brand>
                     <Nav className="me-auto barra">
-                        <Link to={'/incidenciasG'} className="linkes">
+                        <Link to={`/incidenciasG`} className="linkes">
                             <span>Incidencias</span>
                         </Link>
+
                         <li onClick={handleLogout} className="linkes">
                             Cerrar
                         </li>

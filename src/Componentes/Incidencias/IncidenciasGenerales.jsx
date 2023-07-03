@@ -4,7 +4,7 @@ import { Button, Card, Table } from "react-bootstrap";
 import { IncidenciasxEmpresaR, IncidenciasxEmpresaSR } from "../../API/apiurls";
 import { IncidenciasTG } from "./incidenciasTG";
 
-export function IncidenciasGenerales() {
+export function IncidenciasxGenerales() {
 
     const sr= `${IncidenciasxEmpresaSR}1`;
     const r= `${IncidenciasxEmpresaR}1`;
