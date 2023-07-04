@@ -6,7 +6,8 @@ import { NavBarConductor } from "./navbarConductor";
 import { CamionesTabla } from "../Componentes/Camiones/Detalles/camionesTabla";
 import { Link, useNavigate } from "react-router-dom";
 import { NoAsignado } from "./noAsignado";
-import { CamionDetalle } from "./camiondetalle";
+import { CamionDetalle } from './../VistasComunes/camiondetalle';
+
 
 export function Validacion() {
   const id_tra = localStorage.getItem('trabajador');
@@ -82,8 +83,8 @@ export function Validacion() {
             {camion.length > 0 ? (
               <CamionDetalle
                 camion={camion}
-                bateriaId={bateriaId}
-                baterias={baterias}
+                placa={camion[0].placa_cam}
+                idc={camion[0].id_cam}
               />
             ) : (
               <NoAsignado />

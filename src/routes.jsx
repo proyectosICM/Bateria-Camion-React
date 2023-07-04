@@ -3,7 +3,7 @@ import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
 
 import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
-import { Inicio } from "./Componentes/Pruebas/inicio";
+
 import { Login } from "./Login/login";
 import { MenuCRUD } from "./MenuCrud";
 import { BateriasC } from "./TablasCRUD/BateriasCRUD/BateriasC";
@@ -14,13 +14,15 @@ import { EmpresasC } from "./TablasCRUD/EmpresasCRUD/empresaC";
 import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
 import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadores";
-import { CamionDetalle } from "./VistaConductor/camiondetalle";
 import { IncidenciasCamion } from "./VistaConductor/incidenciasCamion";
 import { Validacion } from "./VistaConductor/validacion";
+import { CamionDetalleSupervisor } from "./VistaSupervisor/camionDetalleSupervisor";
 import { MenuCamion } from "./VistaSupervisor/menuCamion";
 import { PruebaDeVista } from "./VistaSupervisor/pruebaDeVista";
+import { IncidenciasCS } from "./VistasComunes/Incidencias/incidenciasCS";
 import { IncidenciasGenerales } from "./VistasComunes/Incidencias/incidenciasGenerales";
 import { BarraNavValidacion } from "./VistasComunes/barraNavValidacion";
+
 
 export const routes = [
     //Redireccion
@@ -33,8 +35,9 @@ export const routes = [
 
     //Vista  supervisor
     { path: '/menuCamion', component: <MenuCamion /> },
-    { path: 'incidenciasxc/:id_cam', component: <IncidenciasCamion />},
+    { path: 'incidenciasxc/:id_cam', component: <IncidenciasCS />},
     { path: '/incidenciasG', component: <IncidenciasGenerales  />},
+    { path: '/detallesc/:id', component: <CamionDetalleSupervisor  />},
 
     //{ path: '/menuCamion', component: <PruebaDeVista /> }, 
 

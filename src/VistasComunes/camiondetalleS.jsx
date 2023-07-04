@@ -2,10 +2,8 @@ import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { IncidenciasxCamionSR } from "../API/apiurls";
 import { Button, Card } from "react-bootstrap";
-import { NavBarConductor } from "./navbarConductor";
 import { CamionesTabla } from "../Componentes/Camiones/Detalles/camionesTabla";
-import { Link } from "react-router-dom";
-import { NoAsignado } from "./noAsignado";
+import { Link, useParams } from "react-router-dom";
 import { BotonesG } from "../Componentes/Camiones/Detalles/botonesG";
 import { ContenedorVoltaje } from './../VistasComunes/Graficos/Voltaje/contenedorVoltaje';
 import { ContenedorCarga } from "../VistasComunes/Graficos/Carga/contenedorCarga";
@@ -14,38 +12,55 @@ import { UserContext } from "../Hooks/userProvider";
 
 
 
-export function CamionDetalle({ camion, bateriaId, baterias }) {
+export function CamionDetalleS({ camion, bateriaId, baterias }) {
     const id_tra = localStorage.getItem('trabajador');
     const token = localStorage.getItem('token');
-
+ 
     const [mostrarGrafico, setMostrarGrafico] = useState(true);
     const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
     const [incidenciasSR, setIncidenciasSR] = useState([]);
 
-    const placa = camion.length > 0 ? camion[0].placa_cam : "";
-    const idc = camion.length > 0 ? camion[0].id_cam : "";
+ 
+    const {id_cam} = useParams();
+
+
+
+
     const { userRole } = useContext(UserContext);
-    localStorage.setItem('camion', idc);
+    
 
     const handleMostrarGrafico = (grafico) => {
         setGraficoSeleccionado(grafico);
         setMostrarGrafico(true);
     };
 
-    const url = `${IncidenciasxCamionSR}${idc}`;
+
     
     const ListarIncidenciasSR = useCallback(async () => {
-        const results = await axios.get(`${url}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
+        try {
+          const url = `${IncidenciasxCamionSR}${camion.id_cam}`;
+          const results = await axios.get(`${url}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setIncidenciasSR(results.data);
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+            // Camión no encontrado, manejarlo adecuadamente
+            console.error("El camión no tiene incidencias:", error);
+            setIncidenciasSR([]);
+          } else {
+            // Otro error, manejarlo adecuadamente
+            console.error("Error al obtener las incidencias:", error);
           }
-        });
-        setIncidenciasSR(results.data);
-    });
+        }
+      });
+      
 
     useEffect(()=> {
         ListarIncidenciasSR();
-    },[ListarIncidenciasSR]);
+    },[ListarIncidenciasSR, camion]);
 
     const rol = localStorage.getItem('rol')
 
@@ -56,10 +71,10 @@ export function CamionDetalle({ camion, bateriaId, baterias }) {
                 <h1>DETALLES</h1>
 
                 <>
-                    <h3>Placa {placa}</h3>
+                    <h3>Placa {camion.placa_cam}</h3>
                     <div>
                         <CamionesTabla
-                            idc={idc}
+                            idc={camion.id_cam}
                         />
                     </div>
                     <h1>Incidencias sin revisar: {incidenciasSR.length}</h1>
@@ -71,18 +86,18 @@ export function CamionDetalle({ camion, bateriaId, baterias }) {
                     {mostrarGrafico && (
                         <div className="graficos">
                             {graficoSeleccionado === "voltaje" && (
-                                <ContenedorVoltaje idc={idc} />
+                                <ContenedorVoltaje idc={camion.id_cam} />
                             )}
                             {graficoSeleccionado === "carga" && (
-                                <ContenedorCarga idc={idc} />
+                                <ContenedorCarga idc={camion.id_cam} />
                             )}
                             {graficoSeleccionado === "corriente" && (
-                                <ContenedorCorriente idc={idc} />
+                                <ContenedorCorriente idc={camion.id_cam} />
                             )}
                             <Button>Ver Graficos detallados</Button>
-                            {/* Agrega más condiciones para otros gráficos */}
+                           
                         </div>
-                    )}
+                            )}
                 </>
             </Card.Header>
         </>

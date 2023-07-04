@@ -63,9 +63,9 @@ export function CamionesItem({ id, placa }) {
                             </Card.Body>
                         </Card>
                     ))}
-
+ 
                 </Card>
-                <Link to={`/detalles/${id}`} className="linkes">
+                <Link to={`/detallesc/${id}`} className="linkes">
                     <Button variant="success">Ver detalles de registros</Button>
                 </Link>
                 <Link to={`/incidenciasxc/${id}`} className="linkes">

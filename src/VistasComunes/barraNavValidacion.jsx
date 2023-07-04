@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CamionDetalle } from './../VistaConductor/camiondetalle';
+
 import { MenuCamion } from "../VistaSupervisor/menuCamion";
 import { useNavigate } from "react-router-dom";
 

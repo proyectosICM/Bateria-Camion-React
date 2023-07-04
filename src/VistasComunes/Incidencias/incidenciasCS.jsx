@@ -8,15 +8,15 @@ import { UserContext } from "../../Hooks/userProvider";
 import { IncidenciasTG } from "./indicenciasTG";
 import { useParams } from "react-router-dom";
 
-export function IncidenciasGenerales() {
+export function IncidenciasCS() {
   const empresa = localStorage.getItem("empresa");
   const { userRole, setUserRole } = useContext(UserContext);
 
   
   const { id_cam } = useParams();
 
-  const gsr = `${IncidenciasxEmpresaSR}${empresa}`;
-  const gr = `${IncidenciasxEmpresaR}${empresa}`;
+  const sr = `${IncidenciasxCamionSR}${id_cam}`;
+  const r = `${IncidenciasxCamionR}${id_cam}`;
 
   const [nav, setNav] = useState(null);
   const [gen, setGen] = useState(false);
@@ -24,6 +24,7 @@ export function IncidenciasGenerales() {
   
 
   useEffect(() => {
+  
     if (userRole === "CONDUCTOR") {
       setNav(<NavBarConductor />);
     } else if (userRole === "SUPERVISOR") {
@@ -45,11 +46,12 @@ export function IncidenciasGenerales() {
           PANEL DE INCIDENCIAS {gen ? "Generales" : "Camion"}
         </Card.Title>
         <Card.Body>
+ 
               <h2>Incidencias sin revisar</h2>
-              <IncidenciasTG est={0} url={gsr} />
+              <IncidenciasTG est={0} url={sr} />
 
               <h2>Registro de incidencias</h2>
-              <IncidenciasTG est={1} url={gr} />
+              <IncidenciasTG est={1} url={r} />
         </Card.Body>
       </Card>
     </>

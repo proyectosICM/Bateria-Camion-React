@@ -9,7 +9,7 @@ import {
   deshabilitarElemento,
 } from "../../API/apiCRUD" // Reemplaza 'tu_archivo_de_hooks' con el nombre real de tu archivo
 
-export function IncidenciasxTG({ est, url }) {
+export function IncidenciasTG({ est, url }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
   const token = localStorage.getItem('token');
 

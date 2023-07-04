@@ -17,8 +17,8 @@ export function NavBarSupervisor() {
     useEffect(()=> {
         console.log(rol);
     }, [rol]);
-    const g  = "g";
-
+    const g  = "g"; 
+ 
     return (
         <>
             <Navbar bg="dark" variant="dark" className="navbar-container">

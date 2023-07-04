@@ -68,7 +68,6 @@ export function IncidenciasTC({ url, tu }) {
             <th>Carga</th>
             <th>Corriente</th>
             <th>Estado</th>
-            {rol !== "CONDUCTOR" && <th>Gestion</th>}
           </tr>
         </thead>
         <tbody>
@@ -84,29 +83,6 @@ export function IncidenciasTC({ url, tu }) {
               <td>{incidencia.carga} %</td>
               <td>{incidencia.corriente} v</td>
               <td>{incidencia.estado ? "Revisada" : "No Revisada"}</td>
-              {rol !== "CONDUCTOR" && (
-                <td>
-                  <Button
-                    variant={incidencia.estado ? "primary" : "warning"}
-                    onClick={() => {
-                      try {
-                        if (incidencia.estado) {
-                          deshabilitar(incidencia.id_inc);
-                        } else {
-                          habilitar(incidencia.id_inc);
-                        }
-                      } catch (error) {
-                        console.error("Error al cambiar el estado de la incidencia:", error);
-                        // Manejar el error aquí, por ejemplo, mostrar un mensaje de error al usuario
-                      }
-                    }}
-                  >
-                    {incidencia.estado
-                      ? "Marcar como no revisada"
-                      : "Marcar como revisada"}
-                  </Button>
-                </td>
-              )}
             </tr>
           ))}
         </tbody>
