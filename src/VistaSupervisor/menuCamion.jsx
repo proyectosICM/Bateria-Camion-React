@@ -6,6 +6,9 @@ import axios from "axios";
 import { camionesHURL } from "../API/apiurls";
 import { CamionesItem } from "./camionesItem";
 import { UserContext } from "../Hooks/userProvider";
+import { NavBarConductor } from "../VistaConductor/navbarConductor";
+import { NavBarAdministrador } from "../VistaAdministrador/navbarAdministrador";
+import { NavBarSelect } from "../VistasComunes/navbarSelect";
 
 export function MenuCamion() {
   const navigate = useNavigate();
@@ -16,7 +19,6 @@ export function MenuCamion() {
   const token = localStorage.getItem("token");
   const rol = localStorage.getItem('rol');
 
-  const { userRole } = useContext(UserContext);
 
   const ListDatos = async () => {
     const results = await axios.get(`${camionesHURL}${empresa}`,{
@@ -31,10 +33,11 @@ export function MenuCamion() {
     ListDatos();
   }, []);
 
+
+
   return (
     <>
-      <NavBarSupervisor />
-      <h1>Supervisor</h1>
+      <h1>{rol}</h1>
       <div className="contenedor-detalles">
           
           {datos.map((dato) => (

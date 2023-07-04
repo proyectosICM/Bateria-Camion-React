@@ -1,13 +1,16 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { IncidenciasxCamionSR, bateriaxcamionURL, camionURL } from "../API/apiurls";
 import { Button, Card } from "react-bootstrap";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { NavBarSupervisor } from "../VistaSupervisor/navbarSupervisor";
-import { CamionDetalleS } from "../VistasComunes/camiondetalleS";
 import { CamionDetalle } from "../VistasComunes/camiondetalle";
+import { UserContext } from "../Hooks/userProvider";
+import { NavBarConductor } from "../VistaConductor/navbarConductor";
+import { NavBarAdministrador } from "../VistaAdministrador/navbarAdministrador";
+import { NavBarSelect } from "../VistasComunes/navbarSelect";
 
 
 export function CamionDetalleSupervisor() {
@@ -62,13 +65,16 @@ export function CamionDetalleSupervisor() {
     }
   }, [token, navigate]);
 
+
+  
+
+
   return (
     <>
-      <NavBarSupervisor />
       <div className="contenedor-detalles">
         <Card style={{ width: "180rem" }}>
           <div className="orden">
-            <CamionDetalle camion={camion} idc={camion.id_cam} placa={camion.placa_cam}/>
+            <CamionDetalle camion={camion} idc={camion.id_cam} placa={camion.placa_cam} incidencias={`/incidenciasxc/${camion.id_cam}`}/>
           </div>
         </Card>
       </div>

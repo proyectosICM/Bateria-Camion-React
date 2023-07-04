@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { EmpresaModal } from "./empresaModal";
 
-import { empresasURL } from "../../API/apiurls";
-import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../API/apiCRUD";
-import { BotonesDeGestion } from "../../Componentes/Common/botonesDeGestion";
+import { empresasURL } from "../../../API/apiurls";
+import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../../API/apiCRUD";
+import { BotonesDeGestion } from "../../../Componentes/Common/botonesDeGestion";
 
 
 export function EmpresasTabla({ url, abrir, cerrar }) {
@@ -13,10 +13,16 @@ export function EmpresasTabla({ url, abrir, cerrar }) {
     const [showModal, setShowModal] = useState(false);
     const [datosEdit, setDatosEdit] = useState(null);
 
+    const token = localStorage.getItem("token");
+
     const ListarDatos = useCallback(async () => {
-        const results = await axios.get(url);
+        const results = await axios.get(url, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
+            },
+          })
         setDatos(results.data);
-    }, [url]);
+    }, [url]); 
 
     useEffect(() => {
         ListarDatos();
@@ -33,12 +39,12 @@ export function EmpresasTabla({ url, abrir, cerrar }) {
 
 
     const habilitarEmpresa = (id) => {
-        habilitarElemento(empresasURL, id, `est_emp`, ListarDatos);
+        habilitarElemento(empresasURL, id, `estado`, ListarDatos);
     };
 
 
     const deshabilitarEmpresa = (id) => {
-        deshabilitarElemento(empresasURL, id, `est_emp`, ListarDatos);
+        deshabilitarElemento(empresasURL, id, `estado`, ListarDatos);
     };
 
     const edit = (empresa) => {
@@ -69,10 +75,10 @@ export function EmpresasTabla({ url, abrir, cerrar }) {
                         <tr key={dato.id_emp}>
                             <td>{dato.id_emp}</td>
                             <td>{dato.nom_emp}</td>
-                            <td>{dato.est_emp ? "Habilitado" : "Deshabilitado"}</td>
+                            <td>{dato.estado ? "Habilitado" : "Deshabilitado"}</td>
                             <td>
                                 <BotonesDeGestion
-                                    ide={`id_emp`} estado={`est_emp`} dato={dato} edit={edit}
+                                    ide={`id_emp`} estado={`estado`} dato={dato} edit={edit}
                                     deshabilitar={deshabilitarEmpresa} habilitar={habilitarEmpresa}
                                 />
                             </td>

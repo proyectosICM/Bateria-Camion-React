@@ -5,12 +5,19 @@ import { Link } from "react-router-dom";
 import './menuEmpresas.css';
 import { empresasHURL } from "../../API/apiurls";
 
-export function MenuEmpresas({ ruta }) {
+
+const token = localStorage.getItem("token");
+
+export function MenuEmpresas({ ruta }) { 
     const [datos, setDatos] = useState([]);
 
     const ListarDatos = useCallback(async () => {
         try {
-            const response = await axios.get(`${empresasHURL}`);
+            const response = await axios.get(`${empresasHURL}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
+                },
+              })
             setDatos(response.data);
         } catch (error) {
             console.log(error);

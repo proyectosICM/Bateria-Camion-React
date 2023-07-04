@@ -2,15 +2,11 @@ import { CamionesDetalles } from "./Componentes/Camiones/Detalles/camionesdetall
 import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
 import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
 
-import { PanelIncidencias } from "./Componentes/Incidencias/panelincidendias";
 
 import { Login } from "./Login/login";
-import { MenuCRUD } from "./MenuCrud";
 import { BateriasC } from "./TablasCRUD/BateriasCRUD/BateriasC";
 import { MenuEBaterias } from "./TablasCRUD/BateriasCRUD/menuEBaterias";
-import { CamionC } from "./TablasCRUD/CamionesCRUD/CamionC";
-import { MenuECamiones } from "./TablasCRUD/CamionesCRUD/menuECamiones";
-import { EmpresasC } from "./TablasCRUD/EmpresasCRUD/empresaC";
+
 import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
 import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadores";
@@ -18,15 +14,21 @@ import { IncidenciasCamion } from "./VistaConductor/incidenciasCamion";
 import { Validacion } from "./VistaConductor/validacion";
 import { CamionDetalleSupervisor } from "./VistaSupervisor/camionDetalleSupervisor";
 import { MenuCamion } from "./VistaSupervisor/menuCamion";
-import { PruebaDeVista } from "./VistaSupervisor/pruebaDeVista";
+import { WelcomeAdd } from "./VistaAdministrador/welcomeadd";
 import { IncidenciasCS } from "./VistasComunes/Incidencias/incidenciasCS";
 import { IncidenciasGenerales } from "./VistasComunes/Incidencias/incidenciasGenerales";
-import { BarraNavValidacion } from "./VistasComunes/barraNavValidacion";
+import { Redirect } from "./VistasComunes/redirect";
+import { MenuCRUD } from "./VistasComunes/CRUD/MenuCrud";
+import { WelcomeASis } from "./VistaASistemas/welcomeasis";
+import { EmpresasC } from "./VistasComunes/CRUD/EmpresasCRUD/empresaC";
+import { CamionC } from "./VistasComunes/CRUD/CamionesCRUD/CamionC";
+import { MenuECamiones } from "./VistasComunes/CRUD/CamionesCRUD/menuECamiones";
+
 
 
 export const routes = [
     //Redireccion
-    { path: '/redirec', component: <BarraNavValidacion /> },
+    { path: '/redirect', component: <Redirect /> },
 
 
     //Vista  conductor
@@ -39,7 +41,12 @@ export const routes = [
     { path: '/incidenciasG', component: <IncidenciasGenerales  />},
     { path: '/detallesc/:id', component: <CamionDetalleSupervisor  />},
 
-    //{ path: '/menuCamion', component: <PruebaDeVista /> }, 
+    //Vista Administrador
+    { path: '/welcomeadd', component: <WelcomeAdd />},
+    { path: '/menuCRUD', component: <MenuCRUD /> },
+
+    //vista Administrador de Sistemas
+    { path: '/welcomeasis', component: <WelcomeASis />},
 
     { path: '/prueba1', component: <CamionesMenu /> },
     { path: '/prueba2', component: <CamionesMenu2 /> },
@@ -47,12 +54,14 @@ export const routes = [
 
 
     // TABLAS CRUD
-    { path: '/menuCRUD', component: <MenuCRUD /> },
+    //{ path: '/menuCRUD', component: <MenuCRUD /> },
     { path: '/empresasCRUD', component: <EmpresasC /> },
     { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
-    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
-    { path: '/camionesCRUD', component: <MenuECamiones /> },
     { path: '/camionesxemp/:id_emp', component: <CamionC /> },
+    { path: '/camionesCRUD', component: <MenuECamiones /> },
+
+    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
+
     { path: '/bateriasCRUD', component: <MenuEBaterias /> },
     { path: '/bateriasxemp/:id_emp', component: <BateriasC /> },
 

@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 //import { EmpresaModal } from "./empresaModal";
 
-import { camionURL } from "../../API/apiurls";
-import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../API/apiCRUD";
-import { BotonesDeGestion } from "../../Componentes/Common/botonesDeGestion";
+import { camionURL } from "../../../API/apiurls";
+import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../../API/apiCRUD";
+import { BotonesDeGestion } from "../../../Componentes/Common/botonesDeGestion";
 import { CamionModal } from "./camionModal";
 
 

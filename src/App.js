@@ -1,9 +1,4 @@
-import {
-  Route,
-  Routes,
-  BrowserRouter as Router,
-  Navigate,
-} from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
 import "./App.css";
 import { NavbarP } from "./Componentes/BarraNav/navbarP";
 
@@ -12,32 +7,48 @@ import { routes } from "./routes";
 import { Login } from "./Login/login";
 import { Welcome } from "./Login/welcome";
 import { UserProvider } from "./Hooks/userProvider";
+import { NavBarSelect } from "./VistasComunes/navbarSelect";
+import { useEffect, useState } from "react";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+    }, 100); // Actualiza el token cada segundo
+
+    return () => {
+      clearInterval(interval); // Limpia el intervalo al desmontar el componente
+    };
+  }, []);
+
   return (
     <UserProvider>
       <Router>
-        <div className="App"></div>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              token ? <Navigate to="/welcome" /> : <Navigate to="/login" />
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/welcome" element={<Welcome />} />
-
-          {routes.map((route, index) => (
+        {token && <NavBarSelect />}
+        <div className="App">
+          <Routes>
             <Route
-              key={index}
-              exact
-              path={route.path}
-              element={route.component}
+              path="/"
+              element={
+                token ? <Navigate to="/welcome" /> : <Navigate to="/login" />
+              }
             />
-          ))}
-        </Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/welcome" element={<Welcome />} />
+
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                exact
+                path={route.path}
+                element={route.component}
+              />
+            ))}
+          </Routes>
+        </div>
       </Router>
     </UserProvider>
   );

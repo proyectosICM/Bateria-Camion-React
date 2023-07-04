@@ -12,7 +12,7 @@ import { UserContext } from "../Hooks/userProvider";
 import { IncidenciasxCamionSR } from "../API/apiurls";
 
 
-export function CamionDetalle({ camion, idc, placa }) {
+export function CamionDetalle({ camion, idc, placa, incidencias }) {
     const id_tra = localStorage.getItem('trabajador');
     const token = localStorage.getItem('token');
  
@@ -80,7 +80,7 @@ export function CamionDetalle({ camion, idc, placa }) {
                     </div>
                     <h1>Incidencias sin revisar: {incidenciasSR.length}</h1>
                     <Button>
-                        <Link to={'/incidencias'} className="linkes">Ver Registro Incidencias</Link>
+                        <Link to={incidencias} className="linkes">Ver Registro Incidencias</Link>
                     </Button>
 
                     <BotonesG handleMostrarGrafico={handleMostrarGrafico} />

@@ -5,7 +5,12 @@ const token = localStorage.getItem("token");
 
 export function agregarElemento(url, requestData, closeModal, ListarDatos) {
   axios
-    .post(url, requestData)
+    .post(url, requestData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+       // Agregar el token en el encabezado de la solicitud
+      },
+    })
     .then(() => {
       closeModal();
       ListarDatos();
@@ -17,7 +22,12 @@ export function agregarElemento(url, requestData, closeModal, ListarDatos) {
 
 export function editarElemento(url, requestData, closeModal, ListarDatos) {
   axios
-    .put(url, requestData)
+    .put(url, requestData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+       // Agregar el token en el encabezado de la solicitud
+      },
+    })
     .then(() => {
       closeModal();
       ListarDatos();
@@ -40,7 +50,6 @@ export function habilitarElemento(url, id, est, ListarDatos) {
     .then((response) => {
       const elemento = response.data;
       elemento[est] = true;
-
       axios
         .put(nurl, elemento, {
           headers: {

@@ -12,7 +12,7 @@ export function NavBarConductor() {
         Logout(navigate);
     };
 
-
+ 
     return (
         <>
             <Navbar bg="dark" variant="dark" className="navbar-container">

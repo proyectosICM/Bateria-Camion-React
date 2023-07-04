@@ -9,15 +9,21 @@ import { BotonesDeGestion } from "../../Componentes/Common/botonesDeGestion";
 
 export function TrabajadorTabla({ url, il, abrir, cerrar }) {
 
+    const token = localStorage.getItem("token");
+
     const [datos, setDatos] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [datosEdit, setDatosEdit] = useState(null);
 
     const ListarDatos = useCallback(async () => {
-        const results = await axios.get(url);
+        const results = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
+      },
+    })
         setDatos(results.data);
     }, [url]);
-
+ 
     useEffect(() => {
         ListarDatos();
     }, [ListarDatos]);
@@ -50,11 +56,11 @@ export function TrabajadorTabla({ url, il, abrir, cerrar }) {
     };
 
     const habilitarTrabajador = (id) => {
-        habilitarElemento(trabajadorURL, id, `est_tra`, ListarDatos);
+        habilitarElemento(trabajadorURL, id, `estado`, ListarDatos);
     };
 
     const deshabilitarTrabajador = (id) => {
-        deshabilitarElemento(trabajadorURL, id, `est_tra`, ListarDatos);
+        deshabilitarElemento(trabajadorURL, id, `estado`, ListarDatos);
     };
 
 

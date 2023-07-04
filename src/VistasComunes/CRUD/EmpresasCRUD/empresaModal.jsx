@@ -7,7 +7,7 @@ import './empresaModal.css';
 export function EmpresaModal({ show, close, datosaeditar, editar, agregar }) {
   const [formData, setFormData] = useState({
     nom_emp: "",
-    est_emp: true
+    estado: true
   });
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function EmpresaModal({ show, close, datosaeditar, editar, agregar }) {
   }, [datosaeditar]);
 
   const limpiar = () => {
-    setFormData({ nom_emp: "", est_emp: true });
+    setFormData({ nom_emp: "", estado: true });
   };
 
   const handleSubmit = (event) => {

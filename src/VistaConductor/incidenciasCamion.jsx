@@ -35,17 +35,6 @@ export function IncidenciasCamion() {
   }, [token, navigate]);
 
   useEffect(() => {
-    if (userRole === "CONDUCTOR") {
-      setNav(<NavBarConductor />);
-    } else if (userRole === "SUPERVISOR") {
-      setNav(<NavBarSupervisor />);
-    }
-
-    setUserRole(localStorage.getItem("rol"));
-  }, []);
-
-
-  useEffect(() => {
     if (g === "g" && userRole !== "CONDUCTOR") {
       setMostarGenerales(true);
     }
@@ -54,7 +43,6 @@ export function IncidenciasCamion() {
 
   return (
     <>
-      {nav}
       <div className="contenedor-detalles">
         <Card style={{ width: "180rem" }}>
           <Card.Title>

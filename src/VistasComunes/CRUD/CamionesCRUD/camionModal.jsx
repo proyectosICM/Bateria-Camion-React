@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsFillBusFrontFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { InputSimple, SelectCruzado } from "../../Componentes/BarraNav/forms";
-import { trabajadorHURL } from "../../API/apiurls";
+import { InputSimple, SelectCruzado } from "../../../Componentes/BarraNav/forms";
+import { trabajadorHURL } from "../../../API/apiurls";
 
 
 

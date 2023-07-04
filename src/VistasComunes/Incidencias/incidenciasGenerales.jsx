@@ -7,6 +7,8 @@ import { NavBarSupervisor } from "../../VistaSupervisor/navbarSupervisor";
 import { UserContext } from "../../Hooks/userProvider";
 import { IncidenciasTG } from "./indicenciasTG";
 import { useParams } from "react-router-dom";
+import { NavBarAdministrador } from "../../VistaAdministrador/navbarAdministrador";
+import { NavBarSelect } from "../navbarSelect";
 
 export function IncidenciasGenerales() {
   const empresa = localStorage.getItem("empresa");
@@ -21,25 +23,9 @@ export function IncidenciasGenerales() {
   const [nav, setNav] = useState(null);
   const [gen, setGen] = useState(false);
 
-  
-
-  useEffect(() => {
-    if (userRole === "CONDUCTOR") {
-      setNav(<NavBarConductor />);
-    } else if (userRole === "SUPERVISOR") {
-      setNav(<NavBarSupervisor />);
-    }
-  
-    setUserRole(localStorage.getItem("rol"));
-  }, [id_cam]);
-  
-
-
-
 
   return (
     <>
-      {nav}
       <Card className="contenedor-detalles">
         <Card.Title>
           PANEL DE INCIDENCIAS {gen ? "Generales" : "Camion"}

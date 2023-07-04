@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Hooks/userProvider';
+import { NavBarSelect } from '../VistasComunes/navbarSelect';
 
 export const Welcome = () => {
   const username = localStorage.getItem('Username');
@@ -40,7 +41,7 @@ export const Welcome = () => {
 
   const Redirigir = () => {
     if(sal!= null){
-      navigate('/redirec');
+      navigate('/redirect');
     }
   }
 

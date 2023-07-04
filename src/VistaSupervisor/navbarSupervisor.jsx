@@ -33,7 +33,7 @@ export function NavBarSupervisor() {
                         <Link to={`/incidenciasG`} className="linkes">
                             <span>Incidencias</span>
                         </Link>
-
+        
                         <li onClick={handleLogout} className="linkes">
                             Cerrar
                         </li>

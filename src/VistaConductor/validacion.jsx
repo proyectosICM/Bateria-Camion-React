@@ -76,7 +76,6 @@ export function Validacion() {
 
   return (
     <>
-      <NavBarConductor />
       <div className="contenedor-detalles">
         <Card style={{ width: "180rem" }}>
           <div className="orden">
@@ -85,6 +84,7 @@ export function Validacion() {
                 camion={camion}
                 placa={camion[0].placa_cam}
                 idc={camion[0].id_cam}
+                incidencias={'/incidencias'}
               />
             ) : (
               <NoAsignado />
