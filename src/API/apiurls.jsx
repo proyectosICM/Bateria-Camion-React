@@ -37,6 +37,7 @@ export const empresasDURL = `${baseURL}/empresas/empresasH/0`;
 
 //Trabajadores
 export const trabajadorURL = `${baseURL}/trabajadores`;
+export const crearTrabajadorURL = `${baseURL}/trabajadores/createUser`;
 export const trabajadorTURL = `${baseURL}/trabajadores/trabajadoresxEmpT/`;
 export const trabajadorHURL = `${baseURL}/trabajadores/trabajadoresxEmpH/1/`;
 export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0/`;

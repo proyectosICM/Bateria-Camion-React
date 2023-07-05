@@ -27,6 +27,8 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
         ListarDatos();
     }, [ListarDatos]);
 
+    const empresa = localStorage.getItem('empresa');
+
     const agregarBateria = (camion) => {
         const requestData = {
             nom_bat: camion.nom_bat,
@@ -35,7 +37,7 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
                 id_cam: camion.camionesModel
             },
             empresasModel: {
-                id_emp: il
+                id_emp: empresa
             },
         };
         agregarElemento(bateriaURL, requestData, closeModal, ListarDatos);
@@ -49,7 +51,7 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
                 id_cam: bateria.camionesModel
             },
             empresasModel: {
-                id_emp: il
+                id_emp: empresa
             },
         };
         const apiurledit = `${bateriaURL}/${bateria.id_bat}`;

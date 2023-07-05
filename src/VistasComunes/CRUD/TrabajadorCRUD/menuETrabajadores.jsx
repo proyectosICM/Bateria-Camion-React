@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { MenuEmpresas } from "../../../Common/menuEmpresas";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { BotonMenu } from "../../../Hooks/useBackCRUD";
 
 export function MenuETrabajadoresE() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export function MenuETrabajadoresE() {
 
   return (
     <div className="camionesMenu-contenedor">
-      <Button>Atras</Button>
+      <BotonMenu />
       <MenuEmpresas ruta="/trabajadoresxemp" />
     </div>
   );

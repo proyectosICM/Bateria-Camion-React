@@ -1,13 +1,8 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import {
-  BsFillPersonFill,
-  BsX,
-} from "react-icons/bs";
-import {
-  HiOutlineIdentification,
-} from "react-icons/hi";
+import { BsFillPersonFill, BsX } from "react-icons/bs";
+import { HiOutlineIdentification } from "react-icons/hi";
 import "./bateriaModal.css";
 import { FaUser } from "react-icons/fa";
 import { camionesHURL } from "../../../API/apiurls";
@@ -22,7 +17,7 @@ export function BateriasModal({
 }) {
   const [formData, setFormData] = useState({
     nom_bat: "",
-    camionesModel: 1
+    camionesModel: 1,
   });
   const [editando, setEditando] = useState(false);
   const [camiones, setCamiones] = useState([]);
@@ -37,8 +32,7 @@ export function BateriasModal({
     });
     setCamiones(response.data);
     console.log(response.data);
-}, [il]);
-
+  }, [il]);
 
   useEffect(() => {
     if (datosaeditar) {
@@ -48,8 +42,7 @@ export function BateriasModal({
       // ...
     }
     ListarCamiones();
-  }, [datosaeditar,ListarCamiones]);
-
+  }, [datosaeditar, ListarCamiones]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,15 +55,14 @@ export function BateriasModal({
     close();
     limpiar();
   };
- 
+
   const limpiar = () => {
     setFormData({
       nom_bat: "",
-      camionesModel: 1
+      camionesModel: 1,
     });
     setEditando(false);
   };
-
 
   const handleClose = () => {
     if (datosaeditar) {
@@ -107,33 +99,44 @@ export function BateriasModal({
               </Form.Group>
 
               <Form.Group className="form-group-half">
-                                <Form.Label><FaUser /> Conductor</Form.Label>
-                                <Form.Select
-                                    name="conductor"
-                                    value={formData.camionesModel ? formData.camionesModel.id_cam : ""}
-                                    onChange={(e) => {
-                                        const selectedId = e.target.value;
-                                        setFormData({ ...formData, camionesModel: selectedId });
-                                    }}
-                                >
-                                    <option value={formData.camionesModel ? formData.camionesModel.id_tra : ""}>
-                                        {formData.camionesModel ? formData.camionesModel.placa_cam
-                                            : "Seleccione un camion"}
-                                    </option>
-                                    {camiones.map((camion) => (
-                                        <option key={camion.id_cam} value={camion.id_cam}>
-                                            {camion.placa_cam} 
-                                        </option>
-                                    ))}
-                                </Form.Select>
-                            </Form.Group>
+                <Form.Label>
+                  <FaUser /> Conductor
+                </Form.Label>
+                <Form.Select
+                  name="conductor"
+                  value={
+                    formData.camionesModel ? formData.camionesModel.id_cam : ""
+                  }
+                  onChange={(e) => {
+                    const selectedId = e.target.value;
+                    setFormData({ ...formData, camionesModel: selectedId });
+                  }}
+                >
+                  <option
+                    value={
+                      formData.camionesModel
+                        ? formData.camionesModel.id_tra
+                        : ""
+                    }
+                  >
+                    {formData.camionesModel
+                      ? formData.camionesModel.placa_cam
+                      : "Seleccione un camion"}
+                  </option>
+                  {camiones.map((camion) => (
+                    <option key={camion.id_cam} value={camion.id_cam}>
+                      {camion.placa_cam}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
             </div>
 
             <div className="modal-buttons">
               <Button type="submit">
                 {editando ? "Guardar cambios" : "Crear"}
               </Button>
-              <Button onClick={handleClose} variant='secondary'>
+              <Button onClick={handleClose} variant="secondary">
                 <BsX className="button-icon" />
                 Cerrar
               </Button>

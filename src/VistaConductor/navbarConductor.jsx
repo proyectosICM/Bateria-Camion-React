@@ -26,7 +26,7 @@ export function NavBarConductor() {
                     </Navbar.Brand>
                     <Nav className="me-auto barra">
                         <Link to={'/incidencias'} className="linkes">
-                            <span>Incidencias</span>
+                            Incidencias
                         </Link>
                         <li onClick={handleLogout} className="linkes">
                             Cerrar

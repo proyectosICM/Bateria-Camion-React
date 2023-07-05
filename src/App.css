@@ -40,6 +40,7 @@
 .linkes:hover{
   color:antiquewhite;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo{

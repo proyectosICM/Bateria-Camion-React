@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 import { TrabajadorModal } from "./trabajadorModal";
 
 import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../../API/apiCRUD";
-import { trabajadorURL } from "../../../API/apiurls";
+import { crearTrabajadorURL, trabajadorURL } from "../../../API/apiurls";
 import { BotonesDeGestion } from "../../../Common/botonesDeGestion";
 
 export function TrabajadorTabla({ url, il, abrir, cerrar }) {
@@ -29,16 +29,21 @@ export function TrabajadorTabla({ url, il, abrir, cerrar }) {
     }, [ListarDatos]);
 
     const agregarTrabajador = (trabajador) => {
+        console.log(trabajador)
         const requestData = {
             nom_tra: trabajador.nom_tra,
             ape_tra: trabajador.ape_tra,
             dni_tra: trabajador.dni_tra,
+            username: trabajador.username,
+            pass_tra: trabajador.pass_tra,
             empresasModel: {
                 id_emp: il
             },
-            est_tra: trabajador.est_tra
+            roles: ["SUPERVISOR"],
+            estado: trabajador.est_tra
         };
-        agregarElemento(trabajadorURL, requestData, closeModal, ListarDatos);
+        console.log(requestData);
+        agregarElemento(crearTrabajadorURL, requestData, closeModal, ListarDatos);
     };
 
     const editarTrabajador = (trabajador) => {
@@ -46,9 +51,12 @@ export function TrabajadorTabla({ url, il, abrir, cerrar }) {
             nom_tra: trabajador.nom_tra,
             ape_tra: trabajador.ape_tra,
             dni_tra: trabajador.dni_tra,
+            username: trabajador.username,
+            password: trabajador.password,
             empresasModel: {
                 id_emp: il
             },
+            roles: trabajador.rol,
             est_tra: trabajador.est_tra
         };
         const apiurledit = `${trabajadorURL}/${trabajador.id_tra}`;

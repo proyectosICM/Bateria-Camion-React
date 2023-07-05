@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { MenuEmpresas } from "../../../Common/menuEmpresas";
 import { useNavigate } from "react-router-dom";
+import { BotonMenu } from "../../../Hooks/useBackCRUD";
 
 export function MenuECamiones() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export function MenuECamiones() {
 
   return (
     <div className="camionesMenu-contenedor">
+      <BotonMenu />
       <MenuEmpresas ruta="/camionesxemp" />
     </div>
   );

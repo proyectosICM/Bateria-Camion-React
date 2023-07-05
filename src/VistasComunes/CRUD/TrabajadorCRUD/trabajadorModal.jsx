@@ -1,14 +1,10 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import {
-  BsFillPersonFill,
-  BsX,
-} from "react-icons/bs";
-import {
-  HiOutlineIdentification,
-} from "react-icons/hi";
+import { BsFillPersonFill, BsX } from "react-icons/bs";
+import { HiOutlineIdentification } from "react-icons/hi";
 import "./trabajadorModal.css";
+import { FaUser } from "react-icons/fa";
 
 export function TrabajadorModal({
   show,
@@ -24,10 +20,11 @@ export function TrabajadorModal({
     dni_tra: "",
     empresasModel: il,
     est_tra: true,
+    username: "",
+    pass_tra: "",
+    rol: ""
   });
   const [editando, setEditando] = useState(false);
-
-
 
   useEffect(() => {
     if (datosaeditar) {
@@ -49,7 +46,7 @@ export function TrabajadorModal({
     close();
     limpiar();
   };
- 
+
   const limpiar = () => {
     setFormData({
       nom_tra: "",
@@ -57,10 +54,12 @@ export function TrabajadorModal({
       dni_tra: "",
       empresasModel: il,
       est_tra: true,
+      username: "",
+      pass_tra: "",
+      rol: ""
     });
     setEditando(false);
   };
-
 
   const handleClose = () => {
     if (datosaeditar) {
@@ -68,6 +67,8 @@ export function TrabajadorModal({
     }
     close();
   };
+
+  const rol = localStorage.getItem("rol");
 
   return (
     <div>
@@ -113,8 +114,6 @@ export function TrabajadorModal({
               </Form.Group>
             </div>
 
-
-
             <Form.Group controlId="formDNI">
               <Form.Label>
                 <HiOutlineIdentification className="label-icon" />
@@ -131,13 +130,71 @@ export function TrabajadorModal({
               />
             </Form.Group>
 
-            
+            <div className="form-row">
+              <Form.Group controlId="formUsername" className="form-group-half">
+                <Form.Label>
+                  <BsFillPersonFill className="label-icon" />
+                  Usuario:
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={formData.username}
+                  onChange={(e) =>
+                    setFormData({ ...formData, username: e.target.value })
+                  }
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formPassword" className="form-group-half">
+                <Form.Label>
+                  <BsFillPersonFill className="label-icon" />
+                  Password:
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="pass_tra"
+                  placeholder="Password"
+                  value={formData.pass_tra}
+                  onChange={(e) =>
+                    setFormData({ ...formData, pass_tra: e.target.value })
+                  }
+                />
+              </Form.Group>
+            </div>
+
+            <Form.Group className="form-group-half">
+              <Form.Label>
+                <FaUser /> ROL
+              </Form.Label>
+              <Form.Select
+                name="Rol"
+                value="Seleccct"
+                onChange={(e) => 
+                  setFormData({ ...formData, rol: e.target.value })
+                }
+              >
+                <option>
+                     Seleccione un camion
+                </option>
+                <option key="1" value="CONDUCTOR">
+                  CONDUCTOR
+                </option>
+                <option key="2" value="SUPERVISOR">
+                SUPERVISOR
+                </option>
+                <option key="3" value="CONDUCTOR">
+                ADMINISTRADOR
+                </option>
+              </Form.Select>
+            </Form.Group>
 
             <div className="modal-buttons">
               <Button type="submit">
                 {editando ? "Guardar cambios" : "Crear"}
               </Button>
-              <Button onClick={handleClose} variant='secondary'>
+              <Button onClick={handleClose} variant="secondary">
                 <BsX className="button-icon" />
                 Cerrar
               </Button>
