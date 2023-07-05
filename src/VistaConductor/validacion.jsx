@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { bateriaxcamionURL, camionxtrabajador } from "../API/apiurls";
-import { Button, Card } from "react-bootstrap";
-import { NavBarConductor } from "./navbarConductor";
-import { CamionesTabla } from "../Componentes/Camiones/Detalles/camionesTabla";
 import { Link, useNavigate } from "react-router-dom";
 import { NoAsignado } from "./noAsignado";
 import { CamionDetalle } from "./../VistasComunes/camiondetalle";

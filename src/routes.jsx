@@ -1,6 +1,4 @@
-import { CamionesDetalles } from "./Componentes/Camiones/Detalles/camionesdetalles";
-import { CamionesMenu } from "./Componentes/Camiones/Menu/caminonesmenu";
-import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
+
 
 
 import { Login } from "./Login/login";
@@ -23,6 +21,7 @@ import { MenuEBaterias } from "./VistasComunes/CRUD/BateriasCRUD/menuEBaterias";
 import { BateriasC } from "./VistasComunes/CRUD/BateriasCRUD/BateriasC";
 import { TrabajadorC } from "./VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
 import { MenuETrabajadoresE } from "./VistasComunes/CRUD/TrabajadorCRUD/menuETrabajadores";
+import { NoAutorizado } from "./VistasComunes/noAutorizado";
 
 
 
@@ -48,9 +47,6 @@ export const routes = [
     //vista Administrador de Sistemas
     { path: '/welcomeasis', component: <WelcomeASis />},
 
-    { path: '/prueba1', component: <CamionesMenu /> },
-    { path: '/prueba2', component: <CamionesMenu2 /> },
-    { path: '/detalles/:id', component: <CamionesDetalles /> },
 
 
     // TABLAS CRUD
@@ -75,5 +71,8 @@ export const routes = [
     { path: '/incidenciasGE', component: <IncidenciasGenerales /> },
 
     //LOGIN
-    { path: '/login', component: <Login /> }
+    { path: '/login', component: <Login /> },
+
+    //No autorizado
+    { path: '/notAuthorized', component: <NoAutorizado /> }
 ]

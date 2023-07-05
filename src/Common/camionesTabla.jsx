@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import { InfoTReal } from "../Modulos/InfoTReal";
-import { bateria1URL, bateriaxcamionURL, camionURL } from "../../../API/apiurls";
+
 import axios from "axios";
+import { InfoTReal } from "./infoReal";
+import { bateriaxcamionURL } from "../API/apiurls";
 
 export function CamionesTabla({ idb, datbat, idc }) {
   const { id } = useParams();

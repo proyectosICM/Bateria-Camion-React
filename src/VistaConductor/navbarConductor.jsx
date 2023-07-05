@@ -4,6 +4,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../Imagenes/logo_icm3.png';
 import { Logout } from "../Hooks/logout";
+//import "../Estilos/barnavP.css"
 
 export function NavBarConductor() {
     const navigate = useNavigate();

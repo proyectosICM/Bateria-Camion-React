@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -6,6 +6,8 @@ import { camionesDURL, camionesHURL, camionesTURL } from "../../../API/apiurls";
 import { CamionTabla } from "./camionTabla";
 import { Card } from "react-bootstrap";
 import { BotonesCRUD } from "../../../Common/botonesCRUD";
+import { useBackCRUD } from "../../../Hooks/useBackCRUD";
+import { useNotAuthorized } from "../../../Hooks/useNotAuthorized";
 
 export function CamionC() {
   const { id_emp } = useParams();
@@ -15,6 +17,8 @@ export function CamionC() {
   const urlT = `${camionesTURL}${id_emp}`;
   const urlH = `${camionesHURL}${id_emp}`;
   const urlD = `${camionesDURL}${id_emp}`;
+  
+  useNotAuthorized(id_emp);
 
   const handleMostrarTabla = (tabla) => {
     setTablaSeleccionada(tabla);
@@ -33,6 +37,8 @@ export function CamionC() {
       setAbrir(false);
     }
   };
+ 
+  const ruta = useBackCRUD(`/camionesCRUD`);
 
   return (
     <div className="camionesMenu-contenedor">
@@ -40,7 +46,7 @@ export function CamionC() {
           activador={handleMostrarTabla}
           btnTabla={tablaSeleccionada}
           abrir={handleAbrirModal}
-          retroceder="/camionesCRUD"
+          retroceder={ruta}
         />
 
         {tablaSeleccionada === "Habilitados" && (

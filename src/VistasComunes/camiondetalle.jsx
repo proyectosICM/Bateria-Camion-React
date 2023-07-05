@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { Button, Card } from "react-bootstrap";
-import { CamionesTabla } from "../Componentes/Camiones/Detalles/camionesTabla";
 import { Link, useParams } from "react-router-dom";
-import { BotonesG } from "../Componentes/Camiones/Detalles/botonesG";
 import { ContenedorVoltaje } from './../VistasComunes/Graficos/Voltaje/contenedorVoltaje';
 import { ContenedorCarga } from "../VistasComunes/Graficos/Carga/contenedorCarga";
 import { ContenedorCorriente } from './../VistasComunes/Graficos/Corriente/contenedorCorriente';
 import { UserContext } from "../Hooks/userProvider";
 import { IncidenciasxCamionSR } from "../API/apiurls";
+import { BotonesG } from "../Common/botonesG";
+import { CamionesTabla } from "../Common/camionesTabla";
 
 
 export function CamionDetalle({ camion, idc, placa, incidencias }) {

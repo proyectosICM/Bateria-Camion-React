@@ -27,3 +27,152 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* NavBar */
+
+.linkes{
+  color: white;
+  text-decoration: none;
+  margin: 0% 10% 0% 0%;
+}
+
+.linkes:hover{
+  color:antiquewhite;
+  cursor: pointer;
+}
+
+.logo{
+  margin: 0% 10% 0% 0%; 
+  width: 100%;
+  text-align: left;
+}
+
+.imgl{
+  width: 6%;
+  height: 6%;
+  margin: 0% 2%;
+} 
+
+
+/* menus */
+
+.camionesMenu-contenedor{
+  width: 80%;
+  height: 25%;
+  margin: 2% auto;
+  padding: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #E5E7E9;
+  border-radius: 1%;
+} 
+
+.camionesItem-contenedor{
+  width: 30%;
+  height: 25%;
+  margin: 2%;
+
+  border-radius: 2%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+img{
+  width: 40%;
+  height: 40%;
+  margin: 2% auto;
+}
+
+.contenedor-detalles{
+  width: 80%;
+  height: 25%;
+  margin: 2% auto;
+  padding: 2%;
+  /*border: 2px solid black; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  text-align: center;
+  justify-content: center;
+}
+
+.detallitos{
+  margin: 2% auto;
+  padding: 2%;
+  border: 2px solid black;
+}
+
+.orden{
+  width: 90%;
+  /* border: 2px solid black; */
+  padding: 2%;
+}
+
+.graficos{
+  width: 80%;
+  border: 2px solid black;
+  margin: auto;
+}
+
+.cajades{
+  width: 100%;
+  border: 2px solid black;
+
+
+}
+
+.subcajades{
+  width: 100%;
+  height: 80%;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tb{
+  width: 50%;
+  height: 120%;
+  border: 2px solid black;
+}
+
+.bt-g{
+  width: 80%;
+  margin: 1%;
+}
+
+.bt-i{
+  width: 33%;
+}
+
+.bt-bt{
+  width: 20%;
+}
+
+.bt-bto{
+  width: 20%;
+}
+
+.btm-g{
+  width: 80%;
+  margin: 1%;
+
+}
+
+.btm-i{
+  width: 33%;
+}
+
+.contenedor-btn{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+
