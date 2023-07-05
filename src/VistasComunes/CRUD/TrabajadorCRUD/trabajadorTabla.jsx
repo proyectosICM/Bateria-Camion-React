@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { TrabajadorModal } from "./trabajadorModal";
 
-import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../API/apiCRUD";
-import { trabajadorURL } from "../../API/apiurls";
-import { BotonesDeGestion } from "../../Componentes/Common/botonesDeGestion";
+import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../../API/apiCRUD";
+import { trabajadorURL } from "../../../API/apiurls";
+import { BotonesDeGestion } from "../../../Common/botonesDeGestion";
 
 export function TrabajadorTabla({ url, il, abrir, cerrar }) {
 

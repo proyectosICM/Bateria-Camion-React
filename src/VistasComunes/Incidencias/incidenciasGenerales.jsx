@@ -22,11 +22,11 @@ export function IncidenciasGenerales() {
 
   const [nav, setNav] = useState(null);
   const [gen, setGen] = useState(false);
-
+ 
 
   return (
     <>
-      <Card className="contenedor-detalles">
+      <Card className="camionesMenu-contenedor">
         <Card.Title>
           PANEL DE INCIDENCIAS {gen ? "Generales" : "Camion"}
         </Card.Title>

@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
-import { MenuEmpresas } from "../../Componentes/Common/menuEmpresas";
-import { useNavigate } from "react-router-dom";
 
-export function MenuETrabajadoresE() {
+import { useNavigate } from "react-router-dom";
+import { MenuEmpresas } from "../../../Common/menuEmpresas";
+
+export function MenuEBaterias() {
   const navigate = useNavigate();
   const rol = localStorage.getItem("rol");
   const empresa = localStorage.getItem("empresa");
 
   useEffect(() => {
     if (rol === "ADMINISTRADOR") {
-      navigate(`/trabajadoresxemp/${empresa}`);
+      navigate(`/bateriasxemp/${empresa}`);
     }
   }, []); // El segundo argumento [] indica que el efecto se ejecutará solo una vez, después del montaje inicial
 
   return (
-    <div>
-      <MenuEmpresas ruta="/trabajadoresxemp" />
+    <div className="camionesMenu-contenedor">
+      <MenuEmpresas ruta="/bateriasxemp" />
     </div>
   );
 }

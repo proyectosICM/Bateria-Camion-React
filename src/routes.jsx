@@ -4,12 +4,8 @@ import { CamionesMenu2 } from "./Componentes/Camiones/Menu/camionesmenu2";
 
 
 import { Login } from "./Login/login";
-import { BateriasC } from "./TablasCRUD/BateriasCRUD/BateriasC";
-import { MenuEBaterias } from "./TablasCRUD/BateriasCRUD/menuEBaterias";
 
-import { TrabajadorC } from "./TablasCRUD/TrabajadorCRUD/TrabajadorC";
 
-import { MenuETrabajadoresE } from "./TablasCRUD/TrabajadorCRUD/menuETrabajadores";
 import { IncidenciasCamion } from "./VistaConductor/incidenciasCamion";
 import { Validacion } from "./VistaConductor/validacion";
 import { CamionDetalleSupervisor } from "./VistaSupervisor/camionDetalleSupervisor";
@@ -23,6 +19,10 @@ import { WelcomeASis } from "./VistaASistemas/welcomeasis";
 import { EmpresasC } from "./VistasComunes/CRUD/EmpresasCRUD/empresaC";
 import { CamionC } from "./VistasComunes/CRUD/CamionesCRUD/CamionC";
 import { MenuECamiones } from "./VistasComunes/CRUD/CamionesCRUD/menuECamiones";
+import { MenuEBaterias } from "./VistasComunes/CRUD/BateriasCRUD/menuEBaterias";
+import { BateriasC } from "./VistasComunes/CRUD/BateriasCRUD/BateriasC";
+import { TrabajadorC } from "./VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
+import { MenuETrabajadoresE } from "./VistasComunes/CRUD/TrabajadorCRUD/menuETrabajadores";
 
 
 
@@ -56,14 +56,18 @@ export const routes = [
     // TABLAS CRUD
     //{ path: '/menuCRUD', component: <MenuCRUD /> },
     { path: '/empresasCRUD', component: <EmpresasC /> },
-    { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
-    { path: '/camionesxemp/:id_emp', component: <CamionC /> },
+ 
+
     { path: '/camionesCRUD', component: <MenuECamiones /> },
-
-    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
-
+    { path: '/camionesxemp/:id_emp', component: <CamionC /> },
     { path: '/bateriasCRUD', component: <MenuEBaterias /> },
     { path: '/bateriasxemp/:id_emp', component: <BateriasC /> },
+
+    { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
+    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
+
+  
+
 
     //PANEL DE INCIDENCIAS
     { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion /> },

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { BotonesDeGestion } from "../../Componentes/Common/botonesDeGestion";
+import { BotonesDeGestion } from "../../../Common/botonesDeGestion";
 import axios from "axios";
-import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../API/apiCRUD";
-import { bateriaURL } from "../../API/apiurls";
+import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../../API/apiCRUD";
+import { bateriaURL } from "../../../API/apiurls";
 import { BateriasModal } from "./bateriasModal";
 
 export function BateriasTabla({ url, abrir, cerrar, il }) {
@@ -12,8 +12,14 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
     const [showModal, setShowModal] = useState(false);
     const [datosEdit, setDatosEdit] = useState(null);
 
+    const token = localStorage.getItem("token");
+
     const ListarDatos = useCallback(async () => {
-        const results = await axios.get(url);
+        const results = await axios.get(url, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
+            },
+          });
         setDatos(results.data);
     }, [url]);
 
@@ -89,7 +95,7 @@ export function BateriasTabla({ url, abrir, cerrar, il }) {
                         <tr key={dato.id_bat}>
                             <td>{dato.id_bat}</td>
                             <td>{dato.nom_bat}</td>
-                            <td>{dato.camionesModel.placa_cam}</td>
+                            <td>{dato.camionesModel ? dato.camionesModel.placa_cam : "No hay un camion asignado aun"}</td>
                             <td>{dato.estado ? "Habilitado" : "Deshabilitado"}</td>
                             <td>
                                 <BotonesDeGestion

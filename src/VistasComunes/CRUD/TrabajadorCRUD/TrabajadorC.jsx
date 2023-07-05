@@ -3,8 +3,9 @@ import { TrabajadorTabla } from "./trabajadorTabla";
 import { useParams } from "react-router-dom";
 import './trabajadorC.css';
 
-import { trabajadorDURL, trabajadorHURL, trabajadorTURL } from "../../API/apiurls";
-import { BotonesCRUD } from "../../Componentes/Common/botonesCRUD";
+
+import { BotonesCRUD } from "../../../Common/botonesCRUD";
+import { trabajadorDURL, trabajadorHURL, trabajadorTURL } from "../../../API/apiurls";
 
 export function TrabajadorC() {
   const { id_emp } = useParams();

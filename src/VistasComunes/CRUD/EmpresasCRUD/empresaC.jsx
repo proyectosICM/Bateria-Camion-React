@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 //import { empresasDURL, empresasHURL, empresasURL } from "../../../API/apiurls";
 import { Card } from "react-bootstrap";
-import { BotonesCRUD } from "../../../Componentes/Common/botonesCRUD";
+import { BotonesCRUD } from "../../../Common/botonesCRUD";
 import { empresasURL, empresasDURL, empresasHURL } from "../../../API/apiurls";
 import { EmpresasTabla } from "./empresaTabla";
 
@@ -31,8 +31,7 @@ export function EmpresasC() {
   };
 
   return (
-    <div className="contenedor-detalles">
-      <Card style={{ width: "180rem" }}>
+    <div className="camionesMenu-contenedor">
         <div className="set-botones">
           <BotonesCRUD
             activador={handleMostrarTabla}
@@ -67,7 +66,6 @@ export function EmpresasC() {
             )}
           </>
         )}
-      </Card>
     </div>
   );
 }

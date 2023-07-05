@@ -5,7 +5,7 @@ import { EmpresaModal } from "./empresaModal";
 
 import { empresasURL } from "../../../API/apiurls";
 import { agregarElemento, deshabilitarElemento, editarElemento, habilitarElemento } from "../../../API/apiCRUD";
-import { BotonesDeGestion } from "../../../Componentes/Common/botonesDeGestion";
+import { BotonesDeGestion } from "../../../Common/botonesDeGestion";
 
 
 export function EmpresasTabla({ url, abrir, cerrar }) {

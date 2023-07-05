@@ -23,7 +23,6 @@ export function CamionesItem({ id, placa }) {
         setBaterias(results.data);
     });
 
-
     const ListarIncidencias = useCallback(async () => {
         const results = await axios.get(`${IncidenciasxCamionSR}${id}`,{
             headers: {
@@ -50,7 +49,7 @@ export function CamionesItem({ id, placa }) {
 
     return (
         <div className="camionesItem-contenedor">
-            <Card>
+            <Card style={{ height: "25rem"}}> 
                 <h1>Placa: {placa}</h1>
                 {/* <img src={camionImage} alt="camion" /> */}
                 <Card>

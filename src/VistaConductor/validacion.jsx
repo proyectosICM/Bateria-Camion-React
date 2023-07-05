@@ -6,12 +6,11 @@ import { NavBarConductor } from "./navbarConductor";
 import { CamionesTabla } from "../Componentes/Camiones/Detalles/camionesTabla";
 import { Link, useNavigate } from "react-router-dom";
 import { NoAsignado } from "./noAsignado";
-import { CamionDetalle } from './../VistasComunes/camiondetalle';
-
+import { CamionDetalle } from "./../VistasComunes/camiondetalle";
 
 export function Validacion() {
-  const id_tra = localStorage.getItem('trabajador');
-  const token = localStorage.getItem('token');
+  const id_tra = localStorage.getItem("trabajador");
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   const [camion, setCamion] = useState([]);
@@ -22,14 +21,14 @@ export function Validacion() {
     try {
       const response = await axios.get(`${camionxtrabajador}${id_tra}`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setCamion(response.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         // Token expirado, redirigir al inicio de sesión
-        navigate('/login');
+        navigate("/login");
       } else {
         // Otro error, manejarlo adecuadamente
         console.error("Error al obtener los datos del camión:", error);
@@ -40,11 +39,14 @@ export function Validacion() {
   const ListIdBat = useCallback(async () => {
     try {
       if (camion.length > 0) {
-        const results = await axios.get(`${bateriaxcamionURL}/${camion[0].id_cam}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
+        const results = await axios.get(
+          `${bateriaxcamionURL}/${camion[0].id_cam}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
         const idBatArray = results.data.map((item) => item.id_bat);
         setBateriaId(idBatArray);
         setBaterias(results.data);
@@ -52,7 +54,7 @@ export function Validacion() {
     } catch (error) {
       if (error.response && error.response.status === 500) {
         // Token expirado, redirigir al inicio de sesión
-        navigate('/login');
+        navigate("/login");
       } else {
         // Otro error, manejarlo adecuadamente
         console.error("Error al obtener los datos de la batería:", error);
@@ -70,27 +72,25 @@ export function Validacion() {
 
   useEffect(() => {
     if (!token) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [token, navigate]);
 
   return (
     <>
-      <div className="contenedor-detalles">
-        <Card style={{ width: "180rem" }}>
+      <div className="camionesMenu-contenedor">
           <div className="orden">
             {camion.length > 0 ? (
               <CamionDetalle
                 camion={camion}
                 placa={camion[0].placa_cam}
                 idc={camion[0].id_cam}
-                incidencias={'/incidencias'}
+                incidencias={"/incidencias"}
               />
             ) : (
               <NoAsignado />
             )}
           </div>
-        </Card>
       </div>
     </>
   );

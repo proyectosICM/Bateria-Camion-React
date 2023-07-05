@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { BotonesCRUD } from "../../Componentes/Common/botonesCRUD";
 import { BateriasTabla } from "./bateriasTabla";
-import { bateriaDURL, bateriaHURL, bateriaTURLH } from "../../API/apiurls";
+import { bateriaDURL, bateriaHURL, bateriaTURLH } from "../../../API/apiurls";
+import { BotonesCRUD } from "../../../Common/botonesCRUD";
 
 export function BateriasC() {
 

@@ -20,13 +20,10 @@ export function IncidenciasCamion() {
   const [rolu, setRolu] = useState(null);
   const { id_cam, g } = useParams();
 
-
   const empresa = localStorage.getItem('empresa');
 
   const sr = `${IncidenciasxCamionSR}${camionId}`;
   const r = `${IncidenciasxCamionR}${camionId}`;
-
-
 
   useEffect(() => {
     if (!token) {
@@ -43,8 +40,8 @@ export function IncidenciasCamion() {
 
   return (
     <>
-      <div className="contenedor-detalles">
-        <Card style={{ width: "180rem" }}>
+ 
+        <Card className="camionesMenu-contenedor">
           <Card.Title>
             PANEL DE INCIDENCIAS {id_cam} {g} {userRole}
           </Card.Title>
@@ -56,7 +53,6 @@ export function IncidenciasCamion() {
                 <IncidenciasTC url={r} />
           </Card.Body>
         </Card>
-      </div>
     </>
   );
 }

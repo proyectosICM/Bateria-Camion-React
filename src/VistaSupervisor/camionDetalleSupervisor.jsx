@@ -65,13 +65,9 @@ export function CamionDetalleSupervisor() {
     }
   }, [token, navigate]);
 
-
-  
-
-
   return (
     <>
-      <div className="contenedor-detalles">
+      <div className="camionesMenu-contenedor">
         <Card style={{ width: "180rem" }}>
           <div className="orden">
             <CamionDetalle camion={camion} idc={camion.id_cam} placa={camion.placa_cam} incidencias={`/incidenciasxc/${camion.id_cam}`}/>
@@ -81,3 +77,4 @@ export function CamionDetalleSupervisor() {
     </>
   );
 }
+

@@ -1,6 +1,5 @@
 import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
 import "./App.css";
-import { NavbarP } from "./Componentes/BarraNav/navbarP";
 
 // Rutas
 import { routes } from "./routes";

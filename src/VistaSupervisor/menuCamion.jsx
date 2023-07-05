@@ -17,15 +17,14 @@ export function MenuCamion() {
 
   const empresa = localStorage.getItem("empresa");
   const token = localStorage.getItem("token");
-  const rol = localStorage.getItem('rol');
-
+  const rol = localStorage.getItem("rol");
 
   const ListDatos = async () => {
-    const results = await axios.get(`${camionesHURL}${empresa}`,{
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+    const results = await axios.get(`${camionesHURL}${empresa}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     setDatos(results.data);
   };
 
@@ -33,18 +32,16 @@ export function MenuCamion() {
     ListDatos();
   }, []);
 
-
-
   return (
     <>
-      <h1>{rol}</h1>
-      <div className="contenedor-detalles">
-          
+      <div className="camionesMenu-contenedor">
           {datos.map((dato) => (
-                    <CamionesItem key={dato.id_cam} id={dato.id_cam} placa={dato.placa_cam} />
-                ))
-                }
-
+            <CamionesItem
+              key={dato.id_cam}
+              id={dato.id_cam}
+              placa={dato.placa_cam}
+            />
+          ))}
       </div>
     </>
   );

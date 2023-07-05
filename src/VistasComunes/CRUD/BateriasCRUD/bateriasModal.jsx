@@ -10,7 +10,7 @@ import {
 } from "react-icons/hi";
 import "./bateriaModal.css";
 import { FaUser } from "react-icons/fa";
-import { camionesHURL } from "../../API/apiurls";
+import { camionesHURL } from "../../../API/apiurls";
 
 export function BateriasModal({
   show,
@@ -27,8 +27,14 @@ export function BateriasModal({
   const [editando, setEditando] = useState(false);
   const [camiones, setCamiones] = useState([]);
 
+  const token = localStorage.getItem("token");
+
   const ListarCamiones = useCallback(async () => {
-    const response = await axios.get(`${camionesHURL}${il}`);
+    const response = await axios.get(`${camionesHURL}${il}`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
+      },
+    });
     setCamiones(response.data);
     console.log(response.data);
 }, [il]);

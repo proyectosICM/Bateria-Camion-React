@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './menuEmpresas.css';
-import { empresasHURL } from "../../API/apiurls";
+import { empresasHURL } from "../API/apiurls";
 
 
 const token = localStorage.getItem("token");

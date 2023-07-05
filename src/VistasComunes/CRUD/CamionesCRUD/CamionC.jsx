@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { BotonesCRUD } from "../../../Componentes/Common/botonesCRUD";
+
 import { camionesDURL, camionesHURL, camionesTURL } from "../../../API/apiurls";
 import { CamionTabla } from "./camionTabla";
 import { Card } from "react-bootstrap";
+import { BotonesCRUD } from "../../../Common/botonesCRUD";
 
 export function CamionC() {
   const { id_emp } = useParams();
@@ -34,8 +35,7 @@ export function CamionC() {
   };
 
   return (
-    <div className="contenedor-detalles">
-      <Card style={{ width: "180rem" }}>
+    <div className="camionesMenu-contenedor">
         <BotonesCRUD
           activador={handleMostrarTabla}
           btnTabla={tablaSeleccionada}
@@ -67,7 +67,6 @@ export function CamionC() {
             cerrar={handleCerrarModal}
           />
         )}
-      </Card>
     </div>
   );
 }
