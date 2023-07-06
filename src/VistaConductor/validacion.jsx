@@ -4,6 +4,7 @@ import { bateriaxcamionURL, camionxtrabajador } from "../API/apiurls";
 import { Link, useNavigate } from "react-router-dom";
 import { NoAsignado } from "./noAsignado";
 import { CamionDetalle } from "./../VistasComunes/camiondetalle";
+import { LogoutToken, logoutToken } from "../Hooks/logoutToken";
 
 export function Validacion() {
   const id_tra = localStorage.getItem("trabajador");
@@ -66,12 +67,14 @@ export function Validacion() {
       ListIdBat();
     }
   }, [camion, ListarCamion, ListIdBat]);
-
+/*
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
   }, [token, navigate]);
+  */
+LogoutToken();
 
   return (
     <>

@@ -5,6 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import "./login.css";
 import axios from "axios";
 import { base } from "../API/apiurls";
+import { LogoutToken } from "../Hooks/logoutToken";
 
 const axiosInstance = axios.create({
   baseURL: base,
@@ -47,7 +48,8 @@ export function Login() {
     }
   },[navigate]);
 
-
+  LogoutToken();
+  
   return (
     <div className="login-container">
       <div className="login-form">

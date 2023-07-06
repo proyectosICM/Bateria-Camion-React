@@ -30,7 +30,7 @@ export const Welcome = () => {
         }
       });
       setSal(response.data);
-      localStorage.setItem('rol', response.data.roles[0].name);
+      localStorage.setItem('rol', response.data.rolesModel.name);
       localStorage.setItem('empresa', response.data.empresasModel.id_emp);
       localStorage.setItem('trabajador', response.data.id_tra);
     } catch (error) {
@@ -66,8 +66,8 @@ export const Welcome = () => {
           <p>Nombre completo: {sal.id_tra} {sal.nom_tra} {sal.ape_tra}</p>
           <p>id de Empresa: {sal.empresasModel.id_emp}</p>
           <p>Empresa: {sal.empresasModel.nom_emp}</p>
-          <p>ID de rol: {sal.roles[0].id}</p>
-          <p>Nombre de rol: {sal.roles[0].name}</p>
+          <p>ID de rol: {sal.rolesModel.id}</p>
+          <p>Nombre de rol: {sal.rolesModel.name}</p>
         </div>
       )} 
       <button><Link to={'/detalles'}>Continuar al menú</Link></button>

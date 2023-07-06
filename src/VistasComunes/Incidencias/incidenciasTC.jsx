@@ -72,13 +72,22 @@ export function IncidenciasTC({ url, tu }) {
         </thead>
         <tbody>
           {incidenciasSR.map((incidencia) => (
-            <tr key={incidencia.id_inc}>
+            <tr
+              key={incidencia.id_inc}
+              style={{
+                color: "black",
+                background: incidencia.prioridad
+                  ? "green"
+                  : ""
+            
+              }}
+            >
               <td>22-06-2023</td>
               <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>
               <td>{incidencia.camionesModel.placa_cam}</td>
-              <td>{`${incidencia.trabajadoresModel.nom_tra} ${incidencia.trabajadoresModel.ape_tra}`}</td>
+              <td>{`${incidencia.conductor.nom_tra} ${incidencia.conductor.ape_tra}`}</td>
               <td>{incidencia.voltaje} v</td>
               <td>{incidencia.carga} %</td>
               <td>{incidencia.corriente} v</td>

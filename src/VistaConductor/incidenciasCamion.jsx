@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { IncidenciasxCamionR, IncidenciasxCamionSR, IncidenciasxEmpresaR, IncidenciasxEmpresaSR } from "../API/apiurls";
+import {
+  IncidenciasxCamionR,
+  IncidenciasxCamionSR,
+  IncidenciasxEmpresaR,
+  IncidenciasxEmpresaSR,
+} from "../API/apiurls";
 import { NavBarConductor } from "./navbarConductor";
 import { IncidenciasTC } from "../VistasComunes/Incidencias/incidenciasTC";
 import { NavBarSupervisor } from "../VistaSupervisor/navbarSupervisor";
 import { UserContext } from "../Hooks/userProvider";
 import { IncidenciasTG } from "../VistasComunes/Incidencias/indicenciasTG";
-
+import { LogoutToken } from "../Hooks/logoutToken";
 
 export function IncidenciasCamion() {
   const { userRole, setUserRole } = useContext(UserContext);
@@ -20,39 +25,39 @@ export function IncidenciasCamion() {
   const [rolu, setRolu] = useState(null);
   const { id_cam, g } = useParams();
 
-  const empresa = localStorage.getItem('empresa');
+  const empresa = localStorage.getItem("empresa");
 
   const sr = `${IncidenciasxCamionSR}${camionId}`;
   const r = `${IncidenciasxCamionR}${camionId}`;
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!token) {
       navigate("/login");
     }
-  }, [token, navigate]);
+  }, [token, navigate]);*/
 
+  LogoutToken();
   useEffect(() => {
     if (g === "g" && userRole !== "CONDUCTOR") {
       setMostarGenerales(true);
     }
-    setMostarGenerales(false)
+    setMostarGenerales(false);
   }, [id_cam, userRole]);
 
   return (
     <>
- 
-        <Card className="camionesMenu-contenedor">
-          <Card.Title>
-            PANEL DE INCIDENCIAS {id_cam} {g} {userRole}
-          </Card.Title>
-          <Card.Body>
-                <h2>Incidencias sin revisar</h2>
-                <IncidenciasTC url={sr} />
+      <Card className="camionesMenu-contenedor">
+        <Card.Title>
+          PANEL DE INCIDENCIAS {id_cam} {g} {userRole}
+        </Card.Title>
+        <Card.Body>
+          <h2>Incidencias sin revisar</h2>
+          <IncidenciasTC url={sr} />
 
-                <h2>Registro de incidencias</h2>
-                <IncidenciasTC url={r} />
-          </Card.Body>
-        </Card>
+          <h2>Registro de incidencias</h2>
+          <IncidenciasTC url={r} />
+        </Card.Body>
+      </Card>
     </>
   );
 }

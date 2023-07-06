@@ -50,6 +50,7 @@ export const bateriaDURL = `${baseURL}/baterias/bateriaxempest/0/`;
 
 //Incidencias
 export const IncidenciasURL = `${baseURL}/incidencias`;
+export const RIncidenciasURL = `${baseURL}/incidencias/revisado/`;
 export const IncidenciasxEmpresa = `${baseURL}/incidencias/empresa/`;
 // Incidencias Generales por empresas
 export const IncidenciasxEmpresaR = `${baseURL}/incidencias/empSR/1/`;

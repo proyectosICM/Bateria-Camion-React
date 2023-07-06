@@ -9,6 +9,7 @@ import { IncidenciasTG } from "./indicenciasTG";
 import { useParams } from "react-router-dom";
 import { NavBarAdministrador } from "../../VistaAdministrador/navbarAdministrador";
 import { NavBarSelect } from "../navbarSelect";
+import { LogoutToken } from "../../Hooks/logoutToken";
 
 export function IncidenciasGenerales() {
   const empresa = localStorage.getItem("empresa");
@@ -23,7 +24,7 @@ export function IncidenciasGenerales() {
   const [nav, setNav] = useState(null);
   const [gen, setGen] = useState(false);
  
-
+  LogoutToken();
   return (
     <>
       <Card className="camionesMenu-contenedor">

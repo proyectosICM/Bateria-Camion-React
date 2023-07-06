@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
 
 // Rutas
@@ -8,6 +8,7 @@ import { Welcome } from "./Login/welcome";
 import { UserProvider } from "./Hooks/userProvider";
 import { NavBarSelect } from "./VistasComunes/navbarSelect";
 import { useEffect, useState } from "react";
+import { LogoutToken } from "./Hooks/logoutToken";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));

@@ -170,21 +170,21 @@ export function TrabajadorModal({
               </Form.Label>
               <Form.Select
                 name="Rol"
-                value="Seleccct"
+                value={formData.rol}
                 onChange={(e) => 
                   setFormData({ ...formData, rol: e.target.value })
                 }
               >
                 <option>
-                     Seleccione un camion
+                     Seleccione un rol
                 </option>
-                <option key="1" value="CONDUCTOR">
+                <option key="1" value="1">
                   CONDUCTOR
                 </option>
-                <option key="2" value="SUPERVISOR">
+                <option key="2" value="2">
                 SUPERVISOR
                 </option>
-                <option key="3" value="CONDUCTOR">
+                <option key="3" value="3">
                 ADMINISTRADOR
                 </option>
               </Form.Select>
