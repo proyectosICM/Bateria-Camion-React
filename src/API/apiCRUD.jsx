@@ -1,5 +1,33 @@
 import axios from "axios";
 import { busesPosURL } from "./apiurls";
+import { useCallback } from "react";
+
+export function useListarElementos(url, setDatos) {
+  const token = localStorage.getItem("token");
+ 
+  const fetchData = useCallback(async () => {
+    try {
+      const results = await axios.get(`${url}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setDatos(results.data);
+      //console.log(results.data);
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        // Token expirado, redirigir al inicio de sesión
+        //navigate("/login");
+      } else {
+        // Otro error, manejarlo adecuadamente
+        console.error("Error al obtener los datos del camión z  :", error);
+      }
+    }
+  }, [url, setDatos, token]);
+
+  return fetchData;
+}
+
 
 export function agregarElemento(url, requestData, closeModal, ListarDatos) {
   const token = localStorage.getItem("token");
@@ -56,7 +84,7 @@ export function editarElementoSM(url, requestData, ListarDatos) {
     });
 }
 
-export function habilitarElemento(url, id, est, ListarDatos) {
+export function habilitarElemento(url, id, est ,ListarDatos) {
   const nurl = `${url}/${id}`;
   const token = localStorage.getItem("token");
 
@@ -70,7 +98,7 @@ export function habilitarElemento(url, id, est, ListarDatos) {
     .then((response) => {
       const elemento = response.data;
       elemento[est] = true;
-      console.log(elemento);
+      //console.log(elemento);
       axios
         .put(nurl, elemento, {
           headers: {

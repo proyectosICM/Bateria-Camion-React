@@ -4,6 +4,7 @@ import { Button, Table } from "react-bootstrap";
 
 import { IncidenciasURL } from "../../API/apiurls";
 import { deshabilitarElemento, habilitarElemento } from "../../API/apiCRUD";
+import { Link } from "react-router-dom";
 
 const rol = localStorage.getItem("rol");
 
@@ -64,10 +65,8 @@ export function IncidenciasTC({ url, tu }) {
             <th>Bateria</th>
             <th>Placa</th>
             <th>Conductor</th>
-            <th>Voltaje</th>
-            <th>Carga</th>
-            <th>Corriente</th>
             <th>Estado</th>
+            <th>Detalles</th>
           </tr>
         </thead>
         <tbody>
@@ -76,10 +75,7 @@ export function IncidenciasTC({ url, tu }) {
               key={incidencia.id_inc}
               style={{
                 color: "black",
-                background: incidencia.prioridad
-                  ? "green"
-                  : ""
-            
+                background: incidencia.prioridad ? "green" : "",
               }}
             >
               <td>22-06-2023</td>
@@ -88,10 +84,14 @@ export function IncidenciasTC({ url, tu }) {
               <td>{incidencia.bateriasModels.nom_bat}</td>
               <td>{incidencia.camionesModel.placa_cam}</td>
               <td>{`${incidencia.conductor.nom_tra} ${incidencia.conductor.ape_tra}`}</td>
-              <td>{incidencia.voltaje} v</td>
-              <td>{incidencia.carga} %</td>
-              <td>{incidencia.corriente} v</td>
               <td>{incidencia.estado ? "Revisada" : "No Revisada"}</td>
+              <td>
+                <Button>
+                  <Link to={`/incidenciasdetalles/${incidencia.id_inc}`} className="linkes">
+                    Ver detalles
+                  </Link>
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>

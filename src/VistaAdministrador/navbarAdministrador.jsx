@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { AiFillSetting } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../Imagenes/logo_icm3.png";
 import { Logout } from "../Hooks/logout";
+import { useListarElementos } from "../API/apiCRUD";
+import { IncidenciasxEmpresaSR } from "../API/apiurls";
 //import "../Estilos/barnavP.css";
 //import "../Estilos/camionesmenu.css";
 
 export function NavBarAdministrador() {
   const navigate = useNavigate();
-
+ 
   const handleLogout = () => {
     Logout(navigate);
   };
+  
+  const rol = localStorage.getItem('rol');
+  const id_emp = localStorage.getItem("empresa");
+  const [datos, setDatos] = useState(null);
+  //console.log(id_emp);
+  const fetchData = useListarElementos(`${IncidenciasxEmpresaSR}${id_emp}`, setDatos);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData, datos]);
 
   return (
     <>
@@ -25,12 +37,12 @@ export function NavBarAdministrador() {
             </Link>
           </Navbar.Brand>
           <Nav className="me-auto barra">
-            <Link to="/menuCamion" className="linkes">
+            <Link to="/menuECamion" className="linkes">
               <img src={logo} alt="Logo Inicio" className="imgl" />
               <span>Menu</span>
             </Link>
-            <Link to={"/incidenciasG"} className="linkes">
-              <span>Incidencias</span>
+            <Link to={"/menuIncidencias"} className="linkes">
+              <span>Incidencias {datos && datos.length}</span>
             </Link>
             <Link to={"/menuCRUD"} className="linkes">
               <span>Administrativo</span>

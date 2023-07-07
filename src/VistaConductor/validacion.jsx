@@ -9,6 +9,7 @@ import { LogoutToken, logoutToken } from "../Hooks/logoutToken";
 export function Validacion() {
   const id_tra = localStorage.getItem("trabajador");
   const token = localStorage.getItem("token");
+
   const navigate = useNavigate();
 
   const [camion, setCamion] = useState([]);
@@ -23,15 +24,17 @@ export function Validacion() {
         },
       });
       setCamion(response.data);
+      //console.log(response.data[0].id_cam);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         // Token expirado, redirigir al inicio de sesión
         navigate("/login");
       } else {
         // Otro error, manejarlo adecuadamente
-        console.error("Error al obtener los datos del camión:", error);
+        console.error("Error al obtener los datos del camión p:", error);
       }
     }
+    //console.log("No cargo");
   }, [id_tra, token, navigate]);
 
   const ListIdBat = useCallback(async () => {

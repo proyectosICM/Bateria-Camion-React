@@ -11,7 +11,7 @@ export function NavBarASistemas() {
 
   const handleLogout = () => {
     Logout(navigate);
-  };
+  }; 
 
   return (
     <>
@@ -24,11 +24,11 @@ export function NavBarASistemas() {
             </Link>
           </Navbar.Brand>
           <Nav className="me-auto barra">
-            <Link to="/menuCamion" className="linkes">
+            <Link to="/menuECamion" className="linkes">
               <img src={logo} alt="Logo Inicio" className="imgl" />
               <span>Menu</span>
             </Link>
-            <Link to={"/incidenciasG"} className="linkes">
+            <Link to={"/menuIncidencias"} className="linkes">
               <span>Incidencias</span>
             </Link>
             <Link to={"/menuCRUD"} className="linkes">

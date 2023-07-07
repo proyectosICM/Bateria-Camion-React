@@ -18,7 +18,7 @@ export function IncidenciasCamion() {
   const { userRole, setUserRole } = useContext(UserContext);
   const [mostarGenerales, setMostarGenerales] = useState(false);
 
-  const camionId = localStorage.getItem("camion");
+  const camionId = localStorage.getItem("camionid");
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [nav, setNav] = useState(null);

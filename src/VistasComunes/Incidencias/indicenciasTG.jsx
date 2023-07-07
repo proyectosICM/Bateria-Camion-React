@@ -8,8 +8,10 @@ import {
   habilitarElemento,
   deshabilitarElemento,
   editarElementoSM,
+  habilitarElemento2,
 } from "../../API/apiCRUD"; // Reemplaza 'tu_archivo_de_hooks' con el nombre real de tu archivo
 import { LogoutToken } from "../../Hooks/logoutToken";
+import { Link } from "react-router-dom";
 
 export function IncidenciasTG({ est, url }) {
   LogoutToken();
@@ -41,31 +43,49 @@ export function IncidenciasTG({ est, url }) {
     ListarIncidenciasSR();
   }, [ListarIncidenciasSR, incidenciasSR]);
 
-  const trabajador = localStorage.getItem('trabajador');
-
+  const trabajador = localStorage.getItem("trabajador");
 
   const habilitar = (id) => {
-    habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
+    //habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
     const requestData = {
       revisadoBy: {
-        id_tra:  trabajador,
+        id_tra: trabajador,
       },
       estado: true,
-      prioridad: false
-    } ;
-    editarElementoSM(`${IncidenciasURL}/${id}`, requestData, ListarIncidenciasSR);
+      prioridad: false,
+    };
+    editarElementoSM(
+      `${IncidenciasURL}/${id}`,
+      requestData,
+      ListarIncidenciasSR
+    );
   };
 
   const deshabilitar = (id) => {
-    deshabilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
+    deshabilitarElemento(
+      `${IncidenciasURL}`,
+      id,
+      "estado",
+      ListarIncidenciasSR
+    );
   };
 
   const sRevision = (id) => {
-    habilitarElemento(`${IncidenciasURL}`, id, "prioridad", ListarIncidenciasSR);
+    habilitarElemento(
+      `${IncidenciasURL}`,
+      id,
+      "prioridad",
+      ListarIncidenciasSR
+    );
   };
 
   const qsRevision = (id) => {
-    deshabilitarElemento(`${IncidenciasURL}`, id, "prioridad", ListarIncidenciasSR);
+    deshabilitarElemento(
+      `${IncidenciasURL}`,
+      id,
+      "prioridad",
+      ListarIncidenciasSR
+    );
   };
 
   return (
@@ -87,35 +107,36 @@ export function IncidenciasTG({ est, url }) {
         <tbody>
           {incidenciasSR.map((incidencia) => (
             <tr
-            key={incidencia.id_inc}
-            style={{
-              color: "black",
-              background: incidencia.prioridad
-                ? "green"
-                : ""
-          
-            }}
-          >
+              key={incidencia.id_inc}
+              style={{
+                color: "black",
+                background: incidencia.prioridad ? "green" : "",
+              }}
+            >
               <td>22-06-2023</td>
               <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>
               <td>{incidencia.camionesModel.placa_cam}</td>
               <td>{`${incidencia.conductor.nom_tra} ${incidencia.conductor.ape_tra}`}</td>
-              <td>{incidencia.estado ? "Revisada por " /*+ incidencia.revisadoBy ? incidencia.revisadoBy.nom_tra : "" */ : "No Revisada"}</td>
+              <td>
+                {incidencia.estado
+                  ? "Revisada"
+                  : "No Revisada"}
+              </td>
               <td>
                 {rol != "SUPERVISOR" && (
-                <Button
-                variant={incidencia.prioridad ? "primary" : "warning"}
-                onClick={() => {
-                  if (incidencia.prioridad) {
-                    qsRevision(incidencia.id_inc);
-                  } else {
-                    sRevision(incidencia.id_inc);
-                  }
-                }}
-                >
-                  {incidencia.prioridad ? "No Priorizar " : "Priorizar "}
+                  <Button
+                    variant={incidencia.prioridad ? "primary" : "warning"}
+                    onClick={() => {
+                      if (incidencia.prioridad) {
+                        qsRevision(incidencia.id_inc);
+                      } else {
+                        sRevision(incidencia.id_inc);
+                      }
+                    }}
+                  >
+                    {incidencia.prioridad ? "No Priorizar " : "Priorizar "}
                   </Button>
                 )}
                 <Button
@@ -134,8 +155,8 @@ export function IncidenciasTG({ est, url }) {
                 </Button>
               </td>
               <td>
-              <Button>
-                  Ver detalles
+                <Button>
+                  <Link to={`/incidenciasdetalles/${incidencia.id_inc}`} className="linkes">Ver detalles</Link>
                 </Button>
               </td>
             </tr>

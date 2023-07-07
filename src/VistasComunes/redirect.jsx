@@ -7,6 +7,7 @@ export function Redirect() {
   const [nav, setNav] = useState();
   const rol = localStorage.getItem('rol');
   const navigate = useNavigate();
+  const empresa = localStorage.getItem('empresa');
  
   useEffect(() => {
     let tempNav;
@@ -15,7 +16,7 @@ export function Redirect() {
         tempNav = '/detalles';
         break;
       case "SUPERVISOR":
-        tempNav = "/menuCamion";
+        tempNav = `/menuCamion/${empresa}`;
         break;
       case "ADMINISTRADOR":
         tempNav = "/welcomeAdd";

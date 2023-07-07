@@ -28,7 +28,8 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
 
 
     const { userRole } = useContext(UserContext);
-    localStorage.setItem('camion', idc);
+    //localStorage.setItem('camion', idc);
+
 
     const handleMostrarGrafico = (grafico) => {
         setGraficoSeleccionado(grafico);

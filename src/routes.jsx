@@ -16,12 +16,16 @@ import { MenuCRUD } from "./VistasComunes/CRUD/MenuCrud";
 import { WelcomeASis } from "./VistaASistemas/welcomeasis";
 import { EmpresasC } from "./VistasComunes/CRUD/EmpresasCRUD/empresaC";
 import { CamionC } from "./VistasComunes/CRUD/CamionesCRUD/CamionC";
-import { MenuECamiones } from "./VistasComunes/CRUD/CamionesCRUD/menuECamiones";
 import { MenuEBaterias } from "./VistasComunes/CRUD/BateriasCRUD/menuEBaterias";
 import { BateriasC } from "./VistasComunes/CRUD/BateriasCRUD/BateriasC";
 import { TrabajadorC } from "./VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
 import { MenuETrabajadoresE } from "./VistasComunes/CRUD/TrabajadorCRUD/menuETrabajadores";
 import { NoAutorizado } from "./VistasComunes/noAutorizado";
+import { IncidenciasDetalles } from "./VistasComunes/Incidencias/incidenciasDetalles";
+import { MenuEIncidencias } from "./VistaASistemas/menuEIncidencias";
+import { MenuCamionesAS } from "./VistaASistemas/menuCamionesAS";
+import { MenuECamiones } from './VistasComunes/CRUD/CamionesCRUD/menuECamiones';
+
 
 
 
@@ -35,10 +39,12 @@ export const routes = [
     { path: '/incidencias', component: <IncidenciasCamion /> },
 
     //Vista  supervisor
-    { path: '/menuCamion', component: <MenuCamion /> },
+    { path: '/menuCamion/:id_emp', component: <MenuCamion /> },
     { path: 'incidenciasxc/:id_cam', component: <IncidenciasCS />},
-    { path: '/incidenciasG', component: <IncidenciasGenerales  />},
+    { path: '/menuIncidencias', component: <MenuEIncidencias />},
+    { path: '/incidenciasG/:id_emp', component: <IncidenciasGenerales  />},
     { path: '/detallesc/:id', component: <CamionDetalleSupervisor  />},
+    { path: '/incidenciasdetalles/:id', component: <IncidenciasDetalles  />},
 
     //Vista Administrador
     { path: '/welcomeadd', component: <WelcomeAdd />},
@@ -46,6 +52,8 @@ export const routes = [
 
     //vista Administrador de Sistemas
     { path: '/welcomeasis', component: <WelcomeASis />},
+    { path: '/menuECamion', component: <MenuCamionesAS /> },
+
 
 
 

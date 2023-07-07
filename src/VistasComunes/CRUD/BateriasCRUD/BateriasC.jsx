@@ -15,7 +15,7 @@ export function BateriasC() {
   const urlH = `${bateriaHURL}${id_emp}`;
   const urlD = `${bateriaDURL}${id_emp}`;
 
-  useNotAuthorized(id_emp);
+  //useNotAuthorized(id_emp);
 
   const handleMostrarTabla = (tabla) => {
     setTablaSeleccionada(tabla);
