@@ -78,7 +78,7 @@ export function IncidenciasTC({ url, tu }) {
                 background: incidencia.prioridad ? "green" : "",
               }}
             >
-              <td>22-06-2023</td>
+              <td>{new Date(incidencia.dia).toLocaleDateString()}</td>  
               <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>

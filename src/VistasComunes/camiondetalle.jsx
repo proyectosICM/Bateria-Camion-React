@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { Button, Card } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ContenedorVoltaje } from './../VistasComunes/Graficos/Voltaje/contenedorVoltaje';
 import { ContenedorCarga } from "../VistasComunes/Graficos/Carga/contenedorCarga";
 import { ContenedorCorriente } from './../VistasComunes/Graficos/Corriente/contenedorCorriente';
@@ -20,16 +20,11 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
     const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
     const [incidenciasSR, setIncidenciasSR] = useState([]);
 
-
+    const navigate = useNavigate();
 
     const {id_cam} = useParams();
 
-
-
-
     const { userRole } = useContext(UserContext);
-    //localStorage.setItem('camion', idc);
-
 
     const handleMostrarGrafico = (grafico) => {
         setGraficoSeleccionado(grafico);
@@ -64,7 +59,11 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
         ListarIncidenciasSR();
     },[ListarIncidenciasSR]);
 
-    const rol = localStorage.getItem('rol')
+    const rol = localStorage.getItem('rol');
+
+    const handleGraficosDetallados  = (id) =>{
+        navigate(`/GraficosDetallados/${id}`)
+    }
 
     return (
         <>
@@ -96,7 +95,7 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
                             {graficoSeleccionado === "corriente" && (
                                 <ContenedorCorriente idc={idc} />
                             )}
-                            <Button>Ver Graficos detallados</Button>
+                            <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
                             {/* Agrega más condiciones para otros gráficos */}
                         </div>
                     )}

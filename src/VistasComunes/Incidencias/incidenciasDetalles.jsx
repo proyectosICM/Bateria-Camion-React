@@ -11,7 +11,7 @@ let ruta;
 export function IncidenciasDetalles() {
   const { id } = useParams();
   const [datos, setDatos] = useState(null);
-
+ 
   const fetchData = useListarElementos(`${IncidenciasURL}/${id}`, setDatos);
 
   useEffect(() => {

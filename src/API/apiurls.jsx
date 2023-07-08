@@ -13,6 +13,7 @@ export const camionxtrabajador = `${baseURL}/camiones/camionxtrabajador/`
 export const bateriaxcamionURL = `${baseURL}/baterias/camiones`;
 
 //Baterias Detalle
+export const bateriaxCURL = `${baseURL}/detalles/bxc`;
 export const bateria1URL = `${baseURL}/detalles/bxc`;
 export const bateria2URL = `${baseURL}/detalles/bxc`;
 export const bateria3URL = `${baseURL}/detalles/bxc`;

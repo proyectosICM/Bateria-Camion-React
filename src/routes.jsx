@@ -25,6 +25,7 @@ import { IncidenciasDetalles } from "./VistasComunes/Incidencias/incidenciasDeta
 import { MenuEIncidencias } from "./VistaASistemas/menuEIncidencias";
 import { MenuCamionesAS } from "./VistaASistemas/menuCamionesAS";
 import { MenuECamiones } from './VistasComunes/CRUD/CamionesCRUD/menuECamiones';
+import { GraficosDetallados } from "./VistasComunes/Graficos/graficosDetallados";
 
 
 
@@ -54,7 +55,8 @@ export const routes = [
     { path: '/welcomeasis', component: <WelcomeASis />},
     { path: '/menuECamion', component: <MenuCamionesAS /> },
 
-
+    //Graficos detallados
+    { path: '/GraficosDetallados/:id_cam', component: <GraficosDetallados />},
 
 
     // TABLAS CRUD

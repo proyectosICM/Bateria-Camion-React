@@ -113,17 +113,13 @@ export function IncidenciasTG({ est, url }) {
                 background: incidencia.prioridad ? "green" : "",
               }}
             >
-              <td>22-06-2023</td>
+              <td>{new Date(incidencia.dia).toLocaleDateString()}</td>  
               <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>
               <td>{incidencia.camionesModel.placa_cam}</td>
               <td>{`${incidencia.conductor.nom_tra} ${incidencia.conductor.ape_tra}`}</td>
-              <td>
-                {incidencia.estado
-                  ? "Revisada"
-                  : "No Revisada"}
-              </td>
+              <td>{incidencia.estado ? "Revisada" : "No Revisada"}</td>
               <td>
                 {rol != "SUPERVISOR" && (
                   <Button
@@ -156,7 +152,12 @@ export function IncidenciasTG({ est, url }) {
               </td>
               <td>
                 <Button>
-                  <Link to={`/incidenciasdetalles/${incidencia.id_inc}`} className="linkes">Ver detalles</Link>
+                  <Link
+                    to={`/incidenciasdetalles/${incidencia.id_inc}`}
+                    className="linkes"
+                  >
+                    Ver detalles
+                  </Link>
                 </Button>
               </td>
             </tr>
