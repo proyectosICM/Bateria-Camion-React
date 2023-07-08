@@ -51,6 +51,7 @@ export function Validacion() {
         const idBatArray = results.data.map((item) => item.id_bat);
         setBateriaId(idBatArray);
         setBaterias(results.data);
+
       }
     } catch (error) {
       if (error.response && error.response.status === 500) {
@@ -61,7 +62,7 @@ export function Validacion() {
         console.error("Error al obtener los datos de la batería:", error);
       }
     }
-  }, [camion, token, navigate]);
+  }, [token, navigate]);
 
   useEffect(() => {
     ListarCamion();
@@ -70,13 +71,7 @@ export function Validacion() {
       ListIdBat();
     }
   }, [camion, ListarCamion, ListIdBat]);
-/*
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token, navigate]);
-  */
+
 LogoutToken();
 
   return (

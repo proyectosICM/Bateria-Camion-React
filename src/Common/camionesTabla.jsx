@@ -22,7 +22,6 @@ export function CamionesTabla({ idb, datbat, idc }) {
   } else {
     idcam = idc;
   }
-
   const ListarBaterias = useCallback(async () => {
     try {
       const results = await axios.get(`${bateriaxcamionURL}/${idcam}`, {
@@ -40,11 +39,13 @@ export function CamionesTabla({ idb, datbat, idc }) {
         console.error("Error al obtener los datos de las baterías:", error);
       }
     } 
-  }, [idcam, token, navigate]);
-
+  });
+  
   useEffect(() => {
     ListarBaterias();
-  }, [idcam, ListarBaterias]);
+  }, [ListarBaterias]);
+  
+
 
   return (
     <div>

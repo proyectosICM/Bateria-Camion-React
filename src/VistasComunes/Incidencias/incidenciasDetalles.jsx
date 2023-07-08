@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IncidenciasURL } from "../../API/apiurls";
-import { useListarElementos } from "../../API/apiCRUD";
+import { habilitarElemento, habilitarElementoSL, useListarElementos } from "../../API/apiCRUD";
 import {
   useNotAuthorized,
   useNotAuthorizedInc,
@@ -36,22 +36,34 @@ export function IncidenciasDetalles() {
 
   useNotAuthorizedInc(param);
 
-
   if (rol == "CONDUCTOR") {
     let ruta = "/incidencias";
   }
-  
+
   const handleRedirigir = () => {
     if (rol == "CONDUCTOR") {
       navigate("/incidencias");
+    } else if (
+      rol == "SUPERVISOR" ||
+      rol == "ADMINISTRADOR" ||
+      rol == "SISTEMAS"
+    ) {
+      navigate(`/incidenciasG/${empresa}`);
     }
-    navigate("/incidenciasG");
-  }
+  };
+
+  const sRevision = (id) => {
+    habilitarElementoSL(
+      `${IncidenciasURL}`,
+      id,
+      "estado"
+    );
+    console.log(id);
+  };
+
   return (
     <Card className="camionesMenu-contenedor">
-      <Button onClick={handleRedirigir}> 
-          Atras
-      </Button>
+      <Button onClick={handleRedirigir}>Atras</Button>
       <h1>Incidencias Detalles</h1>
       {datos != null && (
         <>
@@ -78,6 +90,10 @@ export function IncidenciasDetalles() {
                 {datos.revisadoBy.ape_tra}
               </h3>
             </>
+          )}
+
+          {rol !== "CONDUCTOR" && !datos.estado && (
+            <Button onClick={() => sRevision(datos.id_inc)} >Revisar</Button>
           )}
         </>
       )}

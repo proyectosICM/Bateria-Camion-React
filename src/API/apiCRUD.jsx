@@ -23,7 +23,7 @@ export function useListarElementos(url, setDatos) {
         console.error("Error al obtener los datos del camión z  :", error);
       }
     }
-  }, [url, setDatos, token]);
+  });
 
   return fetchData;
 }
@@ -83,6 +83,34 @@ export function editarElementoSM(url, requestData, ListarDatos) {
       console.log(error);
     });
 }
+
+export function habilitarElementoSL(url, id, est) {
+  const nurl = `${url}/${id}`;
+  const token = localStorage.getItem("token");
+
+  axios
+    .get(nurl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // Agregar el token en el encabezado de la solicitud
+      },
+    })
+    .then((response) => {
+      const elemento = response.data;
+      elemento[est] = true;
+      //console.log(elemento);
+      axios
+        .put(nurl, elemento, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
+          },
+        })
+        .then(() => {
+          //console.log(elemento);
+        });
+    });
+}
+
 
 export function habilitarElemento(url, id, est ,ListarDatos) {
   const nurl = `${url}/${id}`;
