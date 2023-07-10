@@ -73,7 +73,7 @@ export function Validacion() {
   }, [camion, ListarCamion, ListIdBat]);
 
 LogoutToken();
-
+  
   return (
     <>
       <div className="camionesMenu-contenedor">

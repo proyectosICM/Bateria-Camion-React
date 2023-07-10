@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { GraficoVoltajeB1 } from "./gvoltajeb1";
 import { useListIdBat } from "../../../Hooks/useListIdBat";
+import { Card } from "react-bootstrap";
 
 
 
-export function ContenedorVoltaje({ idc }) {
+export function ContenedorVoltaje({ idc, rango }) {
 
   const token = localStorage.getItem('token');
 
@@ -24,6 +25,7 @@ export function ContenedorVoltaje({ idc }) {
             key={id}
             idBat={id}
             idc={idc}
+            rango={rango}
           />
         ))}
       </div>

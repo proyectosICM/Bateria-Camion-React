@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { useNavigate } from 'react-router-dom';
 import { useListVDatos } from './../../../Hooks/useListVDatos';
+import { Card } from 'react-bootstrap';
 
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -35,14 +36,14 @@ export function GraficoCorrienteB1({ idBat, idc }) {
   }
 
  
-  const tbateria1 = vdatos.map((dato) => dato.corriente);
-  const labelsx = vdatos.map((dato) => {
+  const tbateria1 = vdatos.slice(-5).map((dato) => dato.corriente);
+  const labelsx = vdatos.slice(-5).map((dato) => {
     const timestamp = dato.dia;
     const date = new Date(timestamp);
     return date.toLocaleDateString();
   });
 
-  const labels = vdatos.map((dato) => dato.hora);
+  const labels = vdatos.slice(-5).map((dato) => dato.hora);
 
   const data = {
     labels,
@@ -76,8 +77,8 @@ export function GraficoCorrienteB1({ idBat, idc }) {
   };
 
   return (
-    <div className='tb'>
+    <Card className='tb'>
       <Line options={options} data={data} />
-    </div>
+    </Card>
   );
 }

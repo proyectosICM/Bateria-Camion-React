@@ -65,6 +65,8 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
         navigate(`/GraficosDetallados/${id}`)
     }
 
+    const rango = "detalles"
+
     return (
         <>
             <Card.Header>
@@ -82,22 +84,22 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
                     <Button>
                         <Link to={incidencias} className="linkes">Ver Registro Incidencias</Link>
                     </Button>
-
+ 
                     <BotonesG handleMostrarGrafico={handleMostrarGrafico} />
                     {mostrarGrafico && (
-                        <div className="graficos">
+                        <Card className="graficos">
                             {graficoSeleccionado === "voltaje" && (
-                                <ContenedorVoltaje idc={idc} />
+                                <ContenedorVoltaje idc={idc} rango={rango}/>
                             )}
                             {graficoSeleccionado === "carga" && (
-                                <ContenedorCarga idc={idc} />
+                                <ContenedorCarga idc={idc} rango={rango}/>
                             )}
                             {graficoSeleccionado === "corriente" && (
-                                <ContenedorCorriente idc={idc} />
+                                <ContenedorCorriente idc={idc} rango={rango}/>
                             )}
                             <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
                             {/* Agrega más condiciones para otros gráficos */}
-                        </div>
+                        </Card>
                     )}
                 </>
             </Card.Header>

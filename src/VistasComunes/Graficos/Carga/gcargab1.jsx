@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { useListVDatos } from './../../../Hooks/useListVDatos';
+import { Card } from 'react-bootstrap';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -17,7 +18,7 @@ export const options = {
     },
   },
 };
-
+ 
 export function GraficoCargaB1({ idBat, idc }) {
   const token = localStorage.getItem('token');
 
@@ -31,14 +32,14 @@ export function GraficoCargaB1({ idBat, idc }) {
     return null; // O muestra un mensaje de carga, por ejemplo
   }
 
-  const tbateria1 = vdatos.map((dato) => dato.carga);
-  const labelsx = vdatos.map((dato) => {
+  const tbateria1 = vdatos.slice(-5).map((dato) => dato.carga);
+  const labelsx = vdatos.slice(-5).map((dato) => {
     const timestamp = dato.dia;
     const date = new Date(timestamp);
     return date.toLocaleDateString();
   });
 
-  const labels = vdatos.map((dato) => dato.hora);
+  const labels = vdatos.slice(0, 5).map((dato) => dato.hora);
 
   const data = {
     labels,
@@ -53,8 +54,8 @@ export function GraficoCargaB1({ idBat, idc }) {
   };
 
   return (
-    <div className="tb">
+    <Card className="tb">
       <Line options={options} data={data} />
-    </div>
+    </Card>
   );
 }

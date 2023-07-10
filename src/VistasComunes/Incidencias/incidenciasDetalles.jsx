@@ -50,7 +50,7 @@ export function IncidenciasDetalles() {
     ) {
       navigate(`/incidenciasG/${empresa}`);
     }
-  };
+  }; 
 
   const sRevision = (id) => {
     habilitarElementoSL(

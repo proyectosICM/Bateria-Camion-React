@@ -44,9 +44,23 @@ export function IncidenciasCamion() {
     setMostarGenerales(false);
   }, [id_cam, userRole]);
 
+  const rol = localStorage.getItem("rol");
+  const handleRedirigir = () => {
+    if (rol == "CONDUCTOR") {
+      navigate("/detalles");
+    } else if (
+      rol == "SUPERVISOR" ||
+      rol == "ADMINISTRADOR" ||
+      rol == "SISTEMAS"
+    ) {
+      navigate(`/incidenciasG/${empresa}`);
+    }
+  };
+
   return (
     <>
       <Card className="camionesMenu-contenedor">
+        <Button onClick={handleRedirigir}>Atras</Button>
         <Card.Title>
           PANEL DE INCIDENCIAS {id_cam} {g} {userRole}
         </Card.Title>

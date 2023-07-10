@@ -36,6 +36,7 @@ export function IncidenciasGenerales() {
   return (
     <>
       <Card className="camionesMenu-contenedor">
+
         <Card.Title>
           {rol === "SISTEMAS" && (
             <Link to={"/menuIncidencias"} className="linkes">

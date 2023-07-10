@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GraficoCargaB1 } from "./gcargab1";
 import { useListIdBat } from './../../../Hooks/useListIdBat';
+import { Card } from "react-bootstrap";
 
 
 export function ContenedorCarga({ idc }) {

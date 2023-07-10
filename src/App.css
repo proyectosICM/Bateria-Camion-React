@@ -76,12 +76,17 @@
   width: 30%;
   height: 25%;
   margin: 2%;
-
   border-radius: 2%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+}
 
+.botonItem{
+  width: 100%;
+  margin: 0 5%;
 }
 
 img{
@@ -117,13 +122,13 @@ img{
 
 .graficos{
   width: 80%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   margin: auto;
 }
 
 .cajades{
   width: 100%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 
 
 }
@@ -131,7 +136,7 @@ img{
 .subcajades{
   width: 100%;
   height: 80%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -140,7 +145,7 @@ img{
 .tb{
   width: 50%;
   height: 120%;
-  border: 2px solid black;
+  border: 2px solid #E5E7E9;
 }
 
 .bt-g{

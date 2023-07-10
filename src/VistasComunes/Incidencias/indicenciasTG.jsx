@@ -156,7 +156,7 @@ export function IncidenciasTG({ est, url }) {
                     to={`/incidenciasdetalles/${incidencia.id_inc}`}
                     className="linkes"
                   >
-                    Ver detalles
+                    Ver
                   </Link>
                 </Button>
               </td>

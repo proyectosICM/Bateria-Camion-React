@@ -6,7 +6,7 @@ import { NavBarConductor } from "../../VistaConductor/navbarConductor";
 import { NavBarSupervisor } from "../../VistaSupervisor/navbarSupervisor";
 import { UserContext } from "../../Hooks/userProvider";
 import { IncidenciasTG } from "./indicenciasTG";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { NavBarAdministrador } from "../../VistaAdministrador/navbarAdministrador";
 import { NavBarSelect } from "../navbarSelect";
 import { LogoutToken } from "../../Hooks/logoutToken";
@@ -27,11 +27,26 @@ export function IncidenciasCS() {
   const { userRole, setUserRole } = useContext(UserContext);
   const [nav, setNav] = useState(null);
 
+  const navigate = useNavigate();
+
+  const  rol = localStorage.getItem("rol");
+  const handleRedirigir = () => {
+    if (rol == "CONDUCTOR") {
+      navigate("/detalles");
+    } else if (
+      rol == "SUPERVISOR" ||
+      rol == "ADMINISTRADOR" ||
+      rol == "SISTEMAS"
+    ) {
+      navigate(`/detallesc/${id_cam}`);
+    }
+  }; 
 
 
   return (
     <>
       <Card className="contenedor-detalles">
+        <Button onClick={handleRedirigir} > Atras</Button>
         <Card.Title>
           PANEL DE INCIDENCIAS {gen ? "Generales" : "Camion"}
         </Card.Title>

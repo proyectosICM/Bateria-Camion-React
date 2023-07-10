@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { GraficoCorrienteB1 } from "./gcorrienteb1";
 import { useListIdBat } from "../../../Hooks/useListIdBat";
+import { Card } from "react-bootstrap";
 
 
 export function ContenedorCorriente({idc}) { 
