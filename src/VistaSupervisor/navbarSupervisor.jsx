@@ -13,7 +13,7 @@ export function NavBarSupervisor() {
     const handleLogout = () => {
         Logout(navigate);
     };
-
+ 
     const rol = localStorage.getItem('rol');
     const id_emp = localStorage.getItem("empresa");
     const [datos, setDatos] = useState(null);

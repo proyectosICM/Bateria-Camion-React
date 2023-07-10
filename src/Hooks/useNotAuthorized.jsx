@@ -20,7 +20,7 @@ export function useNotAuthorizedInc(param) {
   const empresa = localStorage.getItem("empresa");
   const navigate = useNavigate();
   //console.log(rol);
-
+  
   useEffect(() => {
     if ((rol == "CONDUCTOR" && param && param != camion)) {
       navigate("/notAuthorized");
@@ -28,6 +28,9 @@ export function useNotAuthorizedInc(param) {
         navigate("/notAuthorized");
     } else if(rol == "ADMINISTRADOR" && param && param != empresa ){
       navigate("/notAuthorized");
-  }
+  } 
+  console.log("entro");
+  console.log(param);
+  console.log(empresa);
   }, [param, navigate, rol]);
 }

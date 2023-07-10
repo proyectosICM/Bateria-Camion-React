@@ -15,14 +15,14 @@ import { CamionesTabla } from "../Common/camionesTabla";
 export function CamionDetalle({ camion, idc, placa, incidencias }) {
     const id_tra = localStorage.getItem('trabajador');
     const token = localStorage.getItem('token');
- 
+
     const [mostrarGrafico, setMostrarGrafico] = useState(true);
     const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
     const [incidenciasSR, setIncidenciasSR] = useState([]);
 
     const navigate = useNavigate();
 
-    const {id_cam} = useParams();
+    const { id_cam } = useParams();
 
     const { userRole } = useContext(UserContext);
 
@@ -32,41 +32,40 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
     };
 
     const url = `${IncidenciasxCamionSR}${idc}`;
-    
-    
+
+
     const ListarIncidenciasSR = useCallback(async () => {
         try {
-          const url = `${IncidenciasxCamionSR}${idc}`;
-          const results = await axios.get(`${url}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setIncidenciasSR(results.data);
+            const url = `${IncidenciasxCamionSR}${idc}`;
+            const results = await axios.get(`${url}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setIncidenciasSR(results.data);
         } catch (error) {
-          if (error.response && error.response.status === 404) {
-            // Camión no encontrado, manejarlo adecuadamente
-            console.error("El camión no tiene incidencias:", error);
-            setIncidenciasSR([]);
-          } else {
-            // Otro error, manejarlo adecuadamente
-            console.error("Error al obtener las incidencias:", error);
-          }
+            if (error.response && error.response.status === 404) {
+                // Camión no encontrado, manejarlo adecuadamente
+                console.error("El camión no tiene incidencias:", error);
+                setIncidenciasSR([]);
+            } else {
+                // Otro error, manejarlo adecuadamente
+                console.error("Error al obtener las incidencias:", error);
+            }
         }
-      });
+    });
 
-    useEffect(()=> {
+    useEffect(() => {
         ListarIncidenciasSR();
-    },[ListarIncidenciasSR]);
+    }, [ListarIncidenciasSR]);
 
     const rol = localStorage.getItem('rol');
 
-    const handleGraficosDetallados  = (id) =>{
+    const handleGraficosDetallados = (id) => {
         navigate(`/GraficosDetallados/${id}`)
     }
 
-    const rango = "detalles"
-
+    const rango = "detalles";
     return (
         <>
             <Card.Header>
@@ -84,18 +83,22 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
                     <Button>
                         <Link to={incidencias} className="linkes">Ver Registro Incidencias</Link>
                     </Button>
- 
+
                     <BotonesG handleMostrarGrafico={handleMostrarGrafico} />
                     {mostrarGrafico && (
                         <Card className="graficos">
                             {graficoSeleccionado === "voltaje" && (
-                                <ContenedorVoltaje idc={idc} rango={rango}/>
+                                <ContenedorVoltaje idc={idc} rango={rango} propiedad={"voltaje"} />
                             )}
                             {graficoSeleccionado === "carga" && (
-                                <ContenedorCarga idc={idc} rango={rango}/>
+                                <>
+                                    <ContenedorVoltaje idc={idc} rango={rango} propiedad={"carga"} />
+                                    {/* <ContenedorCarga idc={idc} rango={rango} propiedad={"voltaje"}  /> */}
+                                </>
+
                             )}
                             {graficoSeleccionado === "corriente" && (
-                                <ContenedorCorriente idc={idc} rango={rango}/>
+                                <ContenedorVoltaje idc={idc} rango={rango} propiedad={"corriente"} />
                             )}
                             <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
                             {/* Agrega más condiciones para otros gráficos */}

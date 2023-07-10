@@ -21,7 +21,7 @@ export function IncidenciasGenerales() {
   const empresa = localStorage.getItem("empresa");
   const { userRole, setUserRole } = useContext(UserContext);
 
-  const { id_emp } = useParams();
+  const { id_emp }  = useParams();
 
   useNotAuthorized(id_emp);
   const gsr = `${IncidenciasxEmpresaSR}${id_emp}`;

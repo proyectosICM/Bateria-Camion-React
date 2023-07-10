@@ -26,6 +26,7 @@ import { MenuEIncidencias } from "./VistaASistemas/menuEIncidencias";
 import { MenuCamionesAS } from "./VistaASistemas/menuCamionesAS";
 import { MenuECamiones } from './VistasComunes/CRUD/CamionesCRUD/menuECamiones';
 import { GraficosDetallados } from "./VistasComunes/Graficos/graficosDetallados";
+import { ContenedorArranque } from "./VistasComunes/Graficos/Arranques/contenedorArranque";
 
 
 
@@ -58,7 +59,6 @@ export const routes = [
     //Graficos detallados
     { path: '/GraficosDetallados/:id_cam', component: <GraficosDetallados />},
 
-
     // TABLAS CRUD
     //{ path: '/menuCRUD', component: <MenuCRUD /> },
     { path: '/empresasCRUD', component: <EmpresasC /> },
@@ -72,9 +72,6 @@ export const routes = [
     { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
     { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
 
-  
-
-
     //PANEL DE INCIDENCIAS
     { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion /> },
     { path: '/incidenciasxctrabajador/:t/:id_cam', component: <IncidenciasCamion /> },
@@ -84,5 +81,8 @@ export const routes = [
     { path: '/login', component: <Login /> },
 
     //No autorizado
-    { path: '/notAuthorized', component: <NoAutorizado /> }
+    { path: '/notAuthorized', component: <NoAutorizado /> },
+
+    //Grafico de arranques
+    { path: '/arranques/:id_cam', component: <ContenedorArranque />}
 ]

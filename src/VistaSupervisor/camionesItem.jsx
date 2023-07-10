@@ -11,14 +11,25 @@ import {
   BsXCircleFill,
 } from "react-icons/bs";
 import { FaCarBattery } from "react-icons/fa";
-import { IncidenciasxCamionSR, bateriaxcamionURL } from "../API/apiurls";
+import { ArranqueEmpresaxCamionURL, IncidenciasxCamionSR, bateriaxcamionURL } from "../API/apiurls";
+import { useListarElementos } from "../API/apiCRUD";
 
 export function CamionesItem({ id, placa }) {
   const [baterias, setBaterias] = useState([]);
   const [incidencias, setIncidencias] = useState([]);
   const [icono, setIcono] = useState([]);
 
+
   const token = localStorage.getItem("token");
+  const empresa = localStorage.getItem("empresa");
+
+  const [arranques, setArranques] = useState([]);
+
+  const ListarArranques = useListarElementos(`${ArranqueEmpresaxCamionURL}${empresa}/${id}`, setArranques);
+
+  useEffect(() => {
+    ListarArranques();
+  }, [ListarArranques, arranques]);
 
   const ListarBaterias = useCallback(async () => {
     const results = await axios.get(`${bateriaxcamionURL}/${id}`, {
@@ -80,6 +91,14 @@ export function CamionesItem({ id, placa }) {
             className="botonItem"
           >
             {icono} Incidencias {incidencias.length > 0 ? incidencias.length : 0}
+          </Button>
+        </Link>
+        <Link to={`/arranques/${id}`}  className="linkes">
+          <Button
+            variant="success"
+            className="botonItem"
+          >
+            {icono} Arranques {arranques ? arranques.length : 0 }
           </Button>
         </Link>
       </Card>

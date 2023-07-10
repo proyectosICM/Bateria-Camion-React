@@ -34,7 +34,7 @@ export function IncidenciasDetalles() {
     param = id_emp;
   }
 
-  useNotAuthorizedInc(param);
+ // useNotAuthorizedInc(param);
 
   if (rol == "CONDUCTOR") {
     let ruta = "/incidencias";

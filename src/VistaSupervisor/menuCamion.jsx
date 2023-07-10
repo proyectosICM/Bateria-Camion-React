@@ -19,7 +19,9 @@ export function MenuCamion() {
   const empresa = localStorage.getItem("empresa");
   const token = localStorage.getItem("token");
   const rol = localStorage.getItem("rol");
+
   useNotAuthorized(id_emp);
+  
   const ListDatos = async () => {
     const results = await axios.get(`${camionesHURL}${id_emp}`, {
       headers: {

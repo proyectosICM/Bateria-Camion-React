@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 
 
 
-export function ContenedorVoltaje({ idc, rango }) {
+export function ContenedorVoltaje({ idc, rango, propiedad }) {
 
   const token = localStorage.getItem('token');
 
@@ -26,6 +26,7 @@ export function ContenedorVoltaje({ idc, rango }) {
             idBat={id}
             idc={idc}
             rango={rango}
+            propiedad={propiedad}
           />
         ))}
       </div>

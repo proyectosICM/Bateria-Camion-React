@@ -44,7 +44,7 @@ export function GraficosDetallados() {
     setGraficoSeleccionado(grafico);
     setMostrarGrafico(true);
   };
-
+ 
   return (
     <div className="camionesMenu-contenedor">
       {/*idBaterias.map((idb, index) => (

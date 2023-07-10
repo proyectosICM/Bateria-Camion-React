@@ -59,3 +59,7 @@ export const IncidenciasxEmpresaSR = `${baseURL}/incidencias/empSR/0/`;
 // Incidencias Generales por camion
 export const IncidenciasxCamionR = `${baseURL}/incidencias/camSR/1/`;
 export const IncidenciasxCamionSR = `${baseURL}/incidencias/camSR/0/`;
+
+//arramqie
+export const ArranqueEmpresaxCamionURL = `${baseURL}/arranque/empresaxcamion/`;
+export const ArranquexCamionURL = `${baseURL}/arranque/xcamion/`;
