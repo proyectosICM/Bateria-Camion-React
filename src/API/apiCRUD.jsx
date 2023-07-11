@@ -2,10 +2,10 @@ import axios from "axios";
 import { busesPosURL } from "./apiurls";
 import { useCallback } from "react";
 
-export function useListarElementos(url, setDatos) {
+export function useListarElementos(url) {
   const token = localStorage.getItem("token");
  
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(async (setDatos) => {
     try {
       const results = await axios.get(`${url}`, {
         headers: {
@@ -20,10 +20,10 @@ export function useListarElementos(url, setDatos) {
         //navigate("/login");
       } else {
         // Otro error, manejarlo adecuadamente
-        console.error("Error al obtener los datos del camión z  :", error);
+        console.error(`Error al obtener los datos de ${url}`, error);
       }
     }
-  });
+  }, [url, token]);
 
   return fetchData;
 }

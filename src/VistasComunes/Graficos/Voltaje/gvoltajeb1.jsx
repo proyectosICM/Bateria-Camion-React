@@ -2,17 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { useListVDatos } from './../../../Hooks/useListVDatos';
+import { useListarElementos } from '../../../API/apiCRUD';
+import { ArranquexCamionURL, bateriaTURL } from '../../../API/apiurls';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
   const token = localStorage.getItem('token');
-  const { vdatos, ListVDatos } = useListVDatos(idBat, idc, token);
+  const [datos, setDatos] = useState([]);
+  const [vdatos, setvDatos] = useState([]);
+
+  const ListarArranques = useListarElementos(
+    `${ArranquexCamionURL}${idc}`
+  );
+
+  const ListVDatos = useListarElementos(
+    `${bateriaTURL}${idBat}`
+  );
+
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    ListVDatos();
-  }, [ListVDatos, idBat, idc, token]);
+    if (propiedad === 'arranque') {
+      ListarArranques(setvDatos);
+    } else {
+      ListVDatos(setvDatos);
+    }
+  }, [idBat, idc, ListarArranques, ListVDatos, propiedad, token]);
 
   let titulo = '';
 
@@ -40,6 +56,9 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
       } else if (propiedad === "corriente") {
         atributo = vdatos.map((dato) => dato.corriente);
         color = 'rgba(195, 0, 251)';
+      } else if (propiedad === "arranque") {
+        atributo = vdatos.map((dato) => dato.corriente);
+        color = 'rgba(195, 0, 251)';
       }
 
       if (rango === "detalles") {
@@ -56,7 +75,7 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
           const dateString = date.toDateString();
           if (!uniqueDays.has(dateString)) {
             uniqueDays.add(dateString);
-            return true;  
+            return true;
           }
           return false;
         });

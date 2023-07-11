@@ -2,7 +2,7 @@ import React from "react";
 import { ContenedorVoltaje } from "./Voltaje/contenedorVoltaje";
 import { ContenedorCarga } from "./Carga/contenedorCarga";
 import { ContenedorCorriente } from "./Corriente/contenedorCorriente";
- 
+  
 export function GraficosFiltrados({ idc, g }) {
   const dia = "dias";
   const semana = "semana";

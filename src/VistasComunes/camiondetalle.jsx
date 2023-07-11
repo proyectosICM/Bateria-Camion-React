@@ -33,7 +33,6 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
 
     const url = `${IncidenciasxCamionSR}${idc}`;
 
-
     const ListarIncidenciasSR = useCallback(async () => {
         try {
             const url = `${IncidenciasxCamionSR}${idc}`;

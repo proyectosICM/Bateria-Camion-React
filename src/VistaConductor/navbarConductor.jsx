@@ -22,10 +22,10 @@ export function NavBarConductor() {
     console.log(id_cam);
   },[])
 
- const fetchData = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`, setDatos);
+ const fetchData = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
 
   useEffect(() => {
-    fetchData();
+    fetchData(setDatos);
   }, [fetchData, datos]);
 
   //console.log(id_cam);

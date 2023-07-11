@@ -13,8 +13,7 @@ export function Validacion() {
   const navigate = useNavigate();
 
   const [camion, setCamion] = useState([]);
-  const [bateriaId, setBateriaId] = useState([]);
-  const [baterias, setBaterias] = useState([]);
+
 
   const ListarCamion = useCallback(async () => {
     try {
@@ -37,40 +36,10 @@ export function Validacion() {
     //console.log("No cargo");
   }, [id_tra, token, navigate]);
 
-  const ListIdBat = useCallback(async () => {
-    try {
-      if (camion.length > 0) {
-        const results = await axios.get(
-          `${bateriaxcamionURL}/${camion[0].id_cam}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const idBatArray = results.data.map((item) => item.id_bat);
-        setBateriaId(idBatArray);
-        setBaterias(results.data);
-
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        // Token expirado, redirigir al inicio de sesión
-        navigate("/login");
-      } else {
-        // Otro error, manejarlo adecuadamente
-        console.error("Error al obtener los datos de la batería:", error);
-      }
-    }
-  }, [token, navigate]);
-
   useEffect(() => {
     ListarCamion();
 
-    if (camion.length > 0) {
-      ListIdBat();
-    }
-  }, [camion, ListarCamion, ListIdBat]);
+  }, [camion, ListarCamion]);
 
 LogoutToken();
   

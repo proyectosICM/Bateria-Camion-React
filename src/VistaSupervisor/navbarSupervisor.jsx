@@ -18,10 +18,10 @@ export function NavBarSupervisor() {
     const id_emp = localStorage.getItem("empresa");
     const [datos, setDatos] = useState(null);
     //console.log(id_emp);
-    const fetchData = useListarElementos(`${IncidenciasxEmpresaSR}${id_emp}`, setDatos);
+    const fetchData = useListarElementos(`${IncidenciasxEmpresaSR}${id_emp}`);
 
     useEffect(() => {
-      fetchData();
+      fetchData(setDatos);
     }, [fetchData, datos]);
 
     return (

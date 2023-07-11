@@ -25,30 +25,50 @@ export function CamionesItem({ id, placa }) {
 
   const [arranques, setArranques] = useState([]);
 
-  const ListarArranques = useListarElementos(`${ArranqueEmpresaxCamionURL}${empresa}/${id}`, setArranques);
+  const ListarArranques = useListarElementos(`${ArranqueEmpresaxCamionURL}${empresa}/${id}`);
 
   useEffect(() => {
-    ListarArranques();
+    ListarArranques(setArranques);
   }, [ListarArranques, arranques]);
-
+  
   const ListarBaterias = useCallback(async () => {
-    const results = await axios.get(`${bateriaxcamionURL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setBaterias(results.data);
-  });
+    try {
+      const results = await axios.get(`${bateriaxcamionURL}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBaterias(results.data);
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        // Token expirado, redirigir al inicio de sesión
+        // navigate("/login");
+      } else {
+        // Otro error, manejarlo adecuadamente
+        console.error("Error al obtener los datos de las baterías:", error);
+      }
+    }
+  }, [id, token]);
 
   const ListarIncidencias = useCallback(async () => {
-    const results = await axios.get(`${IncidenciasxCamionSR}${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setIncidencias(results.data);
-  });
-
+    try {
+      const results = await axios.get(`${IncidenciasxCamionSR}${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setIncidencias(results.data);
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        // Token expirado, redirigir al inicio de sesión
+        // navigate("/login");
+      } else {
+        // Otro error, manejarlo adecuadamente
+        console.error("Error al obtener las incidencias:", error);
+      }
+    }
+  }, [id, token]);
+  
   useEffect(() => {
     ListarBaterias();
     ListarIncidencias();
