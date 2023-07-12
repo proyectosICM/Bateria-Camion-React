@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
-import { Button, Card } from "react-bootstrap";
+import { Button, ButtonGroup, Card } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ContenedorVoltaje } from './../VistasComunes/Graficos/Voltaje/contenedorVoltaje';
 import { ContenedorCarga } from "../VistasComunes/Graficos/Carga/contenedorCarga";
@@ -99,7 +99,11 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
                             {graficoSeleccionado === "corriente" && (
                                 <ContenedorVoltaje idc={idc} rango={rango} propiedad={"corriente"} />
                             )}
+                            <ButtonGroup>
                             <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
+                            <Button onClick={() => handleGraficosDetallados(idc)} variant="success">Ver Arranques</Button>
+                            </ButtonGroup>
+
                             {/* Agrega más condiciones para otros gráficos */}
                         </Card>
                     )}

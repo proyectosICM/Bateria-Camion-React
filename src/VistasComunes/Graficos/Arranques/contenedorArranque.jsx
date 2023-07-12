@@ -54,8 +54,29 @@ export function ContenedorArranque() {
 
       const lastDay = vdatos[vdatos.length - 1].dia;
       setD(vdatos.filter((dato) => dato.dia === lastDay));
-      
-      const lastSevenDays = vdatos.slice(-7);
+
+
+      const uniqueDays = new Set();
+        const filteredDays = vdatos.filter((dato) => {
+          const date = new Date(dato.dia);
+          const dateString = date.toDateString();
+          if (!uniqueDays.has(dateString)) {
+            uniqueDays.add(dateString);
+            return true;
+          }
+          return false;
+        });
+        filteredData = filteredDays.slice(-7);
+        //console.log(filteredDays)
+
+  
+
+      /*
+      const last7Day = vdatos[vdatos.length - 1].dia;
+      setS(vdatos.filter((dato) => dato.dia === lastDay));
+      console.log(last7Day);
+      */
+      /*const lastSevenDays = vdatos[vdatos.length - 1].dia.slice(-7);
       const totalRecords = lastSevenDays.reduce((total, dato) => {
         if (dato.id && typeof dato.id === 'number') {
           return total + 1;
@@ -64,12 +85,12 @@ export function ContenedorArranque() {
         }
       }, 0);
       setS(totalRecords);
-      console.log(totalRecords);
+      console.log(lastSevenDays);*/
 
 
       // Semana
-      const uniqueDays = new Set();
-      const filteredDays = vdatos.filter((dato) => {
+      //const uniqueDays = new Set();
+      /*const filteredDays = vdatos.filter((dato) => {
         const date = new Date(dato.dia);
         const dateString = date.toDateString();
         if (!uniqueDays.has(dateString)) {
@@ -78,9 +99,10 @@ export function ContenedorArranque() {
         }
         return false;
       });
-      const totalRegistrosSemana = filteredDays.reduce((total, dato) => total + dato.registros, 0);
-      //setS(totalRegistrosSemana);
-      console.log(s);
+      const totalRegistrosSemana = filteredDays.reduce((total, dato) => total + 1, 0);
+      setS(filteredDays);
+      console.log(s);*/
+      
       //Mes
       const uniqueDays2 = new Set();
       const filteredDays2 = vdatos.filter((dato) => {

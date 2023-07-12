@@ -13,7 +13,7 @@ export function ContenedorVoltaje({ idc, rango, propiedad }) {
 
   return (
     <div >
-
+ 
       {propiedad === "arranque" ?  (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <GraficoVoltajeB1 idc={idc} rango={rango} propiedad={propiedad} />

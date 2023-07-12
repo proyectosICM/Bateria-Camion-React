@@ -51,8 +51,7 @@ export const Welcome = () => {
   let camionDatos;
   if (trabajador) {
     camionDatos = useListarElementos(
-      `${camionxtrabajador}${trabajador}`,
-      setDatos
+      `${camionxtrabajador}${trabajador}`
     );
     localStorage.setItem("camionid", datos && datos[0].id_cam);
     //console.log(datos);
@@ -68,7 +67,7 @@ export const Welcome = () => {
     }
 
     if (trabajador && rol == "CONDUCTOR") {
-      camionDatos();
+      camionDatos(setDatos);
     }
     ListarSaludo();
     setUserRole(localStorage.getItem("rol"));
@@ -97,7 +96,7 @@ export const Welcome = () => {
     }
 
   };
-
+console.log(sal, datos);
   return (
     <div>
       <h2>Bienvenido, {username}!</h2>

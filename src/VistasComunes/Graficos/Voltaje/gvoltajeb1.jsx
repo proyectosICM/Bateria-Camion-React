@@ -59,7 +59,11 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
       } else if (propiedad === "arranque") {
         atributo = vdatos.map((dato) => dato.corriente);
         color = 'rgba(195, 0, 251)';
+        console.log(vdatos);
+      } else {
+        console.log("error");
       }
+      //console.log(atributo[atributo.length - 1])
 
       if (rango === "detalles") {
         filteredData = vdatos.slice(-5);
@@ -68,6 +72,21 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
         const lastDay = vdatos[vdatos.length - 1].dia;
         filteredData = vdatos.filter((dato) => dato.dia === lastDay);
         labels = filteredData.map((dato) => dato.hora);
+
+        //atributo = vdatos.filter((dato) => dato.dia === lastDay).map((dato) => dato.corriente);
+
+        if (propiedad === "arranque" || propiedad === "corriente") {
+          atributo = vdatos.filter((dato) => dato.dia === lastDay).map((dato) => dato.corriente);
+        } else if (propiedad === "voltaje") {
+          atributo = vdatos.filter((dato) => dato.dia === lastDay).map((dato) => dato.voltaje);
+        } else if (propiedad === "carga") {
+          atributo = vdatos.filter((dato) => dato.dia === lastDay).map((dato) => dato.carga);
+        } else {
+          console.log("error");
+        }
+
+        //atributo = atributo.slice(filteredData.length )
+        //console.log("n", atributo, filteredData.length)
       } else if (rango === "semana") {
         const uniqueDays = new Set();
         const filteredDays = vdatos.filter((dato) => {
@@ -79,32 +98,85 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
           }
           return false;
         });
-        filteredData = filteredDays.slice(-7);
-        labels = filteredData.map((dato) => {
-          const timestamp = dato.dia;
-          const date = new Date(timestamp);
+
+        // Ordena los datos filtrados por fecha en orden descendente
+        filteredDays.sort((a, b) => b.dia - a.dia);
+
+        // Toma los primeros 7 días
+        const lastSevenDays = filteredDays.slice(0, 7);
+        // Obtén las etiquetas para el gráfico (horas)
+        // Obtén las etiquetas para el gráfico (fechas en formato DD/MM/YY)
+        labels = lastSevenDays.map((day) => {
+          const date = new Date(day.dia);
           return date.toLocaleDateString();
-        });
+        }).reverse();
+
+        // Obtén los valores de corriente correspondientes a los últimos 7 días
+        atributo = lastSevenDays.map((day) => {
+          const dayData = vdatos.filter((dato) => dato.dia === day.dia);
+          const lastDataOfDay = dayData[dayData.length - 1];
+          console.log(propiedad);
+
+          if (propiedad === "arranque" || propiedad === "corriente") {
+            return lastDataOfDay.corriente;
+          } else if (propiedad === "voltaje") {
+            return lastDataOfDay.voltaje;
+          } else if (propiedad === "carga") {
+            return lastDataOfDay.carga;
+          } else {
+            console.log("error");
+          }
+          console.log(propiedad);
+        }).reverse();
+
       } else if (rango === "mes") {
-        const uniqueDays = new Set();
-        const filteredDays = vdatos.filter((dato) => {
+        // Filtra los datos para obtener solo el último dato de cada mes
+        const uniqueMonths = new Set();
+        const filteredMonths = vdatos.filter((dato) => {
           const date = new Date(dato.dia);
           const monthYearString = date.toLocaleDateString(undefined, {
-            month: "numeric",
-            year: "numeric",
+            month: 'numeric',
+            year: 'numeric',
           });
-          if (!uniqueDays.has(monthYearString)) {
-            uniqueDays.add(monthYearString);
+          if (!uniqueMonths.has(monthYearString)) {
+            uniqueMonths.add(monthYearString);
             return true;
           }
           return false;
         });
-        filteredData = filteredDays;
-        labels = filteredData.map((dato) => {
-          const timestamp = dato.dia;
-          const date = new Date(timestamp);
-          return date.toLocaleDateString();
+
+        // Ordena los datos filtrados por fecha en orden descendente
+        filteredMonths.sort((a, b) => b.dia - a.dia);
+
+        // Toma los últimos datos de cada mes
+        const lastDataOfMonth = filteredMonths.map((monthData) => {
+          const monthDataItems = vdatos.filter((dato) => dato.dia === monthData.dia);
+          return monthDataItems[monthDataItems.length - 1];
         });
+
+        // Obtén las etiquetas para el gráfico (fechas en formato DD/MM/YY)
+        labels = lastDataOfMonth.map((monthData) => {
+          const date = new Date(monthData.dia);
+          return date.toLocaleDateString('es-ES');
+        }).reverse();
+
+        // Obtén los valores de corriente correspondientes a los últimos datos de cada mes
+        //atributo = lastDataOfMonth.map((monthData) => monthData.corriente);
+
+        atributo = lastDataOfMonth.map((day) => {
+          const monthData = vdatos.filter((dato) => dato.dia === day.dia);
+          const lastDataOfDay = monthData[monthData.length - 1];
+          
+          if (propiedad === "arranque" || propiedad === "corriente") {
+            return lastDataOfDay.corriente;
+          } else if (propiedad === "voltaje") {
+            return lastDataOfDay.voltaje;
+          } else if (propiedad === "carga") {
+            return lastDataOfDay.carga;
+          } else {
+            console.log("error");
+          }
+        }).reverse();
       } else if (rango === "anio") {
         // Lógica para el rango "anio" si es necesario
       }
@@ -113,7 +185,7 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
         labels,
         datasets: [
           {
-            label: `Bateria con id ${idBat}`,
+            label: `Dato `,
             data: atributo,
             borderColor: color,
             backgroundColor: color,
