@@ -42,6 +42,7 @@ export const crearTrabajadorURL = `${baseURL}/trabajadores/createUser`;
 export const trabajadorTURL = `${baseURL}/trabajadores/trabajadoresxEmpT/`;
 export const trabajadorHURL = `${baseURL}/trabajadores/trabajadoresxEmpH/1/`;
 export const trabajadorDURL = `${baseURL}/trabajadores/trabajadoresxEmpH/0/`;
+export const conductorURL = `${baseURL}/trabajadores/conductores/`;
 
 //Baterias
 export const bateriaURL = `${baseURL}/baterias`;
@@ -63,3 +64,4 @@ export const IncidenciasxCamionSR = `${baseURL}/incidencias/camSR/0/`;
 //arramqie
 export const ArranqueEmpresaxCamionURL = `${baseURL}/arranque/empresaxcamion/`;
 export const ArranquexCamionURL = `${baseURL}/arranque/xcamion/`;
+export const CorrienteArranqueURL = `${baseURL}/camiones/corrinteArranque/`;

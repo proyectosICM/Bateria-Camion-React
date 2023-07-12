@@ -41,56 +41,30 @@ export function ContenedorArranque() {
   const dia = "dias";
   const semana = "semana";
   const mes = "mes";
+  const year = "year";
 
-  const [d, setD] = useState([])
-  const [s, setS] = useState([])
-  const [m, setM] = useState([])
+  const [d, setD] = useState([]);
+  const [s, setS] = useState([]);
+  const [sl, setSL] = useState([]);
+  const [m, setM] = useState([]);
+  const [ml, setML] = useState([]);
+
+  let i = 0;
+  let j = 0;
   useEffect(() => {
     if (vdatos && vdatos.length > 0) {
       let filteredData = [];
       let labels = [];
       let atributo = [];
+      let atributo2 = [];
       let color = '';
 
       const lastDay = vdatos[vdatos.length - 1].dia;
       setD(vdatos.filter((dato) => dato.dia === lastDay));
 
-
+      //Semana
       const uniqueDays = new Set();
-        const filteredDays = vdatos.filter((dato) => {
-          const date = new Date(dato.dia);
-          const dateString = date.toDateString();
-          if (!uniqueDays.has(dateString)) {
-            uniqueDays.add(dateString);
-            return true;
-          }
-          return false;
-        });
-        filteredData = filteredDays.slice(-7);
-        //console.log(filteredDays)
-
-  
-
-      /*
-      const last7Day = vdatos[vdatos.length - 1].dia;
-      setS(vdatos.filter((dato) => dato.dia === lastDay));
-      console.log(last7Day);
-      */
-      /*const lastSevenDays = vdatos[vdatos.length - 1].dia.slice(-7);
-      const totalRecords = lastSevenDays.reduce((total, dato) => {
-        if (dato.id && typeof dato.id === 'number') {
-          return total + 1;
-        } else {
-          return total;
-        }
-      }, 0);
-      setS(totalRecords);
-      console.log(lastSevenDays);*/
-
-
-      // Semana
-      //const uniqueDays = new Set();
-      /*const filteredDays = vdatos.filter((dato) => {
+      const filteredDays = vdatos.filter((dato) => {
         const date = new Date(dato.dia);
         const dateString = date.toDateString();
         if (!uniqueDays.has(dateString)) {
@@ -99,29 +73,61 @@ export function ContenedorArranque() {
         }
         return false;
       });
-      const totalRegistrosSemana = filteredDays.reduce((total, dato) => total + 1, 0);
-      setS(filteredDays);
-      console.log(s);*/
-      
-      //Mes
+
+      // Ordena los datos filtrados por fecha en orden descendente
+      filteredDays.sort((a, b) => b.dia - a.dia);
+
+      // Toma los primeros 7 días
+      const lastSevenDays = filteredDays.slice(0, 7);
+
+
+      atributo = lastSevenDays.map((day) => {
+        const dayData = vdatos.filter((dato) => dato.dia === day.dia);
+        const Values = dayData.map((dato) => dato.corriente);
+        return Values;
+      }).reverse();
+      setSL(atributo)
+      //
+
+      //28 dias
       const uniqueDays2 = new Set();
-      const filteredDays2 = vdatos.filter((dato) => {
-        const date2 = new Date(dato.dia);
-        const monthYearString = date2.toLocaleDateString(undefined, {
-          month: "numeric",
-          year: "numeric",
-        });
-        if (!uniqueDays.has(monthYearString)) {
-          uniqueDays.add(monthYearString);
+      const filteredDays28 = vdatos.filter((dato) => {
+        const date = new Date(dato.dia);
+        const dateString = date.toDateString();
+        if (!uniqueDays2.has(dateString)) {
+          uniqueDays2.add(dateString);
           return true;
         }
         return false;
       });
-      filteredData = filteredDays2;
-      setM(filteredDays2.length);
+
+
+      // Ordena los datos filtrados por fecha en orden descendente
+      filteredDays28.sort((a, b) => b.dia - a.dia);
+
+      // Toma los primeros 7 días
+      const lastSevenDays28 = filteredDays28.slice(0, 28);
+
+
+      atributo2 = lastSevenDays28.map((day) => {
+        const dayData = vdatos.filter((dato) => dato.dia === day.dia);
+        const Values = dayData.map((dato) => dato.corriente);
+        return Values;
+      }).reverse();
+      setML(atributo2);
 
     }
   }, [vdatos]);
+
+
+  sl.map((dato) => {
+    i = dato.length + i;
+  });
+
+  ml.map((dato) => {
+    j = dato.length + j;
+  });
+
 
   return (
     <div className="camionesMenu-contenedor">
@@ -133,13 +139,17 @@ export function ContenedorArranque() {
           <div>
             <ContenedorVoltaje idc={id_cam} rango={dia} propiedad={"arranque"} />
           </div>
-          <h1>Arranques de la semana: {s.length}</h1>
+          <h1>Arranques de la semana: {i ? i : "0"}</h1>
           <div>
             <ContenedorVoltaje idc={id_cam} rango={semana} propiedad={"arranque"} />
           </div>
-          <h1>Arranques del mes: {m.length}</h1>
+          <h1>Arranques del mes (ultimos 28 dias): {j ? j : "0"}</h1>
           <div>
             <ContenedorVoltaje idc={id_cam} rango={mes} propiedad={"arranque"} />
+          </div>
+          <h1>Arranques del año {m.length}</h1>
+          <div>
+            <ContenedorVoltaje idc={id_cam} rango={year} propiedad={"arranque"} />
           </div>
         </div>
       </div>

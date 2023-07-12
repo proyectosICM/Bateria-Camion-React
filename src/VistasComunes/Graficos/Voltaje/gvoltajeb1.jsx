@@ -14,7 +14,7 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
 
   const ListarArranques = useListarElementos(
     `${ArranquexCamionURL}${idc}`
-  );
+  ); 
 
   const ListVDatos = useListarElementos(
     `${bateriaTURL}${idBat}`
@@ -59,7 +59,6 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
       } else if (propiedad === "arranque") {
         atributo = vdatos.map((dato) => dato.corriente);
         color = 'rgba(195, 0, 251)';
-        console.log(vdatos);
       } else {
         console.log("error");
       }
@@ -114,69 +113,64 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
         // Obtén los valores de corriente correspondientes a los últimos 7 días
         atributo = lastSevenDays.map((day) => {
           const dayData = vdatos.filter((dato) => dato.dia === day.dia);
-          const lastDataOfDay = dayData[dayData.length - 1];
-          console.log(propiedad);
-
+          let Values;
           if (propiedad === "arranque" || propiedad === "corriente") {
-            return lastDataOfDay.corriente;
+            Values = dayData.map((dato) => dato.corriente);
           } else if (propiedad === "voltaje") {
-            return lastDataOfDay.voltaje;
+            Values = dayData.map((dato) => dato.voltaje);
           } else if (propiedad === "carga") {
-            return lastDataOfDay.carga;
+            Values = dayData.map((dato) => dato.carga);
           } else {
             console.log("error");
           }
-          console.log(propiedad);
+          //const Values = dayData.map((dato) => dato.corriente);
+          const averageCorriente = Values.reduce((sum, value) => sum + value, 0) / Values.length;
+          return averageCorriente;
         }).reverse();
 
       } else if (rango === "mes") {
-        // Filtra los datos para obtener solo el último dato de cada mes
-        const uniqueMonths = new Set();
-        const filteredMonths = vdatos.filter((dato) => {
+        // *********************************************************************** //
+        const uniqueDays = new Set();
+        const filteredDays = vdatos.filter((dato) => {
           const date = new Date(dato.dia);
-          const monthYearString = date.toLocaleDateString(undefined, {
-            month: 'numeric',
-            year: 'numeric',
-          });
-          if (!uniqueMonths.has(monthYearString)) {
-            uniqueMonths.add(monthYearString);
+          const dateString = date.toDateString();
+          if (!uniqueDays.has(dateString)) {
+            uniqueDays.add(dateString);
             return true;
           }
           return false;
         });
 
         // Ordena los datos filtrados por fecha en orden descendente
-        filteredMonths.sort((a, b) => b.dia - a.dia);
+        filteredDays.sort((a, b) => b.dia - a.dia);
 
-        // Toma los últimos datos de cada mes
-        const lastDataOfMonth = filteredMonths.map((monthData) => {
-          const monthDataItems = vdatos.filter((dato) => dato.dia === monthData.dia);
-          return monthDataItems[monthDataItems.length - 1];
-        });
-
+        // Toma los primeros 7 días
+        const lastSevenDays = filteredDays.slice(0, 28);
+        // Obtén las etiquetas para el gráfico (horas)
         // Obtén las etiquetas para el gráfico (fechas en formato DD/MM/YY)
-        labels = lastDataOfMonth.map((monthData) => {
-          const date = new Date(monthData.dia);
-          return date.toLocaleDateString('es-ES');
+        labels = lastSevenDays.map((day) => {
+          const date = new Date(day.dia);
+          return date.toLocaleDateString();
         }).reverse();
 
-        // Obtén los valores de corriente correspondientes a los últimos datos de cada mes
-        //atributo = lastDataOfMonth.map((monthData) => monthData.corriente);
-
-        atributo = lastDataOfMonth.map((day) => {
-          const monthData = vdatos.filter((dato) => dato.dia === day.dia);
-          const lastDataOfDay = monthData[monthData.length - 1];
-          
+        // Obtén los valores de corriente correspondientes a los últimos 7 días
+        atributo = lastSevenDays.map((day) => {
+          const dayData = vdatos.filter((dato) => dato.dia === day.dia);
+          let Values;
           if (propiedad === "arranque" || propiedad === "corriente") {
-            return lastDataOfDay.corriente;
+            Values = dayData.map((dato) => dato.corriente);
           } else if (propiedad === "voltaje") {
-            return lastDataOfDay.voltaje;
+            Values = dayData.map((dato) => dato.voltaje);
           } else if (propiedad === "carga") {
-            return lastDataOfDay.carga;
+            Values = dayData.map((dato) => dato.carga);
           } else {
             console.log("error");
           }
+          //const Values = dayData.map((dato) => dato.corriente);
+          const averageCorriente = Values.reduce((sum, value) => sum + value, 0) / Values.length;
+          return averageCorriente;
         }).reverse();
+
       } else if (rango === "anio") {
         // Lógica para el rango "anio" si es necesario
       }

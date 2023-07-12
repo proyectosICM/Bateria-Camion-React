@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsFillBusFrontFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { trabajadorHURL } from "../../../API/apiurls";
+import { camionURL, conductorURL, trabajadorHURL } from "../../../API/apiurls";
 import { type } from "@testing-library/user-event/dist/type";
 import { InputSimple } from "../../../Common/forms";
 
@@ -18,12 +18,13 @@ export function CamionModal({ show, close, datosaeditar, editar, agregar, il }) 
     const token = localStorage.getItem("token");
 
     const ListarTrabajadores = useCallback(async () => {
-        const response = await axios.get(`${trabajadorHURL}${il}`, {
+        const response = await axios.get(`${conductorURL}${il}`, {
       headers: {
         Authorization: `Bearer ${token}`, // Agregar el token en el encabezado de la solicitud
       },
     });
         setTrabajadores(response.data);
+      
     }, [il]);
 
     const [formData, setFormData] = useState({ 

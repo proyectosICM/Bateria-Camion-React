@@ -7,18 +7,23 @@ import { ContenedorVoltaje } from './../VistasComunes/Graficos/Voltaje/contenedo
 import { ContenedorCarga } from "../VistasComunes/Graficos/Carga/contenedorCarga";
 import { ContenedorCorriente } from './../VistasComunes/Graficos/Corriente/contenedorCorriente';
 import { UserContext } from "../Hooks/userProvider";
-import { IncidenciasxCamionSR } from "../API/apiurls";
+import { CorrienteArranqueURL, IncidenciasxCamionSR, camionURL } from "../API/apiurls";
 import { BotonesG } from "../Common/botonesG";
 import { CamionesTabla } from "../Common/camionesTabla";
+import { FaEdit } from "react-icons/fa";
+import { CamionDetalleModal } from "./camiondetalleModal";
+import { editarElemento, useListarElementos } from "../API/apiCRUD";
 
-
-export function CamionDetalle({ camion, idc, placa, incidencias }) {
+export function CamionDetalle({ idc, placa, incidencias }) {
     const id_tra = localStorage.getItem('trabajador');
     const token = localStorage.getItem('token');
 
     const [mostrarGrafico, setMostrarGrafico] = useState(true);
     const [graficoSeleccionado, setGraficoSeleccionado] = useState("voltaje");
     const [incidenciasSR, setIncidenciasSR] = useState([]);
+    const [datos, setDatos] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [datosEdit, setDatosEdit] = useState(null);
 
     const navigate = useNavigate();
 
@@ -54,8 +59,11 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
         }
     });
 
+    const [camion, setCamion] = useState([]);
+    const ListarCamion = useListarElementos(`${camionURL}/${idc}`)
     useEffect(() => {
         ListarIncidenciasSR();
+        ListarCamion(setCamion);
     }, [ListarIncidenciasSR]);
 
     const rol = localStorage.getItem('rol');
@@ -65,11 +73,55 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
     }
 
     const rango = "detalles";
+
+    const handleEditButtonClick = () => {
+        setShowModal(true);
+    };
+
+
+    const agregarArranque = (trabajador) => {
+        console.log(trabajador);
+        const requestData = {
+            corrienteArranque: trabajador.nom_tra,
+        };
+        console.log(requestData);
+        agregarElemento(CorrienteArranqueURL, requestData, closeModal, ListarDatos);
+    };
+
+    const editarArranque = (camion) => {
+        const requestData = {
+            corrienteArranque: camion
+        };
+        const apiurledit = `${CorrienteArranqueURL}${idc}`;
+        editarElemento(apiurledit, requestData, closeModal, ListarDatos);
+    };
+
+    const ListarDatos = () => {
+      
+    }
+    const edit = (camion) => {
+        setDatosEdit(camion);
+        setShowModal(true);
+
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setDatosEdit(null);
+    };
     return (
         <>
             <Card.Header>
                 <Card.Title>{rol} - {userRole}</Card.Title>
                 <h1>DETALLES</h1>
+                {rol != 'CONDUCTOR' && (
+                    <>
+                        Corriente de arranque {camion.corrienteArranque}
+                        <Button onClick={() => edit(camion)}><FaEdit /></Button>
+                    </>
+                )
+
+                }
 
                 <>
                     <h3>Placa {placa}</h3>
@@ -94,21 +146,25 @@ export function CamionDetalle({ camion, idc, placa, incidencias }) {
                                     <ContenedorVoltaje idc={idc} rango={rango} propiedad={"carga"} />
                                     {/* <ContenedorCarga idc={idc} rango={rango} propiedad={"voltaje"}  /> */}
                                 </>
-
                             )}
                             {graficoSeleccionado === "corriente" && (
                                 <ContenedorVoltaje idc={idc} rango={rango} propiedad={"corriente"} />
                             )}
                             <ButtonGroup>
-                            <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
-                            <Button onClick={() => handleGraficosDetallados(idc)} variant="success">Ver Arranques</Button>
+                                <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
+                                <Button onClick={() => handleGraficosDetallados(idc)} variant="success">Ver Arranques</Button>
                             </ButtonGroup>
-
                             {/* Agrega más condiciones para otros gráficos */}
                         </Card>
                     )}
                 </>
             </Card.Header>
+            <CamionDetalleModal
+                show={showModal}
+                close={closeModal}
+                agregar={agregarArranque}
+                datosaeditar={datosEdit}
+                editar={editarArranque} />
         </>
     );
 }
