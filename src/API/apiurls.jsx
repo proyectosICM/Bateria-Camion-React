@@ -65,3 +65,9 @@ export const IncidenciasxCamionSR = `${baseURL}/incidencias/camSR/0/`;
 export const ArranqueEmpresaxCamionURL = `${baseURL}/arranque/empresaxcamion/`;
 export const ArranquexCamionURL = `${baseURL}/arranque/xcamion/`;
 export const CorrienteArranqueURL = `${baseURL}/camiones/corrinteArranque/`;
+export const ArranquePromedioxMes = `${baseURL}/arranque/promedio/`;
+export const ArranqueConteoxYear = `${baseURL}/arranque/conteo/`;
+    
+export const ArranquePromedioDiaxMes = `${baseURL}/arranque/promedioxmes/`
+
+// http://localhost:8080/api/arranque/promedioxmes/1

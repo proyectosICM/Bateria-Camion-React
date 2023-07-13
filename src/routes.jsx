@@ -84,5 +84,6 @@ export const routes = [
     { path: '/notAuthorized', component: <NoAutorizado /> },
 
     //Grafico de arranques
-    { path: '/arranques/:id_cam', component: <ContenedorArranque />}
+    { path: '/arranques/:id_cam', component: <ContenedorArranque />},
+    { path: '/arranquesc/:id_cam', component: <ContenedorArranque c={"c"} />}
 ]

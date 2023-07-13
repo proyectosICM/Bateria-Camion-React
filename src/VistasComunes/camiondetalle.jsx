@@ -13,6 +13,7 @@ import { CamionesTabla } from "../Common/camionesTabla";
 import { FaEdit } from "react-icons/fa";
 import { CamionDetalleModal } from "./camiondetalleModal";
 import { editarElemento, useListarElementos } from "../API/apiCRUD";
+import { useBack } from "../Hooks/useBack";
 
 export function CamionDetalle({ idc, placa, incidencias }) {
     const id_tra = localStorage.getItem('trabajador');
@@ -36,6 +37,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
         setMostrarGrafico(true);
     };
 
+    const empresa = localStorage.getItem('empresa');
     const url = `${IncidenciasxCamionSR}${idc}`;
 
     const ListarIncidenciasSR = useCallback(async () => {
@@ -72,6 +74,9 @@ export function CamionDetalle({ idc, placa, incidencias }) {
         navigate(`/GraficosDetallados/${id}`)
     }
 
+    const handleGraficosArranques= (id) => {
+        navigate(`/arranquesc/${id}`)
+    }
     const rango = "detalles";
 
     const handleEditButtonClick = () => {
@@ -109,10 +114,19 @@ export function CamionDetalle({ idc, placa, incidencias }) {
         setShowModal(false);
         setDatosEdit(null);
     };
+    const handleBack = useBack({rutac: '/detalles', rutaop:`/menuCamion/${empresa}`});
     return (
         <>
             <Card.Header>
-                <Card.Title>{rol} - {userRole}</Card.Title>
+                <Card.Title>
+                    {rol != "CONDUCTOR" && (
+                                          <Button onClick={handleBack   } style={{width:"100%"}}>Atras</Button>
+                    )}
+  
+                    </Card.Title>
+
+
+   
                 <h1>DETALLES</h1>
                 {rol != 'CONDUCTOR' && (
                     <>
@@ -152,7 +166,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
                             )}
                             <ButtonGroup>
                                 <Button onClick={() => handleGraficosDetallados(idc)}>Ver Graficos detallados</Button>
-                                <Button onClick={() => handleGraficosDetallados(idc)} variant="success">Ver Arranques</Button>
+                                <Button onClick={() => handleGraficosArranques(idc)} variant="success">Ver Arranques</Button>
                             </ButtonGroup>
                             {/* Agrega más condiciones para otros gráficos */}
                         </Card>

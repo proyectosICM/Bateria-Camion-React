@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { useListVDatos } from './../../../Hooks/useListVDatos';
 import { useListarElementos } from '../../../API/apiCRUD';
-import { ArranquexCamionURL, bateriaTURL } from '../../../API/apiurls';
+import { ArranquePromedioDiaxMes, ArranquePromedioxMes, ArranquexCamionURL, bateriaTURL } from '../../../API/apiurls';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -20,11 +20,18 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
     `${bateriaTURL}${idBat}`
   );
 
+  const [datoYears, setDatoYears] = useState([]);
+  const [datoMes, setMes] = useState([]);
+  const ListDatoYear = useListarElementos(`${ArranquePromedioxMes}${idc}`);
+  const ListDatoMes = useListarElementos(`${ArranquePromedioDiaxMes}${idc}`);
+
   const [data, setData] = useState(null);
 
   useEffect(() => {
     if (propiedad === 'arranque') {
       ListarArranques(setvDatos);
+      ListDatoYear(setDatoYears);
+      ListDatoMes(setMes);
     } else {
       ListVDatos(setvDatos);
     }
@@ -148,17 +155,27 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
         const lastSevenDays = filteredDays.slice(0, 28);
         // Obtén las etiquetas para el gráfico (horas)
         // Obtén las etiquetas para el gráfico (fechas en formato DD/MM/YY)
-        labels = lastSevenDays.map((day) => {
-          const date = new Date(day.dia);
-          return date.toLocaleDateString();
-        }).reverse();
+        if(propiedad === "arranque"){
+          labels = datoMes.map((day) => {
+            const date = new Date(day.fecha);
+            return date.toLocaleDateString();
+          });
+          atributo = datoMes.map((dato) => dato.promedio);
+        } else {
+          labels = lastSevenDays.map((day) => {
+            const date = new Date(day.dia);
+            return date.toLocaleDateString();
+          }).reverse();
+        }
+
 
         // Obtén los valores de corriente correspondientes a los últimos 7 días
-        atributo = lastSevenDays.map((day) => {
+       /* atributo = lastSevenDays.map((day) => {
           const dayData = vdatos.filter((dato) => dato.dia === day.dia);
           let Values;
           if (propiedad === "arranque" || propiedad === "corriente") {
-            Values = dayData.map((dato) => dato.corriente);
+            Values = datoMes.map((dato) => dato.conteo);
+            
           } else if (propiedad === "voltaje") {
             Values = dayData.map((dato) => dato.voltaje);
           } else if (propiedad === "carga") {
@@ -167,12 +184,26 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
             console.log("error");
           }
           //const Values = dayData.map((dato) => dato.corriente);
-          const averageCorriente = Values.reduce((sum, value) => sum + value, 0) / Values.length;
-          return averageCorriente;
-        }).reverse();
 
-      } else if (rango === "anio") {
-        // Lógica para el rango "anio" si es necesario
+          return Values;
+        })*/
+       
+      } else if (rango === "year") {
+
+        labels = datoYears.map((day) => {
+          return day.mes;
+        });
+
+        if(propiedad === "arranque") {
+                atributo = datoYears.map((day) => {
+          let Values;
+            Values = day.promedioCorriente;
+          return Values;
+        });
+        }
+
+
+
       }
 
       setData({
@@ -205,6 +236,7 @@ export function GraficoVoltajeB1({ idBat, idc, rango, propiedad }) {
       },
     },
   };
+
 
   return (
     <div className="tb">
