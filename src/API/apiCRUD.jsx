@@ -1,10 +1,13 @@
 import axios from "axios";
 import { busesPosURL } from "./apiurls";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { LogoutToken } from "../Hooks/logoutToken";
+import { useNavigate } from "react-router-dom";
 
 export function useListarElementos(url) {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
- 
+  const [fallotoken, setFallotoken] = useState(false);
   const fetchData = useCallback(async (setDatos) => {
     try {
       const results = await axios.get(`${url}`, {
@@ -16,15 +19,15 @@ export function useListarElementos(url) {
       //console.log(results.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
-        // Token expirado, redirigir al inicio de sesión
-        //navigate("/login");
-      } else {
+        localStorage.removeItem("token", token);
+        navigate("/login");
+      } else if(error.response && error.response.status === 401) {
         // Otro error, manejarlo adecuadamente
-        console.error(`Error al obtener los datos de ${url}`, error);
+        console.error(`No pasas}`, error);
+        //navigate("/login");
       }
     }
   }, [url, token]);
-
   return fetchData;
 }
 

@@ -3,8 +3,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 
 import { IncidenciasURL } from "../../API/apiurls";
-import { deshabilitarElemento, habilitarElemento } from "../../API/apiCRUD";
+import { deshabilitarElemento, habilitarElemento, useListarElementos } from "../../API/apiCRUD";
 import { Link } from "react-router-dom";
+import { LogoutToken } from "../../Hooks/logoutToken";
 
 const rol = localStorage.getItem("rol");
 
@@ -13,7 +14,7 @@ export function IncidenciasTC({ url, tu }) {
 
   const token = localStorage.getItem("token");
 
-  const ListarIncidenciasSR = useCallback(async () => {
+  /*const ListarIncidenciasSR = useCallback(async () => {
     try {
       const results = await axios.get(`${url}`, {
         headers: {
@@ -25,10 +26,11 @@ export function IncidenciasTC({ url, tu }) {
       console.error("Error al obtener las incidencias:", error);
       // Manejar el error aquí, por ejemplo, mostrar un mensaje de error al usuario
     }
-  });
-
+  });*/ 
+  const ListarIncidenciasSR = useListarElementos(`${url}`);
+  LogoutToken();
   useEffect(() => {
-    ListarIncidenciasSR();
+    ListarIncidenciasSR(setIncidenciasSR);
   }, [ListarIncidenciasSR, incidenciasSR]);
 
   const habilitar = (id) => {

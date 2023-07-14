@@ -6,6 +6,7 @@ import { NavBarSelect } from "../VistasComunes/navbarSelect";
 import { useListarElementos } from "../API/apiCRUD";
 import { IncidenciasxCamionSR, camionxtrabajador } from "../API/apiurls";
 import { TrabajadorC } from './../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC';
+import { LogoutToken } from "../Hooks/logoutToken";
 
 export const Welcome = () => {
   const username = localStorage.getItem("Username");
@@ -54,8 +55,7 @@ export const Welcome = () => {
       `${camionxtrabajador}${trabajador}`
     );
     localStorage.setItem("camionid", datos && datos[0].id_cam);
-    //console.log(datos);
-    //console.log(localStorage.getItem('camionid'))
+ 
   }
 
   const { userRole, setUserRole } = useContext(UserContext);
@@ -83,7 +83,7 @@ export const Welcome = () => {
     }
   }, [rol, camionDatos]);
 */
-
+LogoutToken();
   const Redirigir = () => {
     if(rol == "CONDUCTOR"){
       if (sal && datos) {
@@ -96,7 +96,7 @@ export const Welcome = () => {
     }
 
   };
-console.log(sal, datos);
+
   return (
     <div>
       <h2>Bienvenido, {username}!</h2>

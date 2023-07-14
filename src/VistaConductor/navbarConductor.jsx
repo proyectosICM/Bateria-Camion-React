@@ -6,6 +6,7 @@ import logo from "../Imagenes/logo_icm3.png";
 import { Logout } from "../Hooks/logout";
 import { useListarElementos } from "../API/apiCRUD";
 import { IncidenciasxCamionSR } from "../API/apiurls";
+import { LogoutToken } from "../Hooks/logoutToken";
 
 export function NavBarConductor() {
   const navigate = useNavigate();
@@ -13,22 +14,19 @@ export function NavBarConductor() {
   const handleLogout = () => {
     Logout(navigate);
   };
-
+  LogoutToken();
   const id_cam = localStorage.getItem("camionid");
- 
+
   const [datos, setDatos] = useState(null);
 
-  useEffect(() => {
-    console.log(id_cam);
-  },[])
 
- const fetchData = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
+
+  const fetchData = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
 
   useEffect(() => {
     fetchData(setDatos);
   }, [fetchData, datos]);
 
-  //console.log(id_cam);
   return (
     <>
       <Navbar bg="dark" variant="dark" className="navbar-container">

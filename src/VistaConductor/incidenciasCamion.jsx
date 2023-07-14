@@ -15,6 +15,8 @@ import { IncidenciasTG } from "../VistasComunes/Incidencias/indicenciasTG";
 import { LogoutToken } from "../Hooks/logoutToken";
 
 export function IncidenciasCamion() {
+  
+ 
   const { userRole, setUserRole } = useContext(UserContext);
   const [mostarGenerales, setMostarGenerales] = useState(false);
 
@@ -30,13 +32,8 @@ export function IncidenciasCamion() {
   const sr = `${IncidenciasxCamionSR}${camionId}`;
   const r = `${IncidenciasxCamionR}${camionId}`;
 
-  /* useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token, navigate]);*/
 
-  LogoutToken();
+
   useEffect(() => {
     if (g === "g" && userRole !== "CONDUCTOR") {
       setMostarGenerales(true);

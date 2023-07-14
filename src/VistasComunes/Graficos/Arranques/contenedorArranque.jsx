@@ -76,23 +76,20 @@ export function ContenedorArranque({ c }) {
 
   const [d, setD] = useState([]);
   const [s, setS] = useState([]);
-  const [sl, setSL] = useState([]);
-  const [m, setM] = useState([]);
-  const [ml, setML] = useState([]);
 
-  let i = 0;
-  let j = 0;
+  const [m, setM] = useState([]);
+
 
   useEffect(() => {
-    if (vdatos && vdatos.length > 0) {
+
       let filteredData = [];
       let labels = [];
       let atributo = [];
       let atributo2 = [];
       let color = "";
 
-      const lastDay = vdatos[vdatos.length - 1].dia;
-      setD(vdatos.filter((dato) => dato.dia === lastDay));
+  
+      setD(arranquesdia);
 
       let semana = diaxMes
         .slice(-7)
@@ -102,7 +99,7 @@ export function ContenedorArranque({ c }) {
 
       let mes = diaxMes.reduce((suma, dato) => suma + dato.contador, 0);
       setM(mes);
-    }
+
   }, [vdatos]);
 
   return (

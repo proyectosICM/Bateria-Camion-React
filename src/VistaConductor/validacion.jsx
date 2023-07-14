@@ -14,7 +14,6 @@ export function Validacion() {
 
   const [camion, setCamion] = useState([]);
 
-
   const ListarCamion = useCallback(async () => {
     try {
       const response = await axios.get(`${camionxtrabajador}${id_tra}`, {
@@ -41,7 +40,7 @@ export function Validacion() {
 
   }, [camion, ListarCamion]);
 
-LogoutToken();
+
   
   return (
     <>

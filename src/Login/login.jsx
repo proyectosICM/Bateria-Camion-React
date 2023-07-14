@@ -20,8 +20,6 @@ export function Login() {
 
   const handleLogin = async (e) => {
 
-  
-
     e.preventDefault();
     try {
       const response = await axiosInstance.post("/login", {
@@ -44,7 +42,7 @@ export function Login() {
 
   useEffect(()=> {
     if(token){
-      navigate('/redirec');
+      navigate('/redirect');
     }
   },[navigate]);
 

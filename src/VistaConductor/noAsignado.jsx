@@ -1,6 +1,8 @@
 import React from "react";
+import { LogoutToken } from "../Hooks/logoutToken";
 
 export function NoAsignado() {
+
     return (
         <div>
             <h3>Usuario no asignado a ningún camión</h3>
