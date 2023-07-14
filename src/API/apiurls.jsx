@@ -68,6 +68,12 @@ export const CorrienteArranqueURL = `${baseURL}/camiones/corrinteArranque/`;
 export const ArranquePromedioxMes = `${baseURL}/arranque/promedio/`;
 export const ArranqueConteoxYear = `${baseURL}/arranque/conteo/`;
     
-export const ArranquePromedioDiaxMes = `${baseURL}/arranque/promedioxmes/`
+export const ArranquePromedioDiaxMes = `${baseURL}/arranque/promedioxmes/`;
+export const ArranqueUltimoDia = `${baseURL}/arranque/ultimodia/`;
 
 // http://localhost:8080/api/arranque/promedioxmes/1
+
+//bateria promedios y contador
+export const BateriaUltimodia = `${baseURL}/detalles/ultimodia/`;
+export const BateriaPromedioxYear = `${baseURL}/detalles/promedioxmes/`;
+export const BateriaPromedioxMes = `${baseURL}/detalles/promediodiaxmes/`;
