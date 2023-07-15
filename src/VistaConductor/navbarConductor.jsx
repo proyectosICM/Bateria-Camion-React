@@ -21,12 +21,19 @@ export function NavBarConductor() {
 
 
 
-  const fetchData = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
-
+  const ListarIncidenciasSR = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
+/*
   useEffect(() => {
-    fetchData(setDatos);
-  }, [fetchData, datos]);
 
+    const interval = setInterval(() => {
+      ListarIncidenciasSR(setDatos);
+    }, 500000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [ListarIncidenciasSR]);
+*/
   return (
     <>
       <Navbar bg="dark" variant="dark" className="navbar-container">

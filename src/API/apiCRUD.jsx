@@ -1,6 +1,6 @@
 import axios from "axios";
 import { busesPosURL } from "./apiurls";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LogoutToken } from "../Hooks/logoutToken";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,10 @@ export function useListarElementos(url) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [fallotoken, setFallotoken] = useState(false);
+
   const fetchData = useCallback(async (setDatos) => {
     try {
+      //console.log(`Listadoooooos ${url}`);
       const results = await axios.get(`${url}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -21,16 +23,30 @@ export function useListarElementos(url) {
       if (error.response && error.response.status === 500) {
         localStorage.removeItem("token", token);
         navigate("/login");
-      } else if(error.response && error.response.status === 401) {
+      } else if (error.response && error.response.status === 401) {
         // Otro error, manejarlo adecuadamente
         console.error(`No pasas}`, error);
         //navigate("/login");
       }
     }
   }, [url, token]);
+
+  useEffect(() => {
+    //fetchData();
+    //console.log("Listado inicial");
+
+    const interval = setInterval(() => {
+      //console.log(`Interval ${url}`);
+      fetchData();
+    }, 5000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [fetchData]);
+
   return fetchData;
 }
-
 
 export function agregarElemento(url, requestData, closeModal, ListarDatos) {
   const token = localStorage.getItem("token");

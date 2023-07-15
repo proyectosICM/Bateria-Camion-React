@@ -41,7 +41,7 @@ export function IncidenciasTG({ est, url }) {
 
   useEffect(() => {
     ListarIncidenciasSR();
-  }, [ListarIncidenciasSR, incidenciasSR]);
+  }, [ListarIncidenciasSR]);
 
   const trabajador = localStorage.getItem("trabajador");
 

@@ -42,11 +42,14 @@ export function ContenedorArranque({ c }) {
   );
 
   useEffect(() => {
+    console.log("chaszzzasaasas");
     ListarArranques(setvDatos);
     ListarConteoxYear(setArranquexY);
     ListarArranquesMes(setDiaxMes);
     ListarArranquesDia(setArranquesdia);
-  }, [ListarArranques, ListarConteoxYear, ListarArranquesMes, ListarArranquesDia, arranquesdia, diaxMes, arranquexY]);
+  }, [ListarArranques, ListarConteoxYear, ListarArranquesMes, ListarArranquesDia]);
+
+
   let r;
   if (c != undefined) {
     r = `/detallesc/${id_cam}`;
@@ -95,12 +98,12 @@ export function ContenedorArranque({ c }) {
         .slice(-7)
         .reduce((suma, dato) => suma + dato.contador, 0);
       setS(semana);
-      //
 
       let mes = diaxMes.reduce((suma, dato) => suma + dato.contador, 0);
       setM(mes);
-
     }, [arranquesdia, diaxMes]);
+
+
   return (
     <div className="camionesMenu-contenedor">
       <div className="orden">

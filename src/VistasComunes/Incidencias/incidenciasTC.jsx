@@ -3,7 +3,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 
 import { IncidenciasURL } from "../../API/apiurls";
-import { deshabilitarElemento, habilitarElemento, useListarElementos } from "../../API/apiCRUD";
+import {
+  deshabilitarElemento,
+  habilitarElemento,
+  useListarElementos,
+} from "../../API/apiCRUD";
 import { Link } from "react-router-dom";
 import { LogoutToken } from "../../Hooks/logoutToken";
 
@@ -13,25 +17,20 @@ export function IncidenciasTC({ url, tu }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
 
   const token = localStorage.getItem("token");
-
-  /*const ListarIncidenciasSR = useCallback(async () => {
-    try {
-      const results = await axios.get(`${url}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setIncidenciasSR(results.data);
-    } catch (error) {
-      console.error("Error al obtener las incidencias:", error);
-      // Manejar el error aquí, por ejemplo, mostrar un mensaje de error al usuario
-    }
-  });*/ 
   const ListarIncidenciasSR = useListarElementos(`${url}`);
   LogoutToken();
+
   useEffect(() => {
-    ListarIncidenciasSR(setIncidenciasSR);
-  }, [ListarIncidenciasSR, incidenciasSR]);
+    const interval = setInterval(() => {
+      ListarIncidenciasSR(setIncidenciasSR);
+    }, 5000); 
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [ListarIncidenciasSR]); 
+ 
+
 
   const habilitar = (id) => {
     try {
@@ -80,7 +79,7 @@ export function IncidenciasTC({ url, tu }) {
                 background: incidencia.prioridad ? "green" : "",
               }}
             >
-              <td>{new Date(incidencia.dia).toLocaleDateString()}</td>  
+              <td>{new Date(incidencia.dia).toLocaleDateString()}</td>
               <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>
@@ -89,7 +88,10 @@ export function IncidenciasTC({ url, tu }) {
               <td>{incidencia.estado ? "Revisada" : "No Revisada"}</td>
               <td>
                 <Button>
-                  <Link to={`/incidenciasdetalles/${incidencia.id_inc}`} className="linkes">
+                  <Link
+                    to={`/incidenciasdetalles/${incidencia.id_inc}`}
+                    className="linkes"
+                  >
                     Ver detalles
                   </Link>
                 </Button>

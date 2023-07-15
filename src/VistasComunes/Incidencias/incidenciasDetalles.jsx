@@ -13,7 +13,7 @@ export function IncidenciasDetalles() {
   const [datos, setDatos] = useState(null);
  
   const fetchData = useListarElementos(`${IncidenciasURL}/${id}`);
-
+ 
   useEffect(() => {
     fetchData(setDatos);
   }, [fetchData]);

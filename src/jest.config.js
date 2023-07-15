@@ -1,5 +1,4 @@
-module.exports = {
-    transform: {
-      "^.+\\.jsx?$": "babel-jest"
-    }
-  };
+export const moduleNameMapper = {
+    "^axios$": "<rootDir>/mocks/axios.js",
+};
+  
