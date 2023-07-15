@@ -12,10 +12,10 @@ export function IncidenciasDetalles() {
   const { id } = useParams();
   const [datos, setDatos] = useState(null);
  
-  const fetchData = useListarElementos(`${IncidenciasURL}/${id}`, setDatos);
+  const fetchData = useListarElementos(`${IncidenciasURL}/${id}`);
 
   useEffect(() => {
-    fetchData();
+    fetchData(setDatos);
   }, [fetchData]);
 
   const navigate = useNavigate();

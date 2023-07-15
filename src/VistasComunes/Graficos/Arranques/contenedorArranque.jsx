@@ -100,8 +100,7 @@ export function ContenedorArranque({ c }) {
       let mes = diaxMes.reduce((suma, dato) => suma + dato.contador, 0);
       setM(mes);
 
-  }, [vdatos]);
-
+    }, [arranquesdia, diaxMes]);
   return (
     <div className="camionesMenu-contenedor">
       <div className="orden">
@@ -126,7 +125,7 @@ export function ContenedorArranque({ c }) {
               propiedad={"arranque"}
             />
           </div>
-          <h1>Arranques del mes: {m ? m : "cargando"}</h1>
+          <h1>Arranques del mes: {m ? m : "0"}</h1>
           <div>
             <ContenedorVoltaje
               idc={id_cam}
@@ -138,7 +137,7 @@ export function ContenedorArranque({ c }) {
             Arranques del año{" "}
             {arranquexY.length > 0
               ? [arranquexY[arranquexY.length - 1].conteo]
-              : "no"}
+              : "0"}
           </h1>
           <div>
             <ContenedorVoltaje
