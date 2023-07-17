@@ -30,26 +30,11 @@ export function CamionesItem({ id, placa }) {
   useEffect(() => {
     ListarArranques(setArranques);
   }, [ListarArranques, arranques]);
-  
-  const ListarBaterias = useCallback(async () => {
-    try {
-      const results = await axios.get(`${bateriaxcamionURL}/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setBaterias(results.data);
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        // Token expirado, redirigir al inicio de sesión
-        // navigate("/login");
-      } else {
-        // Otro error, manejarlo adecuadamente
-        console.error("Error al obtener los datos de las baterías:", error);
-      }
-    }
-  }, [id, token]);
 
+  const ListarBaterias = useListarElementos(`${bateriaxcamionURL}/${id}`);
+
+  const ListarIncidencias  =  useListarElementos(`${IncidenciasxCamionSR}${id}`);
+/*
   const ListarIncidencias = useCallback(async () => {
     try {
       const results = await axios.get(`${IncidenciasxCamionSR}${id}`, {
@@ -68,10 +53,10 @@ export function CamionesItem({ id, placa }) {
       }
     }
   }, [id, token]);
-  
+  */
   useEffect(() => {
-    ListarBaterias();
-    ListarIncidencias();
+    ListarBaterias(setBaterias);
+    ListarIncidencias(setIncidencias);
   }, [ListarBaterias, ListarIncidencias]);
 
   useEffect(() => {

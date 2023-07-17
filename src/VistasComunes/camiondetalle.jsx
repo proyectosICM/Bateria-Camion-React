@@ -62,7 +62,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
       clearInterval(interval);
     };
   }, [ListarIncidenciasSR]);
-
+ 
   const rol = localStorage.getItem("rol");
 
   const handleGraficosDetallados = (id) => {

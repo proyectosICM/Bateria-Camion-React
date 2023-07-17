@@ -50,9 +50,9 @@ export function NavBarConductor() {
               <Link to={"/incidencias"} className="linkes">
                 Incidencias {datos && datos.length}
               </Link>
-              <li onClick={handleLogout} className="linkes">
+              <Button variant="primary" onClick={handleLogout}>
                 Cerrar
-              </li>
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>

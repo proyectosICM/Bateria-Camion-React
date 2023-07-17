@@ -68,11 +68,11 @@ export function CamionDetalleSupervisor() {
   return (
     <> 
       <div className="camionesMenu-contenedor">
-        <Card style={{ width: "180rem" }}>
+
           <div className="orden">
             <CamionDetalle camion={camion} idc={id} placa={camion.placa_cam} incidencias={`/incidenciasxc/${camion.id_cam}`}/>
           </div>
-        </Card>
+
       </div>
     </>
   );

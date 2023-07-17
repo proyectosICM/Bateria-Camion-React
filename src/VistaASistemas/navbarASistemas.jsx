@@ -11,33 +11,38 @@ export function NavBarASistemas() {
 
   const handleLogout = () => {
     Logout(navigate);
-  }; 
+  };
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="navbar-container">
-        <Container className="navbar-container">
+      <Navbar bg="dark" variant="dark" expand="lg" className="navbar-container">
+        <Container>
           <Navbar.Brand className="logo">
             <Link to="/welcomeasis" className="linkes">
               <img src={logo} alt="Logo Inicio" className="imgl" />
               <span>Inicio</span>
             </Link>
           </Navbar.Brand>
-          <Nav className="me-auto barra">
-            <Link to="/menuECamion" className="linkes">
-              <img src={logo} alt="Logo Inicio" className="imgl" />
-              <span>Menu</span>
-            </Link>
-            <Link to={"/menuIncidencias"} className="linkes">
-              <span>Incidencias</span>
-            </Link>
-            <Link to={"/menuCRUD"} className="linkes">
-              <span>Administrativo</span>
-            </Link>
-            <li onClick={handleLogout} className="linkes">
-              Cerrar
-            </li>
-          </Nav>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/menuECamion" className="linkes">
+                <img src={logo} alt="Logo Inicio" className="imgl" />
+                <span>Menu</span>
+              </Nav.Link>
+              <Nav.Link as={Link} to="/menuIncidencias" className="linkes">
+                <span>Incidencias</span>
+              </Nav.Link>
+              <Nav.Link as={Link} to="/menuCRUD" className="linkes">
+                <span>Administrativo</span>
+              </Nav.Link>
+            </Nav>
+            <Nav>
+              <Button variant="primary" onClick={handleLogout}>
+                Cerrar
+              </Button>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>

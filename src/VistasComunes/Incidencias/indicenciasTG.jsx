@@ -21,28 +21,9 @@ export function IncidenciasTG({ est, url }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
   const token = localStorage.getItem("token");
   const rol = localStorage.getItem("rol");
-  /*
-  const ListarIncidenciasSR = useCallback(async () => {
-    try {
-      const results = await axios.get(`${url}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setIncidenciasSR(results.data);
-      //console.log(results.data);
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        // Token expirado, redirigir al inicio de sesión
-        //navigate("/login");
-      } else {
-        // Otro error, manejarlo adecuadamente
-        console.error("Error al obtener los datos del camión:", error);
-      }
-    }
-  }, [est]);
- */
-  const ListarIncidenciasSR = useListarElementos(`${url}`,setIncidenciasSR);
+
+  const ListarIncidenciasSR = useListarElementosEdit(`${url}`,setIncidenciasSR);
+  
   const List = () => {
     ListarIncidenciasSR();
   };

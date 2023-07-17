@@ -15,10 +15,23 @@ export function InfoTReal({ titulo, valor }) {
     icono = <FaCarBattery />;
   }
 
+  const infoCard = {
+    flex: 1,
+  };
+
+  const styles = `
+    @media (max-width: 800px) {
+      .info-card {
+        font-size: 14px;
+      }
+    }
+  `;
+
   return (
-    <Card style={{ flex: 1 }}>
+    <Card style={infoCard}>
+      <style>{styles}</style>
       <Card.Title>
-        {titulo} {icono}
+        {titulo} <span data-testid={`icono-${titulo}`}>{icono}</span>
       </Card.Title>
       <Card.Body>{valor}</Card.Body>
     </Card>

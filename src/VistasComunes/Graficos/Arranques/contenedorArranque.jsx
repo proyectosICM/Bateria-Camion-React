@@ -42,7 +42,6 @@ export function ContenedorArranque({ c }) {
   );
 
   useEffect(() => {
-    console.log("chaszzzasaasas");
     ListarArranques(setvDatos);
     ListarConteoxYear(setArranquexY);
     ListarArranquesMes(setDiaxMes);

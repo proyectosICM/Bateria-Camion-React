@@ -72,6 +72,8 @@
   border-radius: 1%;
 } 
 
+
+
 .camionesItem-contenedor{
   width: 30%;
   height: 25%;
@@ -82,6 +84,32 @@
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 1000px) {
+  .camionesMenu-contenedor{
+    width: 80%;
+    height: 25%;
+    margin: 2% auto;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #E5E7E9;
+    border-radius: 1%;
+    overflow: auto;
+  } 
+
+  .camionesItem-contenedor{
+    width: 100%;
+    height: 25%;
+    border-radius: 2%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .botonItem{
@@ -133,13 +161,20 @@ img{
 
 }
 
-.subcajades{
+.subcajades {
   width: 100%;
   height: 80%;
-  /* border: 2px solid black; */
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+  .subcajades {
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 200%;
+    height: 160%;
+  }
 }
 
 .tb{
@@ -182,3 +217,12 @@ img{
   justify-content: center;
 }
 
+.info-card {
+  flex: 1;
+}
+
+@media (max-width: 576px) {
+  .info-card {
+    font-size: 14px;
+  }
+}

@@ -69,7 +69,7 @@ export function IncidenciasDetalles() {
         <>
           <h2>Nombre de la incidencia:</h2>
           <h3>{datos.nom_inc}</h3>
-          <h3>Dia {datos.dia}</h3>
+          <h3>Día {new Date(datos.dia).toLocaleDateString()}</h3>
           <h3>Hora {datos.hora}</h3>
           <h2>Bateria responsable de la incidencia:</h2>
           <h3>{datos.bateriasModels.nom_bat}</h3>
