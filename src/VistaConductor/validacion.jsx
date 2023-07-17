@@ -20,7 +20,6 @@ export function Validacion() {
 
   useEffect(() => {
     ListarCamion(setCamion);
-    console.log("Hola");
   }, [ListarCamion]);
 
 

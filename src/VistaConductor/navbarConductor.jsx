@@ -14,44 +14,47 @@ export function NavBarConductor() {
   const handleLogout = () => {
     Logout(navigate);
   };
+
   LogoutToken();
+
   const id_cam = localStorage.getItem("camionid");
-
   const [datos, setDatos] = useState(null);
-
-
+  const cam = localStorage.getItem("camionid");
 
   const ListarIncidenciasSR = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
-/*
-  useEffect(() => {
 
+  useEffect(() => {
+    ListarIncidenciasSR(setDatos);
     const interval = setInterval(() => {
       ListarIncidenciasSR(setDatos);
-    }, 500000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
+    }, 5000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
 
     return () => {
       clearInterval(interval);
     };
   }, [ListarIncidenciasSR]);
-*/
+
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="navbar-container">
-        <Container className="navbar-container">
+      <Navbar bg="dark" variant="dark" expand="lg" className="navbar-container">
+        <Container>
           <Navbar.Brand className="logo">
             <Link to="/detalles" className="linkes">
               <img src={logo} alt="Logo Inicio" className="imgl" />
               <span>Inicio</span>
             </Link>
           </Navbar.Brand>
-          <Nav className="me-auto barra">
-            <Link to={"/incidencias"} className="linkes">
-              Incidencias {datos && datos.length}
-            </Link>
-            <li onClick={handleLogout} className="linkes">
-              Cerrar
-            </li>
-          </Nav>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto barra">
+              <Link to={"/incidencias"} className="linkes">
+                Incidencias {datos && datos.length}
+              </Link>
+              <li onClick={handleLogout} className="linkes">
+                Cerrar
+              </li>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>

@@ -9,6 +9,9 @@ import {
   deshabilitarElemento,
   editarElementoSM,
   habilitarElemento2,
+  useListarElementos,
+  useListarElementos2,
+  useListarElementosEdit,
 } from "../../API/apiCRUD"; // Reemplaza 'tu_archivo_de_hooks' con el nombre real de tu archivo
 import { LogoutToken } from "../../Hooks/logoutToken";
 import { Link } from "react-router-dom";
@@ -18,7 +21,7 @@ export function IncidenciasTG({ est, url }) {
   const [incidenciasSR, setIncidenciasSR] = useState([]);
   const token = localStorage.getItem("token");
   const rol = localStorage.getItem("rol");
-
+  /*
   const ListarIncidenciasSR = useCallback(async () => {
     try {
       const results = await axios.get(`${url}`, {
@@ -38,7 +41,11 @@ export function IncidenciasTG({ est, url }) {
       }
     }
   }, [est]);
-
+ */
+  const ListarIncidenciasSR = useListarElementos(`${url}`,setIncidenciasSR);
+  const List = () => {
+    ListarIncidenciasSR();
+  };
   useEffect(() => {
     ListarIncidenciasSR();
   }, [ListarIncidenciasSR]);
@@ -46,7 +53,13 @@ export function IncidenciasTG({ est, url }) {
   const trabajador = localStorage.getItem("trabajador");
 
   const habilitar = (id) => {
-    //habilitarElemento(`${IncidenciasURL}`, id, "estado", ListarIncidenciasSR);
+    habilitarElemento(
+      `${IncidenciasURL}`,
+      id,
+      "estado",
+      ListarIncidenciasSR,
+      setIncidenciasSR
+    );
     const requestData = {
       revisadoBy: {
         id_tra: trabajador,
@@ -54,20 +67,11 @@ export function IncidenciasTG({ est, url }) {
       estado: true,
       prioridad: false,
     };
-    editarElementoSM(
-      `${IncidenciasURL}/${id}`,
-      requestData,
-      ListarIncidenciasSR
-    );
+    editarElementoSM(`${IncidenciasURL}/${id}`, requestData, List);
   };
 
   const deshabilitar = (id) => {
-    deshabilitarElemento(
-      `${IncidenciasURL}`,
-      id,
-      "estado",
-      ListarIncidenciasSR
-    );
+    deshabilitarElemento(`${IncidenciasURL}`, id, "estado", List);
   };
 
   const sRevision = (id) => {
@@ -113,7 +117,7 @@ export function IncidenciasTG({ est, url }) {
                 background: incidencia.prioridad ? "green" : "",
               }}
             >
-              <td>{new Date(incidencia.dia).toLocaleDateString()}</td>  
+              <td>{new Date(incidencia.dia).toLocaleDateString()}</td>
               <td>{incidencia.hora}</td>
               <td>{incidencia.nom_inc}</td>
               <td>{incidencia.bateriasModels.nom_bat}</td>

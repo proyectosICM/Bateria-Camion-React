@@ -53,6 +53,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
   const ListarCamion = useListarElementos(`${url}`);
 
   useEffect(() => {
+    ListarIncidenciasSR(setIncidenciasSR);
     const interval = setInterval(() => {
       ListarIncidenciasSR(setIncidenciasSR);
     }, 5000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades

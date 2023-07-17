@@ -21,6 +21,7 @@ export function IncidenciasTC({ url, tu }) {
   LogoutToken();
 
   useEffect(() => {
+    ListarIncidenciasSR(setIncidenciasSR);
     const interval = setInterval(() => {
       ListarIncidenciasSR(setIncidenciasSR);
     }, 5000); 

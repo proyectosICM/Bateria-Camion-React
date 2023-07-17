@@ -5,7 +5,7 @@ import { UserContext } from "../Hooks/userProvider";
 import { NavBarSelect } from "../VistasComunes/navbarSelect";
 import { useListarElementos } from "../API/apiCRUD";
 import { IncidenciasxCamionSR, camionxtrabajador } from "../API/apiurls";
-import { TrabajadorC } from './../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC';
+import { TrabajadorC } from "./../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
 import { LogoutToken } from "../Hooks/logoutToken";
 
 export const Welcome = () => {
@@ -50,17 +50,13 @@ export const Welcome = () => {
   const rol = localStorage.getItem("rol");
   const trabajador = localStorage.getItem("trabajador");
   let camionDatos;
-  if (trabajador) {
-    camionDatos = useListarElementos(
-      `${camionxtrabajador}${trabajador}`
-    );
-    localStorage.setItem("camionid", datos && datos[0].id_cam);
- 
-  }
+
+  camionDatos = useListarElementos(`${camionxtrabajador}${trabajador}`);
 
   const { userRole, setUserRole } = useContext(UserContext);
 
   useEffect(() => {
+    
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
@@ -68,33 +64,25 @@ export const Welcome = () => {
 
     if (trabajador && rol == "CONDUCTOR") {
       camionDatos(setDatos);
+      console.log("carajo");
     }
+    localStorage.setItem("camionid", datos && datos[0].id_cam)
     ListarSaludo();
     setUserRole(localStorage.getItem("rol"));
     Redirigir();
   }, [navigate, sal, rol, camionDatos]);
 
-  /*useEffect(() => {
-    if(rol == "CONDUCTOR"){
-      camionDatos();
-    }
-    if(datos){
-      console.log(datos.id_cam);
-    }
-  }, [rol, camionDatos]);
-*/
-LogoutToken();
+  LogoutToken();
   const Redirigir = () => {
-    if(rol == "CONDUCTOR"){
+    if (rol == "CONDUCTOR") {
       if (sal && datos) {
         navigate("/redirect");
-       }
+      }
     } else {
       if (sal != null) {
         navigate("/redirect");
-       }
+      }
     }
-
   };
 
   return (

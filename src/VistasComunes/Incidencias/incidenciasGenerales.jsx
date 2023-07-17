@@ -31,7 +31,7 @@ export function IncidenciasGenerales() {
   const [gen, setGen] = useState(false);
 
   const rol = localStorage.getItem("rol");
-
+ 
   LogoutToken();
   return (
     <>
