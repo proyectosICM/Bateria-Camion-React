@@ -6,6 +6,9 @@ export const baseURL = "http://localhost:8080/api";
 
 // Rutas específicas
 
+//Info
+export const infoURL = `${baseURL}/trabajadores/info/`
+
 //Listar Camion por conductor asociado
 export const camionxtrabajador = `${baseURL}/camiones/camionxtrabajador/`
   

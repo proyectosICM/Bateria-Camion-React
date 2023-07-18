@@ -7,7 +7,6 @@ export function LogoutToken() { // Cambiar el nombre a "LogoutToken"
 
   useEffect(() => {
     if (!token) {
-      console.log("afuera pibe"); 
       navigate("/login");
     }
   }, [token, navigate]);

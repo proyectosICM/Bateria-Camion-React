@@ -50,19 +50,21 @@ export function CamionDetalle({ idc, placa, incidencias }) {
   const ListarIncidenciasSR = useListarElementos(`${url}`);
 
   const [camion, setCamion] = useState([]);
-  const ListarCamion = useListarElementos(`${url}`);
+  const ListarCamion = useListarElementos(`${camionURL}/${idc}`);
 
   useEffect(() => {
     ListarIncidenciasSR(setIncidenciasSR);
+    ListarCamion(setCamion);
     const interval = setInterval(() => {
       ListarIncidenciasSR(setIncidenciasSR);
+      ListarCamion(setCamion);
     }, 5000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
 
     return () => {
       clearInterval(interval);
     };
   }, [ListarIncidenciasSR]);
- 
+
   const rol = localStorage.getItem("rol");
 
   const handleGraficosDetallados = (id) => {

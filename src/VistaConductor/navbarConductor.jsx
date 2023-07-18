@@ -15,7 +15,7 @@ export function NavBarConductor() {
     Logout(navigate);
   };
 
-  LogoutToken();
+  LogoutToken(); 
 
   const id_cam = localStorage.getItem("camionid");
   const [datos, setDatos] = useState(null);
@@ -34,6 +34,11 @@ export function NavBarConductor() {
     };
   }, [ListarIncidenciasSR]);
 
+/*
+useEffect(() => {
+  ListarIncidenciasSR(setDatos);
+}, [ListarIncidenciasSR]);
+*/
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg" className="navbar-container">

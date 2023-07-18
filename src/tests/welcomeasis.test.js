@@ -12,6 +12,4 @@ describe('WelcomeAsis', () => {
         )
         expect(screen.getByText('Buenos dias Administrador de sistema')).toBeInTheDocument();
     });
-
-
 })

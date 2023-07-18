@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Hooks/userProvider";
 import { NavBarSelect } from "../VistasComunes/navbarSelect";
 import { useListarElementos } from "../API/apiCRUD";
-import { IncidenciasxCamionSR, camionxtrabajador } from "../API/apiurls";
+import { IncidenciasxCamionSR, camionxtrabajador, infoURL } from "../API/apiurls";
 import { TrabajadorC } from "./../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
 import { LogoutToken } from "../Hooks/logoutToken";
 
@@ -24,12 +24,12 @@ export const Welcome = () => {
     localStorage.removeItem("Username");
     navigate("/login");
   };
-
+ 
   const ListarSaludo = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:8080/api/trabajadores/info/${username}`,
+        `${infoURL}${username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -63,8 +63,7 @@ export const Welcome = () => {
     }
 
     if (trabajador && rol == "CONDUCTOR") {
-      camionDatos(setDatos);
-      console.log("carajo");
+      camionDatos(setDatos);  
     }
     localStorage.setItem("camionid", datos && datos[0].id_cam)
     ListarSaludo();
