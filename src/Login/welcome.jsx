@@ -3,10 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Hooks/userProvider";
 import { NavBarSelect } from "../VistasComunes/navbarSelect";
-import { useListarElementos } from "../API/apiCRUD";
+//import { useListarElementos } from "../API/apiCRUD";
 import { IncidenciasxCamionSR, camionxtrabajador, infoURL } from "../API/apiurls";
 import { TrabajadorC } from "./../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
 import { LogoutToken } from "../Hooks/logoutToken";
+import { useListarElementos } from "../Hooks/CRUDHooks";
 
 export const Welcome = () => {
   const username = localStorage.getItem("Username");
@@ -24,55 +25,55 @@ export const Welcome = () => {
     localStorage.removeItem("Username");
     navigate("/login");
   };
- 
-  const ListarSaludo = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `${infoURL}${username}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setSal(response.data);
-      localStorage.setItem("rol", response.data.rolesModel.name);
-      localStorage.setItem("empresa", response.data.empresasModel.id_emp);
-      localStorage.setItem("trabajador", response.data.id_tra);
-    } catch (error) {
-      // Manejo de errores
-      console.log(error);
-    }
-  };
+
+  useListarElementos(`${infoURL}${username}`, sal, setSal);
 
   const [datos, setDatos] = useState(null);
   const rol = localStorage.getItem("rol");
   const trabajador = localStorage.getItem("trabajador");
   let camionDatos;
 
-  camionDatos = useListarElementos(`${camionxtrabajador}${trabajador}`);
-
+  camionDatos = useListarElementos(`${camionxtrabajador}${trabajador}`, datos, setDatos);
   const { userRole, setUserRole } = useContext(UserContext);
 
   useEffect(() => {
-    
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
+    if (sal) {
+      localStorage.setItem("rol", sal.rolesModel.name);
+      localStorage.setItem("empresa", sal.empresasModel.id_emp);
+      localStorage.setItem("trabajador", sal.id_tra);
     }
+  }, [sal]);
 
-    if (trabajador && rol == "CONDUCTOR") {
-      camionDatos(setDatos);  
-    }
-    localStorage.setItem("camionid", datos && datos[0].id_cam)
-    ListarSaludo();
+  useEffect(() => {}, [datos]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    
+    const fetchData = async () => {
+      if (!token) {
+        navigate("/login");
+      }
+  
+      if (datos && rol == "CONDUCTOR") {
+        try {
+          await localStorage.setItem("camionid", datos.id_cam);
+          //alert("ya");
+        } catch (error) {
+          console.error("Error al guardar en localStorage:", error);
+        }
+      }0
+  
+ 
+    };
+  
+    fetchData();
     setUserRole(localStorage.getItem("rol"));
     Redirigir();
-  }, [navigate, sal, rol, camionDatos]);
+  }, [navigate, sal, rol]);
+  
 
   LogoutToken();
-  const Redirigir = () => {
+  const Redirigir = async() => {
     if (rol == "CONDUCTOR") {
       if (sal && datos) {
         navigate("/redirect");
@@ -96,7 +97,7 @@ export const Welcome = () => {
           <p>Empresa: {sal.empresasModel.nom_emp}</p>
           <p>ID de rol: {sal.rolesModel.id}</p>
           <p>Nombre de rol: {sal.rolesModel.name}</p>
-          <p>Camion: {datos && datos[0].placa_cam}</p>
+          <p>Camion: {datos && datos.placa_cam}</p>
         </div>
       )}
       <button>

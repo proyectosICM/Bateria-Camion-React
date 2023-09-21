@@ -11,6 +11,8 @@ export function ContenedorVoltaje({ idc, rango, propiedad }) {
     ListIdBat();
   }, [ListIdBat]);
 
+  console.log("sd",idbat )
+
   return (
     <div className="contenedor-voltaje">
       {propiedad === "arranque" ? (

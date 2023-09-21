@@ -5,15 +5,10 @@ import { BsFillPersonFill, BsX } from "react-icons/bs";
 import { HiOutlineIdentification } from "react-icons/hi";
 import "./trabajadorModal.css";
 import { FaUser } from "react-icons/fa";
+import { infoURL } from "../../../API/apiurls";
+import { useListarElementos } from "../../../API/apiCRUD";
 
-export function TrabajadorModal({
-  show,
-  close,
-  datosaeditar,
-  editar,
-  agregar,
-  il,
-}) {
+export function TrabajadorModal({ show, close, datosaeditar, editar, agregar, il }) {
   const [formData, setFormData] = useState({
     nom_tra: "",
     ape_tra: "",
@@ -22,10 +17,10 @@ export function TrabajadorModal({
     est_tra: true,
     username: "",
     pass_tra: "",
-    rol: ""
+    rol: "",
   });
   const [editando, setEditando] = useState(false);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     if (datosaeditar) {
       setFormData({ ...datosaeditar });
@@ -56,10 +51,34 @@ export function TrabajadorModal({
       est_tra: true,
       username: "",
       pass_tra: "",
-      rol: ""
+      rol: "",
     });
     setEditando(false);
   };
+
+  const [libre, setlibre] = useState(true);
+
+
+  useEffect(() => {
+    const validar = async () => {
+      try {
+        const response = await axios.get(`${infoURL}${formData.username}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }, // Aquí se elimina la coma
+        });
+        if (formData.username === response.data.username) {
+          setlibre(false);
+        } else {
+          setlibre(true);
+        }
+      } catch (error) {
+        // Manejar el error sin mostrarlo en pantalla
+        console.error("Error en la solicitud Axios:", error);
+      }
+    };
+    validar();
+  }, [formData, token]);
 
   const handleClose = () => {
     if (datosaeditar) {
@@ -74,9 +93,7 @@ export function TrabajadorModal({
     <div>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>
-            {editando ? "Editar Trabajador" : "Agregar Trabajador"}
-          </Modal.Title>
+          <Modal.Title>{editando ? "Editar Trabajador" : "Agregar Trabajador"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -91,9 +108,7 @@ export function TrabajadorModal({
                   name="nom_tra"
                   placeholder="Nombre"
                   value={formData.nom_tra}
-                  onChange={(e) =>
-                    setFormData({ ...formData, nom_tra: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, nom_tra: e.target.value })}
                 />
               </Form.Group>
 
@@ -107,9 +122,7 @@ export function TrabajadorModal({
                   name="ape_tra"
                   placeholder="Apellido"
                   value={formData.ape_tra}
-                  onChange={(e) =>
-                    setFormData({ ...formData, ape_tra: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, ape_tra: e.target.value })}
                 />
               </Form.Group>
             </div>
@@ -124,9 +137,7 @@ export function TrabajadorModal({
                 name="dni_tra"
                 placeholder="DNI"
                 value={formData.dni_tra}
-                onChange={(e) =>
-                  setFormData({ ...formData, dni_tra: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, dni_tra: e.target.value })}
               />
             </Form.Group>
 
@@ -141,9 +152,7 @@ export function TrabajadorModal({
                   name="username"
                   placeholder="Username"
                   value={formData.username}
-                  onChange={(e) =>
-                    setFormData({ ...formData, username: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                 />
               </Form.Group>
 
@@ -157,9 +166,7 @@ export function TrabajadorModal({
                   name="pass_tra"
                   placeholder="Password"
                   value={formData.pass_tra}
-                  onChange={(e) =>
-                    setFormData({ ...formData, pass_tra: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, pass_tra: e.target.value })}
                 />
               </Form.Group>
             </div>
@@ -168,30 +175,22 @@ export function TrabajadorModal({
               <Form.Label>
                 <FaUser /> ROL
               </Form.Label>
-              <Form.Select
-                name="Rol"
-                value={formData.rol}
-                onChange={(e) => 
-                  setFormData({ ...formData, rol: e.target.value })
-                }
-              >
-                <option>
-                     Seleccione un rol
-                </option>
+              <Form.Select name="Rol" value={formData.rol} onChange={(e) => setFormData({ ...formData, rol: e.target.value })}>
+                <option>Seleccione un rol</option>
                 <option key="1" value="1">
                   CONDUCTOR
                 </option>
                 <option key="2" value="2">
-                SUPERVISOR
+                  SUPERVISOR
                 </option>
                 <option key="3" value="3">
-                ADMINISTRADOR
+                  ADMINISTRADOR
                 </option>
               </Form.Select>
             </Form.Group>
-
+            {!libre && <Form.Label style={{ color: "red" }}>¡Este nombre de usuario ya se encuentra en uso, ingrese otro!</Form.Label>}
             <div className="modal-buttons">
-              <Button type="submit">
+              <Button type="submit" disabled={!libre}>
                 {editando ? "Guardar cambios" : "Crear"}
               </Button>
               <Button onClick={handleClose} variant="secondary">

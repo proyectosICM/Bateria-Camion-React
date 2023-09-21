@@ -7,13 +7,18 @@ import { LogoutToken } from "../Hooks/logoutToken";
 export function Redirect() {
   const [nav, setNav] = useState();
   const rol = localStorage.getItem('rol');
+  const cam = localStorage.getItem('camionid');
+
   const navigate = useNavigate();
   const empresa = localStorage.getItem('empresa');
   LogoutToken();
   useEffect(() => {
+
     let tempNav;
     switch (rol) {
       case "CONDUCTOR":
+        // alert(cam); 
+       // alert("sd"); 
         tempNav = '/detalles';
         break;
       case "SUPERVISOR":

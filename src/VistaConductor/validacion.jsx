@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { NoAsignado } from "./noAsignado";
 import { CamionDetalle } from "./../VistasComunes/camiondetalle";
 import { LogoutToken, logoutToken } from "../Hooks/logoutToken";
-import { useListarElementos } from "../API/apiCRUD";
+import { useListarElementos } from "../Hooks/CRUDHooks";
+
 
 export function Validacion() {
   const id_tra = localStorage.getItem("trabajador");
@@ -15,12 +16,14 @@ export function Validacion() {
 
   const [camion, setCamion] = useState([]);
  
+ 
+useListarElementos(`${camionxtrabajador}${id_tra}`, camion, setCamion);
 
-  const ListarCamion = useListarElementos(`${camionxtrabajador}${id_tra}`);
-
-  useEffect(() => {
-    ListarCamion(setCamion);
-  }, [ListarCamion]);
+useEffect(() => {
+  if(camion){
+    localStorage.setItem("camionid", camion.id_cam)
+  }
+})
 
 
   
@@ -28,11 +31,11 @@ export function Validacion() {
     <>
       <div className="camionesMenu-contenedor">
           <div className="orden">
-            {camion.length > 0 ? (
+            {camion.trabajadoresModel ? (
               <CamionDetalle
                 camion={camion}
-                placa={camion[0].placa_cam}
-                idc={camion[0].id_cam}
+                placa={camion.placa_cam ? camion.placa_cam : "NO"}
+                idc={camion.id_cam}
                 incidencias={"/incidencias"}
               />
             ) : (

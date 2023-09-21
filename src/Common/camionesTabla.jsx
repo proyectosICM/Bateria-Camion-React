@@ -15,7 +15,7 @@ export function CamionesTabla({ idb, datbat, idc }) {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const rol = localStorage.getItem('rol');
-
+const camion = localStorage.getItem('camionid');
   let idcam;
 
   if (rol != "CONDUCTOR") {
@@ -24,13 +24,13 @@ export function CamionesTabla({ idb, datbat, idc }) {
     idcam = idc;
   }
 
-  const ListarBaterias = useListarElementosEdit(`${bateriaxcamionURL}/${idcam}`, setBaterias )
+  //const ListarBaterias = useListarElementosEdit(`${bateriaxcamionURL}/${camion}`, setBaterias )
   
-  useEffect(() => {
+  /* useEffect(() => {
     ListarBaterias();
   }, [ListarBaterias]);
   
-
+*/
 
   return (
     <div>

@@ -12,33 +12,30 @@ export function NavBarConductor() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    Logout(navigate);
+    Logout(navigate); 
   };
 
   LogoutToken(); 
 
   const id_cam = localStorage.getItem("camionid");
   const [datos, setDatos] = useState(null);
-  const cam = localStorage.getItem("camionid");
 
   const ListarIncidenciasSR = useListarElementos(`${IncidenciasxCamionSR}${id_cam}`);
+
 
   useEffect(() => {
     ListarIncidenciasSR(setDatos);
     const interval = setInterval(() => {
       ListarIncidenciasSR(setDatos);
-    }, 5000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
+    }, 4000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
 
     return () => {
       clearInterval(interval);
     };
   }, [ListarIncidenciasSR]);
 
-/*
-useEffect(() => {
-  ListarIncidenciasSR(setDatos);
-}, [ListarIncidenciasSR]);
-*/
+
+
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg" className="navbar-container">

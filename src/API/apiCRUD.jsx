@@ -11,20 +11,17 @@ export function useListarElementos(url) {
 
   const fetchData = useCallback(async (setDatos) => {
     try {
-      //console.log(`Listadoooooos ${url}`);
       const results = await axios.get(`${url}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       setDatos(results.data);
-      //console.log(results.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         localStorage.removeItem("token", token);
-        navigate("/login");
+        //navigate("/login");
       } else if (error.response && error.response.status === 401) {
-        // Otro error, manejarlo adecuadamente
         console.error(`No pasas}`, error);
         //navigate("/login");
       }
@@ -63,7 +60,7 @@ export function useListarElementosEdit(url, setDatos) {
     } catch (error) {
       if (error.response && error.response.status === 500) {
         // Token expirado, redirigir al inicio de sesión
-        navigate("/login");
+        //navigate("/login");
       } else {
         // Otro error, manejarlo adecuadamente
         console.error("Error al obtener los datos del camión z  :", error);

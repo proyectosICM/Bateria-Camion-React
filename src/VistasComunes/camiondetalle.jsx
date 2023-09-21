@@ -37,7 +37,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
   const navigate = useNavigate();
 
   const { id_cam } = useParams();
-
+  const ic= localStorage.getItem("camionid");
   const { userRole } = useContext(UserContext);
 
   const handleMostrarGrafico = (grafico) => {
@@ -58,7 +58,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
     const interval = setInterval(() => {
       ListarIncidenciasSR(setIncidenciasSR);
       ListarCamion(setCamion);
-    }, 5000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
+    }, 2000); // Actualiza cada 5 segundos, ajusta el intervalo según tus necesidades
 
     return () => {
       clearInterval(interval);
@@ -110,14 +110,15 @@ export function CamionDetalle({ idc, placa, incidencias }) {
   const handleBack = useBack({
     rutac: "/detalles",
     rutaop: `/menuCamion/${empresa}`,
-  });
+  }); 
+  
   return (
     <>
       <Card.Header>
         <Card.Title>
           {rol != "CONDUCTOR" && (
             <Button onClick={handleBack} style={{ width: "100%" }}>
-              Atras
+              Atras 
             </Button>
           )}
         </Card.Title>
@@ -131,7 +132,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
             </Button>
           </>
         )}
-
+ 
         <>
           <h3>Placa {placa}</h3>
           <div>
