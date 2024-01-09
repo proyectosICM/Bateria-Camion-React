@@ -4,7 +4,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import { BsBatteryHalf } from "react-icons/bs";
 import { FaCarBattery } from "react-icons/fa";
 
-export function InfoTReal({ titulo, valor }) {
+export function  InfoTReal({ titulo, valor }) {
   let icono = null;
 
   if (titulo === "Voltaje") {

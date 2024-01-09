@@ -131,7 +131,7 @@ export function CamionDetalle({ idc, placa, incidencias }) {
               <FaEdit />
             </Button>
           </>
-        )}
+        )} 
  
         <>
           <h3>Placa {placa}</h3>

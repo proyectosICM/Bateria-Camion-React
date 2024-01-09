@@ -52,7 +52,7 @@ export function IncidenciasCamion() {
     ) {
       navigate(`/incidenciasG/${empresa}`);
     }
-  };
+  }; 
 
   return (
     <>

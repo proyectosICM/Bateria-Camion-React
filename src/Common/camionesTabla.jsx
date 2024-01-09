@@ -7,7 +7,7 @@ import { InfoTReal } from "./infoReal";
 import { bateriaxcamionURL } from "../API/apiurls";
 import { useListarElementosEdit } from "../API/apiCRUD";
 
-export function CamionesTabla({ idb, datbat, idc }) {
+export function     CamionesTabla({ idb, datbat, idc }) {
   const { id } = useParams();
   const [datos, setDatos] = useState([]);
   const [baterias, setBaterias] = useState([]);
@@ -24,13 +24,13 @@ const camion = localStorage.getItem('camionid');
     idcam = idc;
   }
 
-  //const ListarBaterias = useListarElementosEdit(`${bateriaxcamionURL}/${camion}`, setBaterias )
+  const ListarBaterias = useListarElementosEdit(`${bateriaxcamionURL}/${camion}`, setBaterias )
   
-  /* useEffect(() => {
+  useEffect(() => {
     ListarBaterias();
   }, [ListarBaterias]);
   
-*/
+
 
   return (
     <div>
@@ -40,6 +40,7 @@ const camion = localStorage.getItem('camionid');
             <Card.Title>Registro en tiempo real bateria</Card.Title>
             {baterias.map((bateria, index) => (
               <div style={{ display: "flex" }} key={bateria.id_bat}>
+          
                 <InfoTReal titulo={`Bateria ${index + 1}`} valor={`${bateria.nom_bat}`} />
                 <InfoTReal titulo={"Voltaje"} valor={`${bateria.voltaje} v `} />
                 <InfoTReal titulo={"Carga"} valor={`${bateria.carga} %`} />
