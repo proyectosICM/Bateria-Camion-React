@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
 
 export function Login() {
   const [username, setUsername] = useState("");
-  const [pass_tra, setPass_tra] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -23,8 +23,8 @@ export function Login() {
     try {
       const response = await axiosInstance.post("/login", {
         username,
-        pass_tra,
-      });
+        password,
+      }); 
       setError("");
       const { token, Username } = response.data;
       localStorage.setItem("token", token);
@@ -35,7 +35,7 @@ export function Login() {
       console.log(error);
     }
   };
-
+/*
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function Login() {
       navigate("/redirect");
     }
   }, [navigate]);
-
+*/
   LogoutToken();
 
   return (
@@ -69,8 +69,8 @@ export function Login() {
             <Form.Control
               type="password"
               placeholder="Ingresa la contraseña"
-              value={pass_tra}
-              onChange={(e) => setPass_tra(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 

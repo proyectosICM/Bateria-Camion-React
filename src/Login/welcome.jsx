@@ -5,7 +5,7 @@ import { UserContext } from "../Hooks/userProvider";
 import { NavBarSelect } from "../VistasComunes/navbarSelect";
 //import { useListarElementos } from "../API/apiCRUD";
 import { IncidenciasxCamionSR, camionxtrabajador, infoURL } from "../API/apiurls";
-import { TrabajadorC } from "./../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
+import { TrabajadorC } from "../VistasComunes/CRUD/TrabajadorCRUD/TrabajadorC";
 import { LogoutToken } from "../Hooks/logoutToken";
 import { useListarElementos } from "../Hooks/CRUDHooks";
 
@@ -36,7 +36,7 @@ export const Welcome = () => {
   camionDatos = useListarElementos(`${camionxtrabajador}${trabajador}`, datos, setDatos);
   const { userRole, setUserRole } = useContext(UserContext);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (sal) {
       localStorage.setItem("rol", sal.rolesModel.name);
       localStorage.setItem("empresa", sal.empresasModel.id_emp);
@@ -56,12 +56,12 @@ export const Welcome = () => {
   
       if (datos && rol == "CONDUCTOR") {
         try {
-          await localStorage.setItem("camionid", datos.id_cam);
+          await localStorage.setItem("camionid", datos.id);
           //alert("ya");
         } catch (error) {
           console.error("Error al guardar en localStorage:", error);
         }
-      }0
+      }
   
  
     };

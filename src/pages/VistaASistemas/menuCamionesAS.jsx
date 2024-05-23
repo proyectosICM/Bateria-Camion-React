@@ -9,7 +9,7 @@ export function MenuCamionesAS() {
   const navigate = useNavigate();
   const rol = localStorage.getItem("rol");
   const empresa = localStorage.getItem("empresa");
-
+ 
   useEffect(() => {
     if (rol === "SUPERVISOR" || rol === "ADMINISTRADOR") {
       navigate(`/menuCamion/${empresa}`);

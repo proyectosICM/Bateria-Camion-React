@@ -3,8 +3,8 @@ import "./App.css";
 
 // Rutas
 import { routes } from "./routes";
-import { Login } from "./Login/login";
-import { Welcome } from "./Login/welcome";
+import { Login } from "./login/login";
+import { Welcome } from "./login/welcome";
 import { UserProvider } from "./Hooks/userProvider";
 import { NavBarSelect } from "./VistasComunes/navbarSelect";
 import { useEffect, useState } from "react";

@@ -15,14 +15,14 @@ export function NavBarAdministrador() {
   };
 
   const rol = localStorage.getItem("rol");
-  const id_emp = localStorage.getItem("empresa");
+  const id = localStorage.getItem("empresa");
   const [datos, setDatos] = useState(null);
 
-  const ListarIncidenciasSR = useListarElementos(`${IncidenciasxEmpresaSR}${id_emp}`);
+  const ListarIncidenciasSR = useListarElementos(`${IncidenciasxEmpresaSR}${id}`);
 
   useEffect(() => {
     ListarIncidenciasSR(setDatos);
-  }, [ListarIncidenciasSR]);
+  }, [ListarIncidenciasSR]); 
 
   return (
     <>

@@ -22,7 +22,7 @@ export function MenuEmpresas({ ruta }) {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, []); 
 
   useEffect(() => {
     ListarDatos();
@@ -49,7 +49,7 @@ export function MenuEmpresas({ ruta }) {
           <Card.Body>
             <Card.Title>{dato.nom_emp}</Card.Title>
             <Card.Text>Ver todos los trabajadores</Card.Text>
-            <Link to={`${ruta}/${dato.id_emp}`}>
+            <Link to={`${ruta}/${dato.id}`}>
               <Button variant="primary" className="btn-l">
                 IR
               </Button>

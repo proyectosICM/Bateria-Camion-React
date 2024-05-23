@@ -1,8 +1,4 @@
-
-
-
-import { Login } from "./Login/login";
-
+import { Login } from "./login/login";
 
 import { IncidenciasCamion } from "./VistaConductor/incidenciasCamion";
 import { Validacion } from "./VistaConductor/validacion";
@@ -24,66 +20,61 @@ import { NoAutorizado } from "./VistasComunes/noAutorizado";
 import { IncidenciasDetalles } from "./VistasComunes/Incidencias/incidenciasDetalles";
 import { MenuEIncidencias } from "./VistaASistemas/menuEIncidencias";
 import { MenuCamionesAS } from "./VistaASistemas/menuCamionesAS";
-import { MenuECamiones } from './VistasComunes/CRUD/CamionesCRUD/menuECamiones';
+import { MenuECamiones } from "./VistasComunes/CRUD/CamionesCRUD/menuECamiones";
 import { GraficosDetallados } from "./VistasComunes/Graficos/graficosDetallados";
 import { ContenedorArranque } from "./VistasComunes/Graficos/Arranques/contenedorArranque";
 
-
-
-
 export const routes = [
-    //Redireccion
-    { path: '/redirect', component: <Redirect /> },
+  //LOGIN
+  { path: "/login", component: <Login /> },
 
+  //Redireccion
+  { path: "/redirect", component: <Redirect /> },
 
-    //Vista  conductor
-    { path: '/detalles', component: <Validacion /> },
-    { path: '/incidencias', component: <IncidenciasCamion /> },
+  //Vista  conductor
+  { path: "/detalles", component: <Validacion /> },
+  { path: "/incidencias", component: <IncidenciasCamion /> },
 
-    //Vista  supervisor
-    { path: '/menuCamion/:id_emp', component: <MenuCamion /> },
-    { path: 'incidenciasxc/:id_cam', component: <IncidenciasCS />},
-    { path: '/menuIncidencias', component: <MenuEIncidencias />},
-    { path: '/incidenciasG/:id_emp', component: <IncidenciasGenerales  />},
-    { path: '/detallesc/:id', component: <CamionDetalleSupervisor  />},
-    { path: '/incidenciasdetalles/:id', component: <IncidenciasDetalles  />},
+  //Vista  supervisor
+  { path: "/menuCamion/:id", component: <MenuCamion /> },
+  { path: "incidenciasxc/:id", component: <IncidenciasCS /> },
+  { path: "/menuIncidencias", component: <MenuEIncidencias /> },
+  { path: "/incidenciasG/:id", component: <IncidenciasGenerales /> },
+  { path: "/detallesc/:id", component: <CamionDetalleSupervisor /> },
+  { path: "/incidenciasdetalles/:id", component: <IncidenciasDetalles /> },
 
-    //Vista Administrador
-    { path: '/welcomeadd', component: <WelcomeAdd />},
-    { path: '/menuCRUD', component: <MenuCRUD /> },
+  //Vista Administrador
+  { path: "/welcomeadd", component: <WelcomeAdd /> },
+  { path: "/menuCRUD", component: <MenuCRUD /> },
 
-    //vista Administrador de Sistemas
-    { path: '/welcomeasis', component: <WelcomeASis />},
-    { path: '/menuECamion', component: <MenuCamionesAS /> },
+  //vista Administrador de Sistemas
+  { path: "/welcomeasis", component: <WelcomeASis /> },
+  { path: "/menuECamion", component: <MenuCamionesAS /> },
 
-    //Graficos detallados
-    { path: '/GraficosDetallados/:id_cam', component: <GraficosDetallados />},
+  //Graficos detallados
+  { path: "/GraficosDetallados/:id", component: <GraficosDetallados /> },
 
-    // TABLAS CRUD
-    //{ path: '/menuCRUD', component: <MenuCRUD /> },
-    { path: '/empresasCRUD', component: <EmpresasC /> },
- 
+  // TABLAS CRUD
+  //{ path: '/menuCRUD', component: <MenuCRUD /> },
+  { path: "/empresasCRUD", component: <EmpresasC /> },
 
-    { path: '/camionesCRUD', component: <MenuECamiones /> },
-    { path: '/camionesxemp/:id_emp', component: <CamionC /> },
-    { path: '/bateriasCRUD', component: <MenuEBaterias /> },
-    { path: '/bateriasxemp/:id_emp', component: <BateriasC /> },
+  { path: "/camionesCRUD", component: <MenuECamiones /> },
+  { path: "/camionesxemp/:id", component: <CamionC /> },
+  { path: "/bateriasCRUD", component: <MenuEBaterias /> },
+  { path: "/bateriasxemp/:id", component: <BateriasC /> },
 
-    { path: '/trabajadoresCRUD', component: <MenuETrabajadoresE /> },
-    { path: '/trabajadoresxemp/:id_emp', component: <TrabajadorC /> },
+  { path: "/trabajadoresCRUD", component: <MenuETrabajadoresE /> },
+  { path: "/trabajadoresxemp/:id", component: <TrabajadorC /> },
 
-    //PANEL DE INCIDENCIAS
-    { path: '/incidenciasxc/:t/:id_cam', component: <IncidenciasCamion /> },
-    { path: '/incidenciasxctrabajador/:t/:id_cam', component: <IncidenciasCamion /> },
-    { path: '/incidenciasGE', component: <IncidenciasGenerales /> },
+  //PANEL DE INCIDENCIAS
+  { path: "/incidenciasxc/:t/:id", component: <IncidenciasCamion /> },
+  { path: "/incidenciasxctrabajador/:t/:id", component: <IncidenciasCamion /> },
+  { path: "/incidenciasGE", component: <IncidenciasGenerales /> },
 
-    //LOGIN
-    { path: '/login', component: <Login /> },
+  //No autorizado
+  { path: "/notAuthorized", component: <NoAutorizado /> },
 
-    //No autorizado
-    { path: '/notAuthorized', component: <NoAutorizado /> },
-
-    //Grafico de arranques
-    { path: '/arranques/:id_cam', component: <ContenedorArranque />},
-    { path: '/arranquesc/:id_cam', component: <ContenedorArranque c={"c"} />}
-]
+  //Grafico de arranques
+  { path: "/arranques/:id", component: <ContenedorArranque /> },
+  { path: "/arranquesc/:id", component: <ContenedorArranque c={"c"} /> },
+];

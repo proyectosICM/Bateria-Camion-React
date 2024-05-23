@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export function useNotAuthorized(param) {
   const empresa = localStorage.getItem("empresa");
   const rol = localStorage.getItem("rol");
-
+/*
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,5 +32,5 @@ export function useNotAuthorizedInc(param) {
   console.log("entro");
   console.log(param);
   console.log(empresa);
-  }, [param, navigate, rol]);
+  }, [param, navigate, rol]);*/
 }

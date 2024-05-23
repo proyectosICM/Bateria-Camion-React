@@ -19,7 +19,7 @@ export function Redirect() {
       case "CONDUCTOR":
         // alert(cam); 
        // alert("sd"); 
-        tempNav = '/detalles';
+        tempNav = '/detalles'; 
         break;
       case "SUPERVISOR":
         tempNav = `/menuCamion/${empresa}`;
